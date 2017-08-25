@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../script/lib/lCalendar/lCalendar.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/notice_add.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" >
+				<label class="i18n_label" id=""></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<ul class="aui-list aui-form-list aui-margin-b-10">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							Quantity:
+						</div>
+						<div class="aui-list-item-input">
+							<input type="number" value="1" style="font-size: 14px;color: #555;" id="quantity" placeholder="">
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-form-list aui-margin-b-10">
+				<li class="aui-list-item" onclick="">
+					<div class="aui-list-item-inner" >
+						<div class="aui-list-item-label">
+							Expired Date:
+						</div>
+						<div class="aui-list-item-left aui-text-info" style="width: 100%;">
+							<!--<span id="overtimeText" placeholder="select date" style="margin-right: 1data-lcalendar="2011-01-1,2019-12-31"rem;" ></span>-->
+							<input id="overtimeText" type="text" placeholder="Select Date" style="font-size: 14px;color: #555;" readonly="" name="" data-lcalendar="2000-01-1,2100-12-31" />
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<textarea placeholder="Remark" id="remark" style="height: 8rem;"></textarea>
+					</div>
+				</li>
+			</ul>
+			<div class="submit_reply" style="margin-top: 2rem;">
+				<div class="aui-content" align="center">
+					<div class="aui-btn aui-btn-info" onclick="send()" style="width: 90%;">
+						Submit
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/lib/lCalendar/lCalendar.js"></script>
+	<script type="text/javascript" src="../script/oos_add.js"></script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/notice_add.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" >
+				Remark
+			</div>
+		</header>
+		<div class="aui-content">
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item aui-list-item-middle aui-margin-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label" style="width: 7rem;">
+							<img src="../image/pdc/rs2.png" width="26" height="27" style="vertical-align: middle;"/>
+							<label class="i18n_label aui-margin-l-15" id="value"></label>
+						</div>
+						<div class="aui-list-item-input">
+							<input type="text" id="valueInput" placeholder="">
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-input">
+							<textarea placeholder="Enter the remark" id="content" style="height: 8rem;font-size: 14px;color: #555;"></textarea>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="submit_reply aui-margin-t-15">
+				<div class="aui-content" align="center">
+					<div class="aui-btn aui-btn-info" id="sendBtn" style="width: 90%;">
+						Submit
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="ids"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/recon_question.js"></script>
+</html>

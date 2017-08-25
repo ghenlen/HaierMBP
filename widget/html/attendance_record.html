@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/my_account.css"/>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav dodge_blue_bg" style="position: fixed;z-index:100;">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="frame_title aui-font-size-18" align="center">
+				<label class="i18n_label" id="attendance_record"></label>
+			</div>
+		</header>
+		<div id="main">
+			<div id="container" style="height: 100%;">
+				<ul class="aui-list aui-media-list" id="recordList">
+					<li class="aui-list-item" id="record" onclick="clk(this)">
+						<div class="aui-media-list-item-inner">
+							<div class="aui-list-item-inner t"style="width:16%">
+								<div class="aui-list-item-text">
+									<div class="aui-list-item-title gray monthC" style="padding-left: 0.5rem;font-weight: 800;font-size: 1rem;line-height: normal ">
+										08
+									</div>
+								</div>
+								<div class="aui-list-item-text gray monthE" style="padding-left: 0.5rem;font-weight: 600;line-height: normal">
+									sep
+								</div>
+							</div>
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-text gray aui-ellipsis-2 aui-font-size-14 context" style="width: 100%">
+									Fiscalidad Nacional：introduccion ai nuevo convenio el ano 2012
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item" id="record" onclick="clk(this)">
+						<div class="aui-media-list-item-inner">
+							<div class="aui-list-item-inner t"style="width:16%">
+								<div class="aui-list-item-text">
+									<div class="aui-list-item-title gray monthC" style="padding-left: 0.5rem;font-weight: 800;font-size: 1rem;line-height: normal ">
+										08
+									</div>
+								</div>
+								<div class="aui-list-item-text gray monthE" style="padding-left: 0.5rem;font-weight: 600;line-height: normal">
+									sep
+								</div>
+							</div>
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-text gray aui-ellipsis-2 aui-font-size-14 context" style="width: 100%">
+									Fiscalidad Nacional：introduccion ai nuevo convenio el ano 2012
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var $header = $api.dom('header');
+			var $main = $api.byId('main');
+			var headerHeight = $api.offset($header);
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			$api.css($main, 'height:' + ( api.winHeight -headerHeight.h) + "px");
+			copy();
+		};
+		function copy() {
+			var data = [{
+				"date" : "08",
+				"context" : "Fiscalidad Nacional：introduccion ai nuevo convenio el ano 2012 "
+			}, {
+				"data" : "09",
+				"contex" : "Fiscalidad Nacional：introduccion ai nuevo convenio el ano 2012 "
+			}];
+			var recordList = $api.byId("recordList");
+			var record = $api.byId("record");
+			var copyRecord = record.cloneNode(true);
+			for (var i = 0; i < data.length; i++) {
+				$api.html($api.dom('copyRecord', '.monthC'), data[i].date);
+				$api.html($api.dom('copyRecord', '.context'), data[i].context);
+				$api.append(recordList, '<li class="aui-list-item" onclick="clk(this)" >' + $api.html(copyRecord) + '</li>');
+			}
+		}
+
+
+		function clk(obj) {
+			var befores = $api.domAll(".s");
+			for (var i = 0; i < befores.length; i++) {
+				$api.removeCls(befores[i], 's');
+				$api.addCls(befores[i], 't');
+			}
+			$api.addCls(obj, 's');
+		}
+	</script>
+</html>

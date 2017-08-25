@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>离线订单</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/common/shopping.css" />
+		<link rel="stylesheet" type="text/css" href="../css/offline_order.css" />
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top">
+			<a class="aui-pull-left aui-btn" onclick="COMMON_BackToRoot();"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18">
+				<label class="i18n_label" id="offlineOrder"></label>
+			</div>
+			<a class="aui-pull-right aui-btn"> <img src="../image/common/menu.png" width="22" height="22" onclick="BUSINESS_OpenPopupMenu()"/> </a>
+		</header>
+		<div id="main" >
+			<!-- 四方关系 START -->
+			<div class="aui-content" id="fourRealtionCon">
+				<ul class="aui-list" id="fourReleastion">
+					<li class="aui-list-item aui-list-item-middle" id="soldToLi">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-my"  style="color:rgb(130,192,233);"></i>
+								<span class="aui-font-size-14"><label class="i18n_label" id="soldTo"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-text-info aui-ellipsis-1" id="soldToText"></div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle" id="shipToLi">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-location" style="color:rgb(87,157,183);"></i>
+								<span class="aui-font-size-14"><label class="i18n_label" id="shipTo"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-text-info aui-ellipsis-1" id="shipToText"></div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle" id="payToLi">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-cert" style="color:rgb(239,151,131);"></i>
+								<span class="aui-font-size-14"><label class="i18n_label" id="payTo"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-text-info aui-ellipsis-1" id="payerText"></div>
+						</div>
+					</li>
+					<li id="balanceLi" class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-cert" style="color:#56abe4;"></i>
+								<span class=""><label class="i18n_label" id="balance"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-ellipsis-1 aui-text-info"  style="color:rgb(2,173,242);">
+								<span id="balanceTag">Rs.&nbsp;</span><span id="balanceVal">0.0</span>
+							</div>
+						</div>
+					</li>
+					<li id="locationLi" class="aui-list-item aui-list-item-middle" id="locationLi">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-map"  style="color: #9d55b8;"></i>
+								<span class=""><label class="i18n_label" id="storageLocation"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-text-info" id="locationText"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="search_bg" onclick="openSearchWin()">
+				<img src="../image/common/searchbg.png" style="width: 100%;"/>
+			</div>
+			<!-- 购物清单 -->
+			<div class="aui-content" style="margin-top: 10px;margin-bottom: 60px;">
+				<ul class="aui-list aui-media-list" id="offlineList"></ul>
+			</div>
+			<footer class="aui-bar aui-bar-tab  aui-font-size-14" id="footer">
+				<div id="select_all"  style="color: red">
+					<div class="select_all_btn  aui-margin-l-15 select_all_product" flag=1  onclick="chkAllProduct()"></div>
+					<label class="i18n_label" id="selectAll"></label>
+				</div>
+				<div id="sum_total"  style="color:rgb(2,173,242);">
+					<div id="totalContainer">
+						<label class="i18n_label" id="sumtotal"></label>
+						<span class="offline_sumtotal" id="sumPrice">0.00</span>
+					</div>
+					<div id="taxContainer">
+						<label class="i18n_label"  id="tax"></label>
+						<span id="taxVal"></span>
+					</div>
+				</div>
+				<div id="checkout_btn" class="checkout_btn_available" onclick="checkout()">
+					<label class="i18n_label" id="checkout">
+				</div>
+			</footer>
+			<input id="customerId" type="hidden"/>
+			<input id="soldToValue" type="hidden"/>
+			<input id="shipToValue" type="hidden"/>
+			<input id="shipToCode" type="hidden"/>
+			<input id="payerValue" type="hidden"/>
+			<input id="payerCode" type="hidden"/>
+			<input id="locationValue" type="hidden"/>
+			<input id="saleOffice" type="hidden"/>
+			<input id="orgCode" type="hidden"/>
+			<input id="plant" type="hidden"/>
+			<input id="tax_val"  type="hidden" value="0"/>
+			<input id="balance_val"  type="hidden" value="0"/>
+			<input id="total_price_val"  type="hidden" value="0"/>
+			<div id="productTemplate" class="aui-hide">
+				<li class="aui-list-item product">
+					<div class="aui-media-list-item-inner">
+						<div class="select_btn_disable fast_order_selectbtn" flag=3 onclick="chkProduct(this)"></div>
+						<div class="aui-list-item-media aui-margin-l-5 aui-margin-t-10 product_img_div" style="display: none;">
+							<div>
+								<img class="product_img" src="../image/common/pic.png"
+								onerror="this.src='../image/common/pic.png'">
+							</div>
+						</div>
+						<div class="aui-list-item-inner" style="width: 90%;padding-left: 8px;">
+							<div class="aui-list-item-title" style="line-height: 0.8rem;" onclick="lookDetail(this)">
+								<span class="product_name aui-ellipsis-2" style="word-break : break-all"></span>
+							</div>
+							<div class="aui-info" style="margin-top: -0.2rem;font-size: 0.6rem;">
+								<div class="aui-info-item">
+									<span class="model"></span>
+								</div>
+								<div class="aui-info-item stock_container aui-font-size-12">
+									<span class="stock_tag"  style="display: none;">Stock: </span>
+									<span class="stock" style="color:rgb(2,173,242);display: none;"></span>
+								</div>
+							</div>
+							<div class="aui-info price_container" style="margin-top: -0.9rem;">
+								<div class="aui-list-item-text">
+									<div class="aui-info-item" style="color:rgb(2,173,242);font-size: 0.6rem;">
+										<span class="price_tag" style="display: none;"></span>
+										<span class="invoice_price" style="display: none;"></span>
+									</div>
+								</div>
+								<div class="aui-list-item-text">
+									<div class="old_price" style="font-size: 0.6rem;">
+										<span class="discount_price_tag" style="color:rgb(239,73,57);display: none;" ></span>
+										<span class="discount_price" style="color:rgb(239,73,57);display: none;" ></span>
+									</div>
+								</div>
+								<div class="aui-list-item-right">
+									<div class="old_price" style="font-size: 0.6rem;">
+										<span class="sale_price_tag gray_light" style="display: none;"></span>
+										<span class="sale_price gray_light" style="display: none;text-decoration:line-through"></span>
+									</div>
+								</div>
+							</div>
+							<div class="aui-info" style="margin-top: -0.9rem;">
+								<div class="aui-list-item-text">
+									<img class="stock_ring" src="../image/common/ring.png" onclick="addOosRemind(this)" style="vertical-align: middle;width: 0.9rem;height:0.9rem;margin-top: 0px;"/>&nbsp;
+								</div>
+								<div class="aui-list-item-text">
+									<div class="qty_operate_container">
+										<div  class="sub_btn" onclick="subProductNum(this)">
+											<img src="../image/common/sub.jpg" width="20" height="20"/>
+										</div>
+										<div class="input_area qty" onclick="editProductNum(this)">
+											1
+										</div>
+										<div  class="plus_btn" onclick="addProductNum(this)">
+											<img src="../image/common/plus.png" width="20" height="20"/>
+										</div>
+									</div>
+								</div>
+								<div class="aui-list-item-right">
+									<i class="aui-iconfont aui-icon-trash edit_num_btn" onclick="deleteProduct(this)"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</div>
+			<div class="scroll-top aui-hide" align="center" id="scrollTop" style="bottom:2rem" onclick="scrollToTop()">
+				<img src="../image/common/toTop.png" width="48" height="48" />
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript" src="../script/lib/math.js"></script>
+	<script type="text/javascript" src="../script/shopping.js"></script>
+	<script type="text/javascript" src="../script/fast_order.js"></script>
+</html>

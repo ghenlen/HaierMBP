@@ -1,0 +1,61 @@
+/***** 灰色  *****/
+.gray {
+	color: #757575 !important;
+}
+
+/***** 浅灰色  *****/
+.gray_light {
+	color: #b1b1b1 !important;
+}
+
+/***** 深灰色  *****/
+.gray_dark {
+	color: #0059a9 !important;
+}
+
+/***** 道奇蓝  *****/
+.dodge_blue {
+	color: #1B7BEA !important;
+}
+.dodge_blue_bg {
+	background-color: #1B7BEA !important;
+}
+
+/***** 天空蓝  *****/
+.sky_blue {
+	color: #00BFFF !important;
+}
+.sky_blue_bg {
+	background-color: #00BFFF;
+}
+
+/***** 橙色    *****/
+.orange {
+	color: #ffc107 !important;
+}
+
+/***** 圣诞红    *****/
+.christmas_red {
+	color: #BF0A10 !important;
+}
+
+/***** 霓虹绿 *****/
+
+.neon_green {
+	color: #00e400 !important;
+}
+
+/***** 青苔色    *****/
+.moss_green {
+	color: #669933 !important;
+}
+
+/***** 番茄色 *****/
+.tomato_red {
+	color: #ff6666 !important;
+}
+
+.white {
+	color: #FFF !important;
+}
+

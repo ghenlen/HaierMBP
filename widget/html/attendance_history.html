@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/attendance_history.css"/>
+	</head>
+	<body style="height: 100%;">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18">
+				<label class="i18n_label " id="attendance_record"></label>
+			</div>
+		</header>
+		<div class="aui-content" style="background: #fff;height: 2rem;">
+			<div style="float: left;width: 40%;text-align: left;padding-left: 10px;line-height: 2rem;color: #757575;" id="monthText">6/16</div>
+			<div style="float: right;width: 40%;text-align: right;padding-right: 10px;line-height: 2rem;color: #444;" onclick="selectMonth()">
+				<i class="aui-iconfont aui-icon-calendar aui-text-info" style="font-size: 1rem;"></i>
+			</div>
+		</div>
+		<div class="aui-content-padded" id="historyList">
+		</div>
+		<div id="template" class="aui-hide">
+			<div class="row">
+				<div class="attendance_container">
+					<div class="date">
+						<div style="display: table-cell;vertical-align:middle;">
+							<div class="aui-font-size-20">
+								<b class="day"></b>
+							</div>
+							<div class="aui-font-size-12 month" style="margin-top: -2px;"></div>
+						</div>
+					</div>
+					<div class="data">
+						<div style="display: table-cell;vertical-align:middle;" class="attendance_list">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="attendanceTemplate">
+				<div class="aui-font-size-12 gray_light">
+					<div style="display: inline-block;width: 25%;" class="time"></div>
+					<div class="location aui-ellipsis-1" style="display: inline-block;width: 70%;vertical-align: bottom;"></div>
+				</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/attendance_history.js"></script>
+</html>

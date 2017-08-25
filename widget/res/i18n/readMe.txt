@@ -1,0 +1,1 @@
+所有需要国际化的文本都写成：<label id="username" class="i18n_label"></label>，其中label的id为国际化文件properties中的key，class固定写死。

@@ -1,0 +1,96 @@
+#dealer {
+	padding-left: 1rem;
+	background: #fff;
+	border-bottom: 1px solid #efefef;
+}
+
+#dealer img {
+	vertical-align: middle;
+	margin-right: 0.5rem;
+}
+
+#dealerName {
+	line-height: 2rem;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.performance_top {
+	color: #FFF;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	padding-left: 0.5rem;
+	border-right: 1.2rem transparent dotted;
+	border-bottom: 1.2rem #01AEF0 solid;
+}
+
+.pdc_top {
+	color: #FFF;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	padding-left: 0.5rem;
+	border-right: 1.2rem transparent dotted;
+	border-bottom: 1.2rem #ADE015 solid;
+}
+
+.credit_top {
+	color: #FFF;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	padding-left: 0.5rem;
+	border-right: 1.2rem transparent dotted;
+	border-bottom: 1.2rem #FADC3E solid;
+}
+
+.rebate_top {
+	color: #FFF;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	padding-left: 0.5rem;
+	border-right: 1.2rem transparent dotted;
+	border-bottom: 1.2rem #F87D3A solid;
+}
+
+.account_top {
+	color: #FFF;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	padding-left: 0.5rem;
+	border-right: 1.2rem transparent dotted;
+	border-bottom: 1.2rem #CA77FB solid;
+}
+
+#paytoList {
+}
+
+#paytoList .item {
+	background: #fff;
+	height: 4rem;
+	/* line-height: 4rem; */
+	width: 100%;
+	/* background: url("../image/dealer/credit.png") no-repeat; */
+	/* background-size: 20% 20%; */
+	    padding: 1rem 0;
+}
+#paytoList .item .dealer_image{
+
+	height: 2rem;
+	/* line-height: 4rem; */
+	width: 30%;
+	background: url("../image/dealer/credit.png") no-repeat;
+	background-size: 2rem 2rem;
+	margin-left:2rem;
+	
+}
+
+#paytoList .item .dealer_name {
+	margin-left: 30%;
+	text-align: left;
+    width: 65%;
+    overflow: auto;
+	/*background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255,255,255, 1)), to(rgba(192,192,192, 1)));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 0.8rem;
+	font-weight: bolder; */
+}

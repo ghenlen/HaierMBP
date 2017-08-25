@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Organization</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn"></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="region"></label>
+			</div>
+		</header>
+		<div>
+			<div style="overflow: auto;" id="container">
+				<ul class="aui-list aui-media-list" id="orgList"></ul>
+			</div>
+		</div>
+		<ul class="aui-hide" id="template">
+			<li class="aui-list-item level1"  onclick="changeOrg(this)">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-inner aui-font-size-12">
+						<div class="aui-ellipsis-1" style="width:100%;">
+							<span style="margin-top: 4px;" class="orgTitle"></span>
+						</div>
+					</div>
+					<div class="aui-list-item-right aui-padded-r-10 selectedFlag" style="display: none;line-height: 2rem;">
+						<i class="aui-iconfont aui-icon-correct " style="color:#1B7BEA;"></i>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/org_switch.js"></script>
+</html>

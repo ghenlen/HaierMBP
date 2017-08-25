@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Common Product</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/common/shopping.css" />
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn"> </a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="commonProduct"></label>
+			</div>
+		</header>
+		<div id="main">
+			<!-- 四方关系 START -->
+			<div class="aui-content" style="width: 100%;">
+				<ul class="aui-list aui-list-in">
+					<li class="aui-list-item aui-list-item-middle" onclick="showDealerActionSelector()">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-my"></i>
+								<span class=""><label class="i18n_label" id="soldTo"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-ellipsis-1 aui-text-info" id="customerTitle"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- 购物清单 -->
+			<div class="aui-content aui-margin-t-10" style="margin-bottom: 50px;">
+				<ul class="aui-list aui-media-list" id="commonList"></ul>
+				<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			</div>
+			<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+		</div>
+		<input id="customerCode" type="hidden"/>
+		<input id="customerId" type="hidden"/>
+		<input id="saleOffice" type="hidden"/>
+		<input id="orgCode" type="hidden"/>
+		<ul id="productTemplate" style="display: none;">
+			<li class="aui-list-item">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media">
+						<img src="../image/common/pic.png" class="img_bx"
+							onerror="this.src='../image/common/pic.png'">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title">
+								<span class="title aui-ellipsis-2" style="word-break : break-all"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="padding:0;margin-top: -0.3rem;">
+							<div class="aui-info-item">
+								<span class="model gray_light" style="font-size: 0.6rem;"></span>
+							</div>
+							<div class="aui-list-item-right aui-font-size-12 aui-hide stock-info">
+								Stock:&nbsp; <span class="stock"></span>
+							</div>
+						</div>
+						<div class="aui-info aui-hide price-info" style="padding:0;">
+							<div class="aui-list-item-text">
+								<div class="aui-info-item" style="color:rgb(2,173,242);font-size: 0.6rem;">
+									<span class="price_tag sky_blue" ></span>
+									<span class="invoice_price sky_blue"></span>
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								<div class="aui-info-item" style="font-size: 0.6rem;">
+									<span class="discount_price gray_light" style="color:rgb(239,73,57);"></span>
+								</div>
+							</div>
+							<div class="aui-list-item-right">
+								<span class="sale_price moss_green aui-font-size-12"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="padding:0;margin-top: 7px;">
+							<div class="aui-list-item-left oos_remind aui-hide" onclick="addOosRemind(this)">
+								<img src="../image/common/ring.png"  style="vertical-align: middle;width: 0.9rem;height:0.9rem;margin-top: 0px;"/>
+							</div>
+							<div class="aui-list-item-right delete_item" onclick="deleteWishList(this)">
+								<i class="aui-iconfont aui-icon-trash"></i>
+							</div>
+							<div class="aui-list-item-right">
+								<div class="aui-btn aui-btn-default add_to_cart_btn" onclick1="addtocart(this)" style="line-height:0.5rem;font-size: 10px;width: 4.5rem;vertical-align: middle;">
+									<span class="i18n_label" id="addToCart" style="margin-top:3px;"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/common_product.js"></script>
+</html>

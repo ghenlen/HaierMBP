@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+            #footer {
+                border-top: 1px solid #dfdfdf;
+                height: 2.5rem;
+                border-width: thin;
+            }
+            #replyInput {
+                height: 95%;
+                margin-bottom: 2%;
+                margin-top: 2%;
+                margin-left: 4%;
+                margin-right: 4rem;
+            }
+            #replyBtn {
+                width: 4rem;
+                height: 100%;
+                float: right;
+                text-align: center;
+            }
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="question_detail"></label>
+			</div>
+		</header>
+		<div class="aui-content"  id="container">
+			<div style="background: #fff;">
+				<div class="aui-content aui-margin-b-15 aui-padded-t-10">
+					<ul class="aui-list">
+						<li class="aui-list-item">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title" >
+									<label class="i18n_label" id="title"></label>:
+								</div>
+								<div class="aui-list-item-left" style="width:70%">
+									<div id="titleText" class="aui-ellipsis-2"></div>
+								</div>
+							</div>
+						</li>
+						<li class="aui-list-item aui-hide" id="dealerContainer">
+							<div class="aui-list-item-inner " >
+								<div class="aui-list-item-title" >
+									<label class="i18n_label" id="dealer"></label>:
+								</div>
+								<div class="aui-list-item-left" style="width:70%">
+									<div id="dealerText" class="aui-ellipsis-2"></div>
+								</div>
+							</div>
+						</li>
+						<li class="aui-list-item aui-hide" id="reportToContainer">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title" >
+									<label class="i18n_label" id="reportTo"></label>:
+								</div>
+								<div class="aui-list-item-left" style="width:70%">
+									<div id="reportToText" class="aui-ellipsis-2"></div>
+								</div>
+							</div>
+						</li>
+						<li class="aui-list-item">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title" >
+									<label class="i18n_label" id="category"></label>:
+								</div>
+								<div class="aui-list-item-left" style="width:70%">
+									<div id="categoryText" class="aui-ellipsis-2"></div>
+								</div>
+							</div>
+						</li>
+						<li class="aui-list-item">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title" >
+									<label class="i18n_label" id="time"></label>:
+								</div>
+								<div class="aui-list-item-left" style="width:70%">
+									<div id="timeText" class="aui-ellipsis-1"></div>
+								</div>
+							</div>
+						</li>
+						<li class="aui-list-item" id="attachContainer">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title" >
+									<label class="i18n_label" id="question_Attachment"></label>
+								</div>
+								<div class="aui-list-item-left" style="width:70%">
+									<img  src="../image/common/attachment.png"  style="width: 10px;height:10px;"/>
+									<input type="text" placeholder="Name" readonly="true" value="shop.png" style="display: inline-block;width: 80%;font-size: 0.7rem;">
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<p style="text-indent: 1em;text-align:justify;padding:10px;" id="content"></p>
+			</div>
+			<div class="aui-content-padded" style="margin-bottom: 3.5rem;">
+		        <ul class="aui-list aui-media-list" id="replyList">
+			        <li class="aui-list-header" style="background: #fff;border-radius: 8px 8px 0px 0px;border-bottom: 1px solid #efefef;">
+			           	 <label style="font-size: 0.7rem;" class="i18n_label aui-text-info" id="questionReplyList"></label>
+			        </li>
+			        <li class="aui-list-item aui-list-item-middle" id="noReplyInfo">
+						<div class="aui-media-list-item-inner">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-text">
+									<span class="aui-text-center">No Reply.</span>
+								</div>
+							</div>
+						</div>
+					</li>	
+			     </ul>
+		    </div>
+			
+			
+			
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<div id="replyContainer" class="aui-hide">
+				<section class="aui-grid">
+				    <div class="aui-row" style="padding: 0;">
+				        <div class="aui-col-xs-4" style="padding: 0.5rem 0 0.5rem 1rem;text-align: left;">
+				            <div class="aui-grid-label aui-text-info" onclick="closeReply()">Cancel</div>
+				        </div>
+				        <div class="aui-col-xs-4" style="padding: 0.4rem 0;">
+				            <div class="aui-grid-label aui-font-size-16">Reply</div>
+				        </div>
+				        <div class="aui-col-xs-4" style="padding: 0.5rem 1rem 0.5rem 0;text-align: right;" >
+				            <div class="aui-grid-label aui-text-info" onclick="submitReply()">OK</div>
+				        </div>
+				    </div>
+				    <div class="aui-row" align="center" style="padding: 0 1rem;height: 8rem;">
+				         <textarea class="replyContent" placeholder="Reply Content" style="border:1px solid #efefef;width: 100%;height: 7rem;padding:0.5rem;" ></textarea>
+				    </div>
+				</section>
+			</div>
+		<div class="aui-hide"  id="template">
+			<li class="aui-list-item aui-list-item-middle">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media" style="width: 3rem;">
+						<img src="../image/question/man.png" class="aui-img-round aui-list-img-sm portal">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title aui-font-size-14 replyer aui-ellipsis-1"></div>
+							<div class="aui-list-item-right gray_light reply_time" style="font-size: 0.5rem;"></div>
+						</div>
+						<div class="aui-list-item-text" style="margin-top: 6px;">
+							<div style="width: 100%;" class="reply_content"></div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/aui/aui-reply.js"></script>
+	<script type="text/javascript">
+		var dialog = new auiDialog({});
+		var questionId;
+		var questionStatus;
+		var userInfo = $api.getStorage("userInfo");
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var headerHeight = $api.offset($header).h;
+			COMMON_openFrame({
+				name : 'question_detail_head',
+				url : 'question_detail_head.html',
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : headerHeight
+				},
+				animation : CONSTANT_FRAME_ANIMATION
+			});
+			var pageParam = api.pageParam;
+			questionId = pageParam.id;
+			var type = pageParam.type;
+			questionStatus = 'INIT';
+			loadQuestionDetail(questionId);
+}
+			
+		function loadQuestionDetail(id) {
+			var url = ajaxReqHost + 'appGetQuestion.ajax';
+			COMMON_Ajax_Post(url, {
+				values : {
+					id : id
+				}
+			}, function(ret) {
+				if (ret) {
+					$api.html($api.byId('titleText'), ret.title);
+					if (ret.type == "CUSTOMER") {
+						$api.addCls($api.byId("dealerContainer"), "aui-show");
+						$api.html($api.byId('dealerText'), ret.customerTitle);
+					} else if (ret.type == "INNER") {
+						$api.addCls($api.byId("reportToContainer"), "aui-show");
+						$api.html($api.byId('reportToText'), ret.orgType);
+					}
+					$api.html($api.byId('categoryText'), ret.categoryLabel);
+					$api.html($api.byId('timeText'), COMMON_FormatTimeToTime(ret.createDate));
+					$api.html($api.byId('content'), ret.content);
+					$api.val($api.byId('customerCode'), ret.customerCode);
+					var questionLine = ret.questionLine;
+					if(questionLine.length>0){
+					$api.addCls($api.byId("noReplyInfo"), "aui-hide");
+					}
+					for (var i = 0; i < questionLine.length; i++) {
+						var cloTemplate = $api.byId("template");
+						var cloneObj = cloTemplate.cloneNode(true);
+						$api.html($api.dom(cloneObj, '.replyer'), questionLine[i].userName);
+						$api.html($api.dom(cloneObj, '.reply_content'), questionLine[i].content);
+						$api.html($api.dom(cloneObj, '.reply_time'), COMMON_FormatTimeToTime(questionLine[i].createDate));
+						$api.append($api.byId('replyList'), $api.html(cloneObj));
+					}
+					var attach = ret.attach;
+					if (attach == true) {
+						$api.css($api.byId('attachContainer'), 'display: block');
+					} else {
+						$api.css($api.byId('attachContainer'), 'display: none');
+					}
+					var questionLine = ret.questionLine;
+				}
+			});
+		}
+	</script>
+</html>

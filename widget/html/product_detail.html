@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Product Detail</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/common/shopping.css" />
+		<style>
+            #leftArraw {
+                float: left;
+                width: 80px;
+                text-align: center;
+            }
+            #rightArraw {
+                float: right;
+                width: 80px;
+                text-align: center;
+            }
+            #basicInfo {
+                width: 100%;
+                height: 100px;
+                background: #FFFFFF;
+                padding-top: 15px;
+                padding-left: 5%;
+            }
+            #productTitle {
+                font-weight: bold;
+                line-height: 1.1 rem;
+            }
+            #product_code, #product_saleTitle {
+                font-size: 0.5 rem;
+                display: inline-block;
+                margin-right: 1rem;
+            }
+            #productPrice {
+                margin-top: 10px;
+                width: 90%;
+            }
+            #productPrice .price_item {
+                width: 30%;
+                display: inline-block;
+            }
+            .isWish {
+                width: 20px;
+                margin-left: 25px;
+                background-image: url(../image/my/star2.png);
+                position: relative;
+                background-size: 100% 100%;
+                height: 20px;
+            }
+            .isCart {
+                width: 20px;
+                margin-left: 20px;
+                background-image: url(../image/my/cart2.png);
+                position: relative;
+                background-size: 100% 100%;
+                height: 20px;
+            }
+            
+            p{
+            	margin: 0;
+            	padding: 0;
+            }
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="product_details"></label>
+			</div>
+		</header>
+		<div id="slideImg">
+			<div id="leftArraw">
+				<img src="../image/common/left_arraw.png" width="30" height="30" onclick="leftSlide()"/>
+			</div>
+			<div id="rightArraw">
+				<img src="../image/common/right_arraw.png" width="30" height="30" onclick="rightSlide()"/>
+			</div>
+		</div>
+		<div id="basicInfo">
+			<div id="productTitle"></div>
+			<div id="product_saleTitle" class="aui-text-info"></div>
+			<div id="product_code" class="aui-text-info"></div>
+			<div id="productPrice">
+				<div id="invoicePrice" class="price_item aui-text-danger"></div>
+				<div id="discountPrice" class="price_item" style="font-size: 10px;text-align: center;"></div>
+				<div id="salePrice" class="price_item gray_light"></div>
+			</div>
+		</div>
+		<div class="aui-tab aui-margin-t-15" id="detailTab">
+			<div class="aui-tab-item aui-active">
+				<label class="i18n_label" id="productDetails"></label>
+			</div>
+			<div class="aui-tab-item">
+				<label class="i18n_label" id="technicalDetails"></label>
+			</div>
+		</div>
+		<div style="background: #FFF;">
+			<div id="content_etails" class="aui-padded-t-5">
+			</div>
+			<div style="width:100%;padding-top:5px;display:none;" id="product_parameters" >
+				<ul id="basicUl" class="aui-list">
+					<li class="aui-list-header" style="padding-left: 0.6rem;font-size: 1rem;background: #fff;color: #1b7bea;">
+						Basic
+					</li>
+				</ul>
+				<ul id="functionUl" style="margin-top: 1rem;" class="aui-list">
+					<li class="aui-list-header" style="padding-left: 0.6rem;font-size: 1rem;background: #fff;color: #1b7bea;">
+						Function
+					</li>
+				</ul>
+				<ul id="speciUl" style="margin-top: 1rem;" class="aui-list">
+					<li class="aui-list-header" style="padding-left: 0.6rem;font-size: 1rem;background: #fff;color: #1b7bea">
+						Specification
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+		
+		<h6 id="footInfo" class="end">
+			<i class="end-line"></i>
+			<label class="end-text">End</label>
+		</h6>
+		
+		<div style="height: 50px;"></div>
+		<footer class="aui-bar aui-bar-tab" style="border-top:1px solid #1b7bea" id="dbgwc">
+			<div class="aui-bar-tab-item" style="width:20%" onclick="Collection()" id="shoucang">
+				<div class="aui-iconfont aui-icon-star" id="isWish"></div>
+				<div class="aui-bar-tab-label">
+					<label class="i18n_label" id="collection"></label>
+				</div>
+			</div>
+			<div class="aui-bar-tab-item" style="width:18%" onclick="gotocart()" >
+				<div class="aui-iconfont aui-icon-cart" id="isCart"></div>
+				<div class="aui-bar-tab-label">
+					Cart
+				</div>
+			</div>
+			<div class="aui-bar-tab-item" style="width:27%">
+				<div class="aui-bar-tab-label aui-list-item-right">
+					<div class="qty_operate_container">
+						<div  class="sub_btn" onclick="subProductNum(this)">
+							<img src="../image/common/sub.jpg" width="20" height="20"/>
+						</div>
+						<div class="input_area qty" id="qty" onclick="editProductNum(this)">
+							1
+						</div>
+						<div  class="plus_btn" onclick="addProductNum(this)">
+							<img src="../image/common/plus.png" width="20" height="20"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="aui-bar-tab-item" style="width:35%;background-color: #1b7bea" onclick="addCart()">
+				<div class="aui-bar-tab-label white">
+					<label class="i18n_label" id="addToCart"></label>
+				</div>
+			</div>
+		</footer>
+		<div id="template" class="aui-hide">
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-left fieldtitle" style="width:45%"></div>
+					<div class="aui-list-item-right fieldvalue" style="width:45%"></div>
+					<div class="aui-list-item-right"></div>
+				</div>
+			</li>
+		</div>
+		<div class="scroll-top aui-hide" style="bottom: 2rem;" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/product_detail.js"></script>
+</html>

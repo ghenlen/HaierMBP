@@ -1,0 +1,103 @@
+.addressee_information {
+	width: 99%;
+	height: 30px;
+	margin-top: 3px;
+	background: #FFFFFF;
+	margin-left: 10px;
+}
+.addressee_information .addressee_information_bj {
+	width: 49%;
+	height: 30px;
+	background: url('../image/home_page/shoujianxiang.png') no-repeat top left;
+	float: left
+}
+.addressee_information .addressee_information_sjrbt {
+	height: 30px;
+	margin-top: -5px;
+	margin-left: 40px;
+	color: #444444
+}
+.addressee_information .addressee_information_sjr {
+	height: 30px;
+	margin-top: 0px;
+}
+.addressee_information .addressee_information_xyc {
+	width: 49%;
+	height: 30px;
+	float: left;
+	background: url('../image/home_page/get_into.png') no-repeat top right;
+	text-align: center
+}
+.address_title_div {
+	width: 99%;
+	height: 30px;
+	margin-top: 10px;
+	background: url('../image/home_page/fjxfenlei.png') no-repeat top left;
+	margin-left: 10px;
+}
+.address_title {
+	width: 85%;
+	height: 30px;
+	margin-left: 50px;
+}
+.address_input {
+
+	width: 70%;
+	height: 30px;
+	background: #ffffff;
+	border: solid #01AEF0 1px;
+	font-size: 13px;
+	padding: 10px;
+	color: #444
+}
+.address_body_bj {
+	background: url('../image/home_page/xie.png') no-repeat top left;
+	height: 30px;
+	margin-top: 10px;
+	margin-left: 15px;
+}
+.address_body_bj span {
+	padding-left: 40px;
+}#upload_container {
+	min-height: 5rem;
+	padding: 0.5rem;
+}
+
+#upload_container .upload_btn {
+	display: inline-block;
+	border: 1px solid #dfdfdf;
+	width: 4rem;
+	height: 4rem;
+	background: url('../image/common/plus_128128.png') no-repeat;
+	background-size: 3rem 3rem;
+	background-position: 0.45rem 0.45rem;
+	margin: 0 0.5rem;
+}
+
+#upload_container  .upload_imgs {
+	width: 4rem;
+	height: 4rem;
+	margin: 0 0.5rem;
+	position: relative;
+	display: inline-block;
+	border: 1px solid #dfdfdf;
+}
+
+#upload_container  .upload_imgs img {
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	width: 90%;
+	height: 90%;
+}
+
+#upload_container  .upload_imgs .delete_flag {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1.2rem;
+	height: 1.2rem;
+	border-radius: 12px;
+	background: url('../image/common/close_orange.png') no-repeat;
+	background-size: 1.2rem 1.2rem;
+}

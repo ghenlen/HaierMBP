@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>订单详情</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/order_detail2.css"/>
+		<style>
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav dodge_blue_bg">
+			<a class="aui-pull-left aui-btn left_btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="orderDetail"></label>
+			</div>
+		</header>
+		<div id="container" style="margin-bottom: 14px;">
+			<div id="main" style="overflow: auto;">
+				<input type="hidden" id="productId"/>
+				<div class="aui-content">
+					<ul class=" aui-list aui-list-in" id="orderList">
+						<li class="aui-list-item aui-list-item-middle title" id="delear" onclick="" style="border-bottom:1px solid #efeded">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title aui-font-size-14" style="width: 17%">
+									<label class="i18n_label" id="order_delear"></label>
+								</div>
+								<div class="aui-list-item-right aui-ellipsis-1">
+									<span id="delearTitle"> Market Adjustent</span>
+									<span style="display: none" id="delearCode"></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="order">
+					<div class="logistics_info">
+						<div style="padding-bottom: 20px;" class="aui-padded-l-15">
+							<div class="item_row aui-font-size-12" align="left">
+								<span class="" style="width: 30%"><label class="i18n_label" id="order_ddh"></span>
+								<span id="ZSONo"></span>
+							</div>
+							<div class="item_row aui-font-size-12 " align="left">
+								<span class="" style="width: 30%"><label class="i18n_label" id="order_cpsl"></span>
+								<span class="dodge_blue" id="countS"></span>
+							</div>
+							<div class="item_row aui-font-size-12" align="left">
+								<span class="" style="width: 30%"><label class="i18n_label" id="order_status"></span>
+								<span class="dodge_blue" id="state1"></span>
+								<span class="aui-margin-l-15 gray_light" id="stateTime"></span>
+							</div>
+						</div>
+						<ul class=" logistics_list" style="">
+						
+											</ul>
+					</div>
+					<div class="basic_info aui-padded-l-15">
+						<div class="item_row aui-font-size-14">
+							<span style="width: 30%"> <label class="i18n_label" id="home_drderno"></label></span>
+							<span id="orderNo" class="dodge_blue" style="font-weight: bold;"></span>
+						</div>
+						<div class="item_row aui-font-size-14">
+							<span class="" style="width: 30%"> <label class="i18n_label" id="order_amount"></label> </span>
+							<span id="price" class="dodge_blue"></span>
+						</div>
+						<div class="item_row aui-font-size-14">
+							<span class="" style="width: 30%"><label class="i18n_label" id="order_address"></label></span>
+							<span id="address" class="dodge_blue"></span>
+						</div>
+						<div class="item_row aui-font-size-14">
+							<span class="" style="width: 30%"><label class="i18n_label" id="order_note"></span>
+							<span id="remark" class="dodge_blue"></span>
+						</div>
+					</div>
+					<div class="goods_info"></div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<ul class="aui-list aui-media-list  aui-hide">
+			<li class="aui-list-item logisticsTemplate" id="logisticsTemplate" >
+				<div class="aui-media-list-item-inner" style="border-bottom:1px solid #e4e2e2;padding-left: 16px;">
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-text">
+								<span style="width:5rem"><label class="i18n_label" id="type"></label></span>&nbsp;<span  class="dodge_blue type"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -1rem;">
+							<div class="aui-list-item-text">
+								<span style="width:5rem"><label class="i18n_label" id="documentNumber"></label></span>&nbsp;<span  class="dodge_blue documentNumber"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text">
+								<span style="width:5rem"><label class="i18n_label" id="documentDate"></label></span>&nbsp;<span  class="dodge_blue documentDate"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text">
+								<span style="width:5rem"><label class="i18n_label" id="status"></label></span>&nbsp;<span  class="dodge_blue status"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/order_detail2.js"></script>
+</html>

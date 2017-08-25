@@ -1,0 +1,72 @@
+.list_switch {
+	position: absolute;
+	top: 15px;
+	right: 2px;
+}
+
+.search_container {
+	height: 30px;
+	position: relative;
+	top: 15px;
+	left: 20%;
+	width: 70%;
+	background: #fff;
+}
+
+.search_container input {
+	width: 70%;
+	height: 20px;
+	top: 5px;
+	color: #333;
+	position: absolute;
+	left: 30px;
+}
+
+.search_container .search_btn {
+	position: absolute;
+	left: 5px;
+	top: 8px;
+}
+
+.search_container .close_btn {
+	position: absolute;
+	right: 5px;
+	top: 8px;
+	display: none;
+}
+
+.swipe {
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
+	background: #fff;
+	padding-bottom: 10px;
+}
+.swipe-wrap {
+	overflow: hidden;
+	position: relative;
+}
+.swipe-wrap .swipe-box {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+.sliderow {
+	text-align: center;
+	width: 100%;
+	display: block;
+}
+/*.slidepanel .sliderow {margin-top: 10px;}*/
+.sliderow .slidecol {
+	float: left;
+	/* width:6%; */
+	position: relative;
+}
+.sliderow .slidecol img {
+	width: 60%;
+	margin-top: 10px;
+}
+.sliderow .slidecol div {
+	font-size: 0.7;
+	margin-top: 5px;
+}

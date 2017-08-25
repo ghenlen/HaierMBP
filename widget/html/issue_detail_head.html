@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" style="display:none;left:1rem;right:1rem;" id="announceDetailHead">
+				<label class="i18n_label" id="announceDetail"></label>
+			</div>
+			<div class="aui-title aui-font-size-18" style="display:none;left:1rem;right:1rem;" id="newsDetailHead">
+				<label class="i18n_label" id="newsDetail"></label>
+			</div>
+			<div class="aui-title aui-font-size-18" style="display:none;left:1rem;right:1rem;" id="policyDetailHead">
+				<label class="i18n_label" id="policyDetail"></label>
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script>
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var moudle=api.pageParam.moudle;
+				if (moudle == 1) {
+					$api.css($api.byId('policyDetailHead'), 'display: none');
+					$api.css($api.byId('newsDetailHead'), 'display: none');
+					$api.css($api.byId('announceDetailHead'), 'display: block');
+				} else if (moudle == 2) {
+					$api.css($api.byId('policyDetailHead'), 'display: none');
+					$api.css($api.byId('newsDetailHead'), 'display: block');
+					$api.css($api.byId('announceDetailHead'), 'display: none');
+				} else if (moudle == 3) {
+					$api.css($api.byId('policyDetailHead'), 'display: block');
+					$api.css($api.byId('newsDetailHead'), 'display: none');
+					$api.css($api.byId('announceDetailHead'), 'display: none');
+				}
+			
+			
+			
+		};
+	</script>
+</html>

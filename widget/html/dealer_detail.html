@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>经销商-详情</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/dealer_detail.css"/>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="dealerDetail"></label>
+			</div>
+		</header>
+		<!-- tab切换/**/ -->
+		<div class="aui-tab" id="tab">
+			<div class="aui-tab-item aui-active">
+				<label class="i18n_label" id="basic"></label>
+			</div>
+			<div class="aui-tab-item">
+				<label class="i18n_label" id="payer"></label>
+			</div>
+			<div class="aui-tab-item">
+				<label class="i18n_label" id="shipTo"></label>
+			</div>
+		</div>
+		<div id="dealer" class=" aui-margin-b-10" onclick="showDealerActionSelector()">
+			<img src="../image/common/man_blue_100x100.png" width="26" height="26"/>
+			<span id="dealerName" class="aui-text-info"></span>
+			<i class="aui-iconfont aui-icon-right aui-margin-r-15" style="float: right;line-height: 2rem"></i>
+		</div>
+		<!-- basic里面的内容 -->
+		<div id="basicContainer">
+			<div class="aui-content">
+				<div class="aui-card-list-content-padded aui-border-b aui-border-t aui-margin-b-10"  style="background: #FFF;">
+					<div class="aui-row">
+						<div class="aui-col-xs-8 performance_top">
+							<label class="i18n_label" id="performanceRate"></label>
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded aui-margin-t-10">
+						<div class="aui-col-xs-2 aui-hide">
+							<img src="../image/dealer/performance.png" />
+						</div>
+						<div class="aui-col-xs-12 aui-padded-l-10" >
+							<div style="line-height: 1.2rem;">
+								<div class="aui-col-xs-7">
+									<label class="i18n_label" id="yearlyContactRatio"></label>:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info">
+									50%
+								</div>
+								<!--<span style="width: 7.5rem;"><label class="i18n_label" id="yearlyContactRatio"></label>:</span><span class="aui-text-info">50%</span>-->
+							</div>
+							
+							<div style="line-height: 1.2rem;">
+							<div class="aui-col-xs-7">
+									<label class="i18n_label" id="contractProjection"></label>:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info">
+									70%
+								</div>
+								<!--<span style="width:  7.5rem;"><label class="i18n_label" id="contractProjection"></label>:</span><span class="aui-text-info">70%</span>-->
+							</div>
+						</div>
+						<div class="aui-col-xs-1 aui-text-info aui-hide">
+							<!--<i class="aui-iconfont aui-icon-right"></i>-->
+						</div>
+					</div>
+				</div>
+				
+				<!-- 如果AR为空，则PDC Radio显示 -N  -->
+				<div class="aui-card-list-content-padded  aui-border-b aui-border-t aui-margin-b-10"  style="background: #FFF;" onclick="turnToPdc()">
+					<div class="aui-row">
+						<div class="aui-col-xs-8 pdc_top">
+							<span>PDC</span>
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded aui-margin-t-10">
+						<div class="aui-col-xs-2  aui-padded-t-30 aui-hide">
+							<img src="../image/dealer/pdc.png" style="margin-top: 2rem;"/>
+						</div>
+						<div class="aui-col-xs-11 aui-padded-l-10 aui-padded-t-5">
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									PDC Ratio:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info pdcRadio">
+								</div>
+							</div>
+							
+							<div class="aui-row aui-row-padded" id="pdcValCon">
+								<div class="aui-col-xs-6">
+									Cheque Value:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info pdcValue">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-6">
+									AR:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info ar">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded" id="shortValCon">
+								<div class="aui-col-xs-6">
+									Short PDC:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info shortPDC">
+									
+								</div>
+								
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-6">
+									Cumu Rank:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info cumuRank">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									1 Year Sales:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info oneYearSales">
+									No Data
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									1 Year Sales Rate:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info oneYearSalesRate">
+									No Data
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-1 aui-text-info" style="margin-top: 3.4rem;">
+							<i class="aui-iconfont aui-icon-right"></i>
+						</div>
+					</div>
+				</div>
+				<div class="aui-card-list-content-padded  aui-border-b aui-border-t aui-margin-b-10"  style="background: #FFF;">
+					<div class="aui-row">
+						<div class="aui-col-xs-8 credit_top">
+							<span>CREDIT</span>
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded aui-margin-t-10">
+						<div class="aui-col-xs-2  aui-padded-t-10 aui-hide">
+							<img src="../image/dealer/credit.png" style="margin-top: 1rem;"/>
+						</div>
+						<div class="aui-col-xs-12 aui-padded-l-10 aui-padded-t-5">
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									Credit Limit:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info" id="creditLimit">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									Used:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info" id="used">
+									
+								</div>
+								
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-6">
+									Spare:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info" id="spare">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									Desc of payment terms:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info" id="standardDaysCode">
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									
+								</div>
+								<div class="aui-col-xs-6 aui-text-info" id="standardDaysDesc">
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									Act Used Days:
+								</div>
+								<div class="aui-col-xs-6 aui-text-info" id="actUsedDays">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="aui-card-list-content-padded  aui-border-b aui-border-t aui-margin-b-10"  style="background: #FFF;">
+					<div class="aui-row">
+						<div class="aui-col-xs-8 rebate_top">
+							<span>REBATE</span>
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded aui-margin-t-10">
+						<div class="aui-col-xs-2 aui-padded-t-10 aui-hide">
+							<img src="../image/dealer/rebate.png" />
+						</div>
+						<div class="aui-col-xs-12 aui-padded-l-10 aui-padded-t-5">
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-7">
+									Annual Rebate:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info">
+									Rs.2300
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-7">
+									Cash Rate:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info">
+									90%
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-7">
+									No Rebate:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info">
+									Rs.3000
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="aui-card-list-content-padded  aui-border-b aui-border-t aui-margin-b-10"  style="background: #FFF;" onclick="turnToAccountStatementPage()">
+					<div class="aui-row">
+						<div class="aui-col-xs-8 account_top">
+							RECONCILIATION
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded aui-margin-t-10">
+						<div class="aui-col-xs-2  aui-padded-t-10 aui-hide">
+							<img src="../image/dealer/account.png" style="margin-top: 1rem"/>
+						</div>
+						<div class="aui-col-xs-11 aui-padded-l-10 aui-padded-t-5">
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-7">
+									Date:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info date1">
+									
+								</div>
+								
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-7" >
+									Begin Balance:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info" id="beginBalance1">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-7" >
+									End Balance:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info" id="endBalance1">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-7">
+									Date:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info date2">
+									
+								</div>
+								
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-7">
+									Begin Balance:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info" id="beginBalance2">
+									
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								
+								<div class="aui-col-xs-7">
+									End Balance:
+								</div>
+								<div class="aui-col-xs-5 aui-text-info" id="endBalance2">
+									
+								</div>
+							</div>
+							
+						</div>
+						<div class="aui-col-xs-1 aui-text-info" style="margin-top: 3rem;">
+							<i class="aui-iconfont aui-icon-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- payer内容 -->
+		<div id="payerContainer"  style="display:none;">
+			 <ul class="aui-list aui-media-list" id="paytoList">
+			</ul> 
+			<!--<div id="paytoList">
+			</div>-->
+		</div>
+			
+		<!-- shipto内容 -->
+		<div id="shipToContainer" style="display:none;">
+			<ul class="aui-list aui-media-list" id="shiptoList"></ul>
+		</div>
+		<div class="aui-hide" id="paytoTemplate">
+			<div class="item  aui-margin-b-10">
+				<div class="dealer_image"></div>
+				<div class="dealer_name aui-ellipsis-2" style="margin-top:-40px;">
+					<span class="dealerName aui-text-info"></span></br>
+					<span class="dealerCode"></span>
+				</div>
+				
+			</div>
+		</div>
+		<div class="aui-hide" id="shiptoTemplate">
+			<li class="aui-list-item aui-margin-b-10">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-title">
+								<span class="dealer aui-font-size-14 aui-text-info"></span>
+							</div>
+							<div class="aui-list-item-right">
+								<span class="customerCode gray_light aui-font-size-12"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text">
+								<div class="tel aui-ellipsis-2">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		
+		<input type="hidden" id="customerId"/>
+		<input type="hidden" id="customerCode"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/dealer_detail.js"></script>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form>
+							<input class="gray_light" type="search" readonly="true" value="" placeholder="Title/Code" id="search-input" onclick="searchDealer()">
+						</form>
+						<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;margin-left: -0.9rem;display: none;"></i>
+					</div>
+				</div>
+			</div>
+		</header>
+		<ul class="aui-list aui-list-in" id="selected">
+			<li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <div class="aui-list-item-title aui-text-info" id="selected_text"></div>
+	                <div class="aui-list-item-right">
+	                    <input type="checkbox" class="aui-checkbox" checked readonly="true" disabled="disabled">
+	                </div>
+	            </div>
+	        </li>
+        </ul>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript" src="../script/business.js"></script>
+	
+	<script type="text/javascript">
+		var headerHeight;
+		var selectedHeight;
+		var datas = [];
+		var winName = '';
+		var frameName = '';
+		var UIListContacts;
+		var selected = '';
+		apiready = function() {
+			var params = api.pageParam;
+			winName = params.winName || '';
+			frameName = params.frameName || '';
+			
+			var $header = $api.dom('header');
+			headerHeight = $api.offset($header).h;
+			var $selected = $api.byId('selected');
+			selectedHeight = $api.offset($selected).h;
+			datas = params.datas;
+			
+			selected = params.selected;
+			$api.html($api.byId('selected_text'), selected);
+			
+			loadData();
+		};
+		
+		
+		function searchDealer() {
+			COMMON_UISearchBar(function(ret) {
+			var searchTitle=$api.trim(ret.text);
+				var searchTitle=$api.trim(ret.text);
+				$api.val($api.byId('search-input'), searchTitle);
+				$api.css($api.byId('resetSearchBtn'), 'display:inline-block');
+				loadData(searchTitle);
+			});
+		}
+
+		function resetSearch() {
+			$api.css($api.byId('resetSearchBtn'), 'display:none');
+			$api.val($api.byId('search-input'), '');
+			loadData();
+		}
+		
+		function loadData(searchKey){
+			var	upsearchKey='';
+			if(searchKey){
+				upsearchKey=searchKey.toUpperCase();
+			}
+		
+			var contacts = [];
+			for (var i = 0; i < datas.length; i++) {
+				var customerTitle = datas[i].name;
+				var customerCode = datas[i].customerCode;
+				var upTitle=customerTitle.toUpperCase();
+				if (searchKey) {
+					if (upTitle.indexOf(upsearchKey) == -1 && customerCode.indexOf(upsearchKey) == -1) {
+						continue;
+					}
+				}
+				
+				contacts.push({
+					"employee_id" : datas[i].id,
+                    "remark" : datas[i].name,
+                    "phonetic" : datas[i].name, //名字的拼音
+                    "dept_name" : datas[i].code
+				});
+			}
+			if(UIListContacts){
+				UIListContacts.close();
+			}
+			UIListContacts = api.require('UIListContacts');
+            UIListContacts.open({
+                rect : {
+                    x : 0,
+                    y : headerHeight+selectedHeight,
+                    w : api.frameWidth,
+                    h : api.frameHeight - headerHeight - selectedHeight
+                },
+                contacts : contacts,
+                headHidden:true,
+                fixedOn : api.frameName
+            }, function(ret) {
+                if (ret) {
+                    if(ret.eventType == 'click'){
+	                    var item = {
+	                    	'code': ret.contact.dept_name,
+	                    	'name': ret.contact.remark,
+	                    	'id': ret.contact.employee_id
+	                    };
+	                    
+	                    var jsFun = 'UPDATE_SHIPTO('+$api.jsonToStr(item)+')';
+	                    
+	                    api.execScript({
+							name: winName,
+							frameName: frameName,
+				            script: jsFun
+			            });
+			            
+	                    setTimeout(function(){
+	                    	api.closeWin({});
+	                    }, 200);
+                    }
+                }
+            });
+		}
+	</script>
+</html>

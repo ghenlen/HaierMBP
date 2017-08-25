@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/aui/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui/aui.haier.css" />
+		<style>
+			body {
+				width: 100%;
+				background: url("../image/error/error.png") no-repeat;
+				background-size: 80% 80%;
+				text-align: center;
+				position: fixed;
+				top: 20px;
+				left: 10%;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="width: 80%;position: absolute;bottom: 30%;left:0;" align="center" onclick="turnToHomePage()">
+			<div class="aui-btn aui-btn-primary" style="width: 100%;color: #aaa;">
+				Back To Home
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var bodyCss = 'width:' + (api.winWidth) + 'px;height:' + (api.winHeight) + 'px';
+			$api.css($api.dom('body'), bodyCss);
+		};
+		function turnToHomePage() {
+			var innerParam = {
+				vScrollBarEnabled : false,
+				delay:400,
+				reload: false,
+				name : 'main_page',
+				url : '../html/index.html'
+			}
+			api.openWin(innerParam);
+		}
+	</script>
+</html>

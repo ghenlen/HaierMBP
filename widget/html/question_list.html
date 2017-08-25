@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Question</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			.aui-list:before, .aui-list:after {
+				background-color: #fff;
+			}
+			#faqUl li:nth-child(2n) {
+				background-color: #DDF5F5;
+			}
+			#faqUl li:nth-child(2n + 1) {
+				background-color: #FFF;
+			}
+			#unsolvedUl li:nth-child(2n) {
+				background-color: #DDF5F5;
+			}
+			#unsolvedUl li:nth-child(2n + 1) {
+				background-color: #FFF;
+			}
+			#resolvedUl li:nth-child(2n) {
+				background-color: #DDF5F5;
+			}
+			#resolvedUl li:nth-child(2n + 1) {
+				background-color: #FFF;
+			}
+			.attachment{
+				background: url('../image/common/attachmentList.png');
+				background-size: 10px 10px;
+    			background-repeat: no-repeat;
+   				background-position: 100%;
+   				background-position: 100% 4px;
+   				padding-right: 14px;
+			}
+			
+		</style>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 2rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<form action="javascript:search();">
+							<input class="gray_light" type="search" value="" placeholder="Question" id="search-input">
+						</form>
+					</div>
+				</div>
+			</div>
+			<a class="aui-pull-right" onclick="addquestion()"><i class="aui-iconfont aui-icon-pencil"></i></a>
+		</header>
+		<div id="container" class="aui-content" >
+			<!-- FAQ Question -->
+			<div class="aui-content"  id="faqContainer">
+				<div class="aui-searchbar" style="width: 96%;margin-left:2%;height: 2.5rem;background-color: #f5f5f5 !important;position: static;">
+					<div class="aui-searchbar-input aui-border-radius" tapmode style="position: relative;">
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" id="searchFlagFAQ" style="vertical-align: middle;position: absolute;right: 50%;color: #ccc;padding-left: 5px"></i>
+						<form style="position: absolute;left: 50%;" id="searchFormFAQ">
+							<input class="gray_light" type="search" value="" placeholder="Title" id="faqSearchInput" readonly="true" onclick="searchFAQ()">
+						</form>
+						<i id="resetFaqSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetFaqSearch()" style="vertical-align: middle;display: none;width: 2rem;text-align: center;position: absolute;right:2px;"></i>
+					</div>
+				</div>
+				<ul class="aui-list aui-media-list" id="faqUl">
+				</ul>
+				<h6 id="faqFootInfo" class="aui-hide end">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+				<div id="faqNoDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+				<img src="../image/common/nodata.png" width="100"/>
+				<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+			</div>
+			</div>
+			<!-- Unsolved Question -->
+			<div class="aui-content"  id="unsolvedContainer"  style="display: none;">
+				<div class="aui-searchbar" style="width: 96%;margin-left:2%;height: 2.5rem;background-color: #f5f5f5 !important;position: static;">
+					<div class="aui-searchbar-input aui-border-radius" tapmode style="position: relative;" >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" id="searchFlagUnsolved" style="vertical-align: middle;position: absolute;right: 50%;color: #ccc;padding-left: 5px;"></i>
+						<form style="position: absolute;left: 50%;" id="searchFormUnsolved">
+							<input class="gray_light" type="search" value="" onclick="searchUnsolved()" placeholder="Title" id="unsolvedSearchInput" readonly="true">
+						</form>
+						<i id="resetUnsolvedSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetUnsolvedSearch()" style="vertical-align: middle;width: 2rem;text-align: center;display: none;position: absolute;"></i>
+					</div>
+				</div>
+				<ul class="aui-list aui-media-list" id="unsolvedUl" ></ul>
+				<h6 id="unsolvedFootInfo" class="aui-hide end">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+				<div id="unsolvedNoDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+				<img src="../image/common/nodata.png" width="100"/>
+				<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+			</div>
+			</div>
+			<!-- resolved Question -->
+			<div class="aui-content"  id="resolvedContainer"  style="display: none;">
+				<div class="aui-searchbar" style="width: 96%;margin-left:2%;height: 2.5rem;background-color: #f5f5f5 !important;position: static;">
+					<div class="aui-searchbar-input aui-border-radius" tapmode style="position: relative;">
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" id="searchFlagResolved" style="vertical-align: middle;position: absolute;right: 50%;color: #ccc;padding-left: 5px;"></i>
+						<form style="position: absolute;left: 50%;" id="searchFormResolved">
+							<input class="gray_light" type="search" value="" onclick="searchResolved()" placeholder="Title" id="resolvedSearchInput" readonly="true">
+						</form>
+						<i id="resetResolvedSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetResolvedSearch()" style="vertical-align: middle;display: none;position: absolute;right:2px;width: 2rem;text-align: center"></i>
+					</div>
+				</div>
+				<ul class="aui-list aui-media-list" id="resolvedUl"></ul>
+				<h6 id="resolveFootInfo" class="aui-hide end">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+				<div id="resolveNoDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+				<img src="../image/common/nodata.png" width="100"/>
+				<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+			</div>
+			</div>
+		</div>
+		<div id="faqTemplate" class="aui-hide">
+			<li class="aui-list-item">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-left aui-ellipsis-1" style="width: 55%">
+								<span class="category" style="font-size: 16px;color: #444;"></span>
+							</div>
+							<div class="aui-list-item-center" style="width: 10%;"><img class="faqImage aui-hide" src="../image/common/attachmentList.png"  style="width: 10px;height:10px;"/></div>
+							<div class="aui-list-item-right" style="width: 35%;">
+								<span class="create_time gray_light aui-font-size-12 aui-margin-r-15"></span>
+							</div>
+						</div>
+						
+						<div class="aui-info" style="margin-top: -0.8rem;">
+							<div class="aui-list-item-text aui-ellipsis-1  aui-margin-r-15">
+								<span class="title" style="color: #444;"></span>
+							</div>
+						</div>
+						
+						<div class="aui-info" style="margin-top: -1.1rem;">
+							<div class="aui-list-item-text">
+								<div class="content aui-ellipsis-2 gray_light"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<div id="unsolvedTemplate" class="aui-hide">
+			<li class="aui-list-item">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-text" style="font-size: 16px;color: #444;width: 55%;">
+								<span class="category"></span>
+							</div>
+							<div class="aui-list-item-center" style="width: 10%;"><img class="unsolvedImage aui-hide" src="../image/common/attachmentList.png"  style="width: 10px;height:10px;"/></div>
+							<div class="aui-list-item-right" style="width: 35%;">
+								<span class="create_time gray_light aui-font-size-12 aui-margin-r-15"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text aui-ellipsis-1" style="color: #444;">
+								<span class="title"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -1.1rem;">
+							<div class="aui-list-item-text">
+								<div class="content aui-ellipsis-2 gray_light"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<div id="solvedTemplate" class="aui-hide">
+			<li class="aui-list-item">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-text" style="font-size: 16px;color: #444;width: 55%;">
+								<span class="category"></span>
+							</div>
+							<div class="aui-list-item-center" style="width: 10%;"><img class="solvedImage aui-hide" src="../image/common/attachmentList.png"  style="width: 10px;height:10px;"/></div>
+							<div class="aui-list-item-right" style="width: 35%;">
+								<span class="create_time gray_light aui-font-size-12 aui-margin-r-15"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text aui-ellipsis-1" style="color: #444;">
+								<span class="title"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -1.1rem;">
+							<div class="aui-list-item-text">
+								<div class="content aui-ellipsis-2 gray_light"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/question_list.js"></script>
+</html>

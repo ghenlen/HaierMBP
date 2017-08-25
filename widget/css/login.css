@@ -1,0 +1,56 @@
+body {
+	width:100%;
+	background: url("../image/login/login_bg_3.jpg") no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	position: fixed;top:0;left:0;
+}
+
+#container {
+	padding-top: 60%; 
+}
+
+.username_pass_input {
+	color:#aaa !important; 
+	background: #fff;
+	height: 1rem;
+	outline: none;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	top:0.2rem;
+    left: 3rem;
+    font-size: 0.7rem;
+}
+
+img{
+	vertical-align: bottom;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+#container .form_group{
+	height: 2.5rem;
+	width: 80%;
+	position: relative;
+	margin: 0 auto 0.7rem;
+	background: #fff;
+	border-radius: 2px;
+}
+
+a:active{
+	background: #aaa;
+}
+
+a:checked{
+	background: #aaa;
+}
+
+a:visited{
+	background: #aaa;
+}
+
+a:after{
+	background: #aaa;
+}

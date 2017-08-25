@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Organization</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/category.css"/>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn"></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="region"></label>
+			</div>
+		</header>
+		<div>
+			<div id="leftMenu" style="overflow: auto;">
+				<ul class="aui-list aui-media-list" id="firstLevel"></ul>
+			</div>
+			<div id="rightMenu" style="overflow: auto;">
+				<ul class="aui-list" id="secondLevel"></ul>
+			</div>
+		</div>
+		<ul class="aui-hide" id="firstLevelTemplate">
+			<li class="aui-list-item  aui-list-item-arrow level1"  onclick="showSecondLevel(this)">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media" style="width: 30%;">
+						<img class="first_level_img" src="../image/monthly_reach/map.png" style="width:30px !important;vertical-align: middle;"/>
+					</div>
+					<div class="aui-list-item-inner aui-font-size-12" >
+						<div class="aui-ellipsis-1" style="width:100%;">
+							<span style="margin-top: 4px;" class="firstLevelName "></span>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="aui-hide" id="secondLevelTemplate">
+			<li class="aui-list-item level2" onclick="clickSecondLevel(this)" style="border-bottom: 1px solid #efefef;">
+				<div class="aui-list-item-inner aui-font-size-12" >
+					<span class="secondLevelName"></span>
+					<div class="aui-list-item-right aui-padded-r-10 selectedFlag" style="display: none;">
+						<i class="aui-iconfont aui-icon-correct " style="color:#1B7BEA;"></i>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/org.js"></script>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>dealer</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/pdc.css" />
+		<style>
+            .aui-list:before, .aui-list:after {
+                background-color: #fff;
+            }
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				<label class="i18n_label" id="pdc"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<div class="aui-content " style="background: #fff;height: 2.5rem;border-bottom: 2px solid #eee;">
+				<div class="aui-card-list-content-padded">
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-6" tapmode="tapmode_cls" onclick="showDealerActionSelector()">
+							<div class="search_item">
+								<div id="dealerText" class="dealer_text aui-ellipsis-1"></div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6" tapmode="tapmode_cls" onclick="statusSelect()">
+							<div class="search_item">
+								<div class="date_text aui-ellipsis-1" id="statusText"></div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="aui-list aui-media-list" id="list" >
+			</ul>
+			<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+		</div>
+		<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+			<img src="../image/common/nodata.png" width="100"/>
+			<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+		</div>
+		<div  class="aui-hide">
+			<li class="aui-list-item" id="template">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media" style="width: 3rem;">
+						<div class="shortName aui-font-size-18" style="width: 2rem;height: 2rem;border: 1px solid #dedede;border-radius: 1rem;line-height: 2rem;text-align: center;margin-top:0.9rem"></div>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-info">
+							<div class="aui-list-item-title aui-ellipsis-1">
+								<span class="dealer aui-text-info"></span>
+							</div>
+						</div>
+						<div class="aui-info aui-ellipsis-1 aui-font-size-12" style="margin-top: -0.4rem;">
+							<div style="width: 48%" class="aui-ellipsis-1">
+								<span style="width: 3rem;">Check No: </span><span style="width: 3rem;" class="gray_light invoiceNo aui-ellipsis-1"></span>
+							</div>
+							<div style="width: 5%"></div>
+							<div style="width: 45%" class="aui-ellipsis-1">
+								<span>Status: &nbsp;</span><span class="status gray_light"></span>
+							</div>
+						</div>
+						<div class="aui-info aui-ellipsis-1 aui-font-size-12" style="margin-top: -0.9rem;">
+							<div style="width: 48%" class="aui-ellipsis-1">
+								<span style="width: 3rem;">Value: </span><span style="width: 3rem;" class="value gray_light aui-ellipsis-1"></span>
+							</div>
+							<div style="width: 5%"></div>
+							<div style="width: 45%" class="aui-ellipsis-1">
+								<span style="width: 2.1rem;">Date: </span> <span style="width: 3rem;" class="date gray_light aui-ellipsis-1"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="customerId"/>
+		<input type="hidden" id="statusValue"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/pdc.js"></script>
+</html>

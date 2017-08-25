@@ -1,0 +1,6 @@
+#list li:nth-child(2n) {
+	background-color: #DDF5F5;
+}
+#list li:nth-child(2n + 1) {
+	background-color: #FFF;
+}

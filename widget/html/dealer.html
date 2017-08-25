@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Dealer</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/dealer.css" />
+		<style>
+			.aui-list:before, .aui-list:after {
+				background-color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				<label class="i18n_label" id="dealer"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<div class="aui-searchbar"  style="width: 96%;margin-left:2%;height: 2.5rem;background-color: #f5f5f5 !important;position: static;">
+				<div class="aui-searchbar-input aui-border-radius" tapmode style="position: relative;">
+					<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" id="searchFlag" style="vertical-align: middle;position: absolute;right: 60%;color: #ccc;padding-left: 5px;"></i>
+					<form style="position: absolute;left: 40%;" id="searchForm">
+						<input class="gray_light" onclick="search()" type="search" value="" placeholder="Title/Code" id="search-input" readonly="true">
+					</form>
+					<i id="resetResolvedSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetResolvedSearch()" style="vertical-align: middle;display: none;position: absolute;right:2px;width: 2rem;text-align: center"></i>
+				</div>
+			</div>
+			<ul class="aui-list aui-media-list" id="list" ></ul>
+			<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+		</div>
+		<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+				<img src="../image/common/nodata.png" width="100"/>
+				<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+			</div>
+		<div id="template" class="aui-hide">
+			<li class="aui-list-item" onclick="turnToDetailPage(this)">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-media" style="width: 3rem;">
+						<div class="shortName" style="width: 2rem;height: 2rem;border: 1px solid #dedede;border-radius: 1rem;line-height: 2rem;text-align: center;margin-top:1rem"></div>
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-title aui-ellipsis-1">
+								<span class="dealer aui-text-info"></span>
+							</div>
+						</div>
+						<div class="aui-info gray_dark" style="margin-top: -1rem;width: 90%">
+							<div style="width: 79%">
+								<span class="code"></span>
+							</div>
+							<div style="width: 49%;display: none;">
+								Yearly: <span class="yearly"></span>
+							</div>
+						</div>
+						<div class="aui-info gray_light " style="margin-top: -0.9rem;font-size: 0.5rem;width: 90%">
+							<div style="width: 49%" class="aui-ellipsis-1">
+								<span style="width: 2rem;">Credit: </span><span class="credit"></span>
+							</div>
+							<div style="width: 49%" class="aui-ellipsis-1">
+								<span style="width: 2rem;">Used:</span> <span class="used"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/dealer.js"></script>
+</html>

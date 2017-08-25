@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/notice_add.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" >
+				<label class="i18n_label" id="newNotice"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<ul class="aui-list aui-form-list aui-margin-b-10">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner" onclick="showDealerActionSelector()">
+						<div class="aui-list-item-label" style="width:30%">
+							<label class="i18n_label" id="receivers"></label>:
+						</div>
+						<div class="aui-list-item-center aui-text-info" style="width:60%;text-align: right;margin-right: 0.5rem;">
+							<span id="dealerText"></span>
+						</div>
+						<div class="aui-list-item-right aui-margin-r-10">
+							<i class="aui-iconfont aui-icon-my"></i>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-form-list aui-margin-b-10">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-center aui-text-info">
+							<input type="text" id="titleInput" placeholder="Message Title" style="font-size: 14px;color: #555;">
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-input">
+							<textarea placeholder="Message Body" id="content" style="height: 8rem;font-size: 14px;color: #555;"></textarea>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+			<div id="upload_container" class="aui-margin-t-10">
+					<div class="upload_btn" onclick="openCamera()"></div>
+				</div>
+				<div  class="aui-content aui-hide" id="ackHisList">
+					<ul class="aui-list" id="ackHisUl"></ul>
+				</div>
+			<!--<div class="aui-content-padded" style="height: 30px;line-height: 30px;"> 
+				<img src="../image/common/attachment.png" width="20" height="20" style="vertical-align: middle"/> photo.jpg
+			</div>-->
+			<div class="submit_reply aui-margin-t-15">
+				<div class="aui-content" align="center">
+					<div class="aui-btn aui-btn-info" id="sendBtn" style="width: 90%;">
+						<label class="i18n_label" id="send"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="updImgTemplate" class="aui-hide">
+			<div class="upload_imgs" onclick="browserImg();">
+				<img src=""/>
+				<div class="delete_flag"></div>
+			</div>
+		</div>
+		<div id="ackHisTemplate" class="aui-hide">
+			<li class="aui-list-item">
+				<div class="aui-list-item-label-icon">
+					<img src="../image/common/man_blue_100x100.png" width="26" height="26" />
+				</div>
+				<div class="aui-list-item-inner aui-text-info dealer">
+				</div>
+			</li>
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="ids"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/notice_add.js"></script>
+</html>

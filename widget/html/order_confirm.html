@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>订单确认</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/order_confirm.css" />
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav dodge_blue_bg">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="orderConfirm"></label>
+			</div>
+		</header>
+		<div id="main">
+			<!-- 四方关系 START -->
+			<div class="aui-content">
+				<ul class="aui-list">
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-my" style="color:#00bb9c;"></i> 
+								<span><label class="i18n_label" id="soldTo" ></label></span>
+							</div>
+							<div class="aui-list-item-right aui-ellipsis-1 aui-text-info" id="soldToText">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-location" style="color:#11cd6e;"></i> 
+								<span><label class="i18n_label" id="shipTo"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-ellipsis-1 aui-text-info" id="shipToText">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-cert" style="color:#56abe4;"></i>
+								<span><label class="i18n_label" id="payTo"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-ellipsis-1 aui-text-info" id="payToText">
+							</div>
+						</div>
+					</li>
+					<!-- 库位 -->
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								<i class="aui-iconfont aui-icon-map" style="color: #9d55b8;"></i>
+								<span class=""><label class="i18n_label" id="storageLocation"></label></span>
+							</div>
+							<div class="aui-list-item-right aui-ellipsis-1 aui-text-info" id="locationText">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- 购物清单 -->
+			<div class="aui-content aui-margin-t-10">
+				<ul class="aui-list aui-media-list" id="shopingList">
+					<li class="aui-list-item" id="sample" style="display: none;">
+						<div class="aui-media-list-item-inner">
+							<div class="aui-list-item-media">
+								<img class="produce_img" src="../image/common/pic.png"
+							onerror="this.src='../image/common/pic.png'">
+							</div>
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title aui-ellipsis-1">
+									<span class="product_name"></span>
+								</div>
+								<div class="aui-list-item-text aui-font-size-12">
+									<span class="product_model"></span>
+								</div>
+								<div class="aui-info">
+									<div class="aui-info-item aui-font-size-12">
+										<span class="price_tag"></span>
+										<span class="product_price christmas_red"></span>
+									</div>
+									<div class="aui-info-item aui-font-size-12">
+										x<span class="qty"></span>
+									</div>
+									<div class="aui-info-item aui-font-size-12">
+										=&nbsp;<span class="product_sumprice christmas_red">Rs.1234</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="aui-content aui-margin-t-10">
+				<ul class="aui-list aui-list-in">
+					
+					<!--
+					<li class="aui-list-item" style="display: none;">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								<i class="aui-iconfont aui-icon-pencil" style="color: #eb4f38;"></i>&nbsp;<label class="i18n_label" id="purchaseOrderNo"></label>
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" id="purchaseNoVal" placeholder="" style="color:#777;"  class="aui-padded-l-5">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<img src="../image/order_confirm/date.png" width="20" height="24" style="vertical-align: middle;"/>
+								<span class=""><label class="i18n_label" id="requestDeliveryDate"></label></span>
+							</div>
+							<div class="aui-list-item-right" id="deliveryDate" style="color:rgb(2,173,242);" onclick="showDeliveryDateSelect()">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<img src="../image/order_confirm/airplan.png" width="20" height="20" style="vertical-align: middle;"/>
+								<span class=""><label class="i18n_label" id="shippingType"></label></span>
+							</div>
+							<div class="aui-list-item-right" id="shippingTypeText" style="color:rgb(2,173,242);" onclick="showShippingTypeSelect()">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<img src="../image/order_confirm/trunk.png" width="20" height="20" style="vertical-align: middle;"/>
+								<span class=""><label class="i18n_label" id="transportType"></label></span>
+							</div>
+							<div class="aui-list-item-right" id="mtt" style="color:rgb(2,173,242);" onclick="showMttSelect()">
+								Fazal Electronics
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								<img src="../image/order_confirm/txm.png" width="20" height="20" style="vertical-align: middle;"/>
+								<span class=""><label class="i18n_label" id="incoterms_part1"></label></span>
+							</div>
+							<div class="aui-list-item-right" id="incoterms" style="color:rgb(2,173,242);" onclick="showIncotermsSelect()">
+								Fazal Electronics
+							</div>
+						</div>
+					</li>
+					-->
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								 <i class="aui-iconfont aui-icon-pencil" style="color: #ea8010;"></i>&nbsp;<label class="i18n_label" id="message"></label>
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" id="remarkVal" style="color:#777;" placeholder="Message for this order">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<footer class="aui-bar aui-bar-tab " id="footer">
+			<div>
+				<div id="sum_total">
+					<div id="totalContainer">
+						<label class="i18n_label" id="sumtotal"></label>
+						<span class="christmas_red" id="sumCurrency"></span>
+						<span class="offline_sumtotal christmas_red" id="sumPrice">0.00</span>
+					</div>
+					<div id="taxContainer">
+						<label class="i18n_label"  id="tax"></label>
+						<span >0.5%</span>
+					</div>
+				</div>
+				
+				<div class="dodge_blue_bg" id="confirm_btn">
+					<label class="i18n_label" id="confirm" onclick="submitOrder()"></label>
+				</div>
+			</div>
+		</footer>
+		<input id="soldToValue" type="hidden"/>
+		<input id="shipToValue" type="hidden"/>
+		<input id="payToValue" type="hidden"/>
+		<input id="locationValue" type="hidden"/>
+		<input id="plantValue" type="hidden"/>
+		<input id="reqDeliveryDateVal" type="hidden"/>
+		<input id="shippingTypeVal" type="hidden"/>
+		<input id="mttVal" type="hidden"/>
+		<input id="incotermsVal" type="hidden"/>
+		<input id="sumNum" type="hidden"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/order_confirm.js"></script>
+</html>

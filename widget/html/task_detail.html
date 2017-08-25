@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			.upload_container {
+				min-height: 5rem;
+				padding: 0.5rem;
+			}
+			
+			.upload_container  .upload_imgs {
+				width: 6rem;
+				height: 6rem;
+				margin: 0 0.5rem;
+				position: relative;
+				display: inline-block;
+				border: 1px solid #dfdfdf;
+			}
+			
+			.upload_container  .upload_imgs img {
+				position: absolute;
+				left: 5%;
+				top: 5%;
+				width: 90%;
+				height: 90%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" >
+				Detail
+			</div>
+		</header>
+		<div class="aui-content" >
+			<div class="aui-content aui-margin-b-15">
+				<ul class="aui-list aui-form-list"  >
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label" style="width: 8rem;">
+								Title: 
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" id="title" placeholder="" readonly="true"  style="font-size: 0.7rem;">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label" style="width: 8rem;">
+								Collection Type:
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" id="collectionType" placeholder="" readonly="true"  style="font-size: 0.7rem;">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-hide" id="shopContainer">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label" style="width: 8rem;">
+								Shop:
+							</div>
+							<div class="aui-list-item-input">
+								<input type="text" id="shop" placeholder="" readonly="true"  style="font-size: 0.7rem;">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<p id="content" style="text-align:justify;"></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="upload_container" id="imgs">
+			</div>
+			<div id="updImgTemplate" class="aui-hide">
+				<div class="upload_imgs" onclick="browserImg();">
+					<img src=""/>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/task_detail.js"></script>
+</html>

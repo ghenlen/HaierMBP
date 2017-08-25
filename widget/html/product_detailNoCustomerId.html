@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/common/shopping.css" />
+		<style>
+			.aui-active {
+				z-index: 1 !important;
+			}
+		</style>
+	</head>
+	<body style="font-size:0.7rem;margin-bottom:2.5rem">
+		<header class="aui-bar aui-bar-nav dodge_blue_bg" style="height: 3.5rem;"></header>
+		<div id="leftArraw" style="float:left;width:80px;text-align: center;">
+			<img src="../image/common/left_arraw.png" width="30" height="30" onclick="leftSlide()"/>
+		</div>
+		<div id="rightArraw" style="float:right;width:80px;text-align: center;">
+			<img src="../image/common/right_arraw.png" width="30" height="30" onclick="rightSlide()"/>
+		</div>
+		<div id="productIllus" style="width: 100%;height:55px;background:#FFFFFF;padding-top: 15px;">
+			<div style="padding-left:10px;font-size: 0.7rem;font-weight: bold;line-height: 1.1rem;" id="product_name"></div>
+			<div style="font-size:0.5rem;padding-left:10px;"id="product_code"></div>
+			<!--<div style="padding-left:10px;color: #336699;font-size: 0.8rem;margin-top: 10px;" class="dodge_blue_shen" id="product_money"></div>
+			<div style="font-size:0.5rem;padding-left:10px;" class="black_light_yh" id="product_introduce"></div>-->
+		</div>
+		
+		<div class="aui-tab aui-margin-t-15" id="footer">
+			<div class="aui-tab-item aui-active">
+				<label class="i18n_label" id="productDetails"></label>
+			</div>
+			<div class="aui-tab-item">
+				<label class="i18n_label" id="technicalDetails"></label>
+			</div>
+		</div>
+		<div style="background: #fff;padding-top:30px;margin-bottom: 10px;margin-top: -5px;">
+			<div  style="overflow: auto;padding-left:20px;" id="content_etails">
+			</div>
+			<div  style="width:100%;background#efefef;display:none;padding-top:5px;" id="product_parameters" >
+				<ul id="tobeDeliveringUL">
+					<li class="aui-list-item"  id="sample" style="display: none" >
+						<ul class="aui-list aui-form-list"  >
+							<li class="aui-list-item">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label">
+										<span class="fieldtitle"></span>:
+									</div>
+									<div class="aui-list-item-input">
+										<span class="fieldvalue">
+									</div>
+								</div>
+							</li>
+							<li class="aui-list-item">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label">
+										<span class="prpductcode"></span>:
+									</div>
+									<div class="aui-list-item-input">
+										<span class="filedvalue"></span>
+									</div>
+								</div>
+							</li>
+							<ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/product_detail.js"></script>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>My</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/my.css" />
+		<style>
+			.aui-list:before, .aui-list:after {
+				background-color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top">
+			<div class="frame_title aui-font-size-18" align="center">
+				<label class="i18n_label" id="myAccount" style="margin-left: 12%;"></label>
+				<a class="aui-pull-right aui-btn">
+					<img src="../image/common/menu.png" width="22" height="22" onclick="BUSINESS_OpenPopupMenu()"/>
+				</a>
+			</div>
+		</header>
+		<div id="portrait_con" onclick="changePortrait()">
+			<div id="portraitContainer" class="dodge_blue_bg" align="center" >
+			<img id="portrait" src=""  width="110"  height="110"  style="border-radius: 55px;" 
+			onerror="this.src='../image/question/man.png'"/>
+		</div>
+		<div id="whiteBg" align="center">
+			<img id="portraitBg" src="../image/my/semi_circle_white_bg.png" width="250"  height="101" style="z-index: 11;"/>
+		</div>
+		</div>
+		<div id="main" style="overflow: auto;margin-top: -0.5rem;">
+			<ul class="aui-list" >
+				<li class="aui-list-item">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/my.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="name"></label>
+						</div>
+						<div class="aui-list-item-right aui-ellipsis-1">
+							<span id="nameText" class="aui-text-info"></span>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="openChangePassword()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/password.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="changePassword"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="openCommonProduct()"    id="code_117">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/star.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="commonProduct"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="openOrderCenter()"    id="code_107">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/list.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="myOrderList"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="openAlertMsg()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/warning.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="myAlertMsg"></label>
+						</div>
+						<div class="aui-list-item-right">
+							<div class="aui-badge aui-hide" style="position:relative;top:0; left:0" id="noReadMessage">
+								1
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="openTaskList()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/task.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							Task List
+						</div>
+						<div class="aui-list-item-right">
+							<div class="aui-badge aui-hide" style="position:relative;top:0; left:0" id="noReadMessage">
+								1
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="updateOfflineData()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/upload.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title" style="width: 7.5rem;">
+							<label class="i18n_label aui-font-size-14" id="offlineDataUpdate"></label>
+						</div>
+						<div class="aui-list-item-text">
+							<span style="font-size: 0.5rem;" id="updateTime"></span>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="clearCache()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/clear.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="clearCache"></label>
+						</div>
+						<div class="aui-list-item-right">
+							<div style="font-size: 0.5rem;">
+								<span id="cacheSize"></span>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="appUpdate()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/refresh.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="i18n_label aui-font-size-14" id="applicationUpdate"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="showCode()">
+					<div class="aui-list-item-label-icon">
+						<img src="../image/my/scan.png" width="20" height="20"/>
+					</div>
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							<label class="aui-font-size-14">Scan Download APP</label>
+						</div>
+						<div class="aui-list-item-right">
+							<img src="../image/my/code.png" width="20" height="20"/>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="aui-content aui-margin-t-15 aui-margin-b-15">
+				<div style="width:100%;" align="center">
+					<span class="aui-font-size-12 aui-text-info">Version <span id="version"></span></span>
+				</div>
+				<div style="width:100%;" align="center">
+					<div class="aui-btn aui-btn-info" style="width: 90%;" onclick="logOut()">
+						<label class="i18n_label" id="Log_out"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript" src="../script/my.js"></script>
+</html>

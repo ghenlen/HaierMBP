@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			html {
+				width: 100%;
+				height: 100%;
+				background: transparent !important;
+			}
+			body {
+				background: transparent !important;
+				width: 100%;
+			}
+			.menulist {
+				float: right;
+				background: #efefef;
+				width: 70%;
+				height: 100%;
+				overflow: auto;
+			}
+			.aui-list.aui-list-in .aui-list-item-inner:after {
+				background-color: #fff;
+			}
+			.aui-list:before, .aui-list:after {
+				background-color: #fff;
+			}
+			.aui-list .aui-list-item {
+				min-height: 2rem;
+			}
+			.aui-list .aui-list-item-inner {
+				min-height: 2rem;
+			}
+			.aui-list .aui-list-item-label, .aui-list .aui-list-item-label-icon {
+				line-height: 2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header></header>
+		<div style="float:left;width: 30%;height:100%;background: #000;opacity: 0.4;"></div>
+		<div class="menulist">
+			<ul class="aui-list aui-list-in">
+				<li class="aui-list-item" style="background: #1B7BEA;min-height: 2.5rem;">
+					<div class="aui-list-item-inner" style="width: 99%;">
+						<div class="aui-list-item-title" style="color: #fff;font-size: 18px;">
+							Menu
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-list-in" style="margin-bottom: 3px;">
+				<li class="aui-list-item" onclick="turnToPage('orgSwitch')">
+					<div class="aui-media-list-item-inner" style="width: 100%;">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/orgSwitch.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="orgSwitch"></label>
+						</div>
+						<div class="aui-list-item-right aui-ellipsis-1" style="width: 230%;margin-left: -0.3rem;"><div style="line-height: 2rem;font-size: 0.5rem;" id="currentOrg">head office</div></div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-list-in" style="margin-bottom: 3px;">
+				<li class="aui-list-item aui-hide" onclick="turnToProductList()" id="code_101">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/newOrder.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="newOrder"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="turnToPage('offlineOrder')" id="code_102">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/fastOrder.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="fastOrder"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="turnToCart()"  id="code_201">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/cart.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							Cart
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-list-in" style="margin-bottom: 3px;">
+				<li class="aui-list-item  aui-hide" onclick="turnToPage('dealer')"  id="code_104">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/dealer.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="dealer"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="turnToPage('overdue')"   id="code_105">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/overdue.png" />
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="overdue"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item  aui-hide" onclick="turnToPage('reconciliation')"  id="code_106">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/recon.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="reconciliationAll"></label>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-list-in" style="margin-bottom: 3px;">
+				<li class="aui-list-item aui-hide" onclick="turnToPage('orderList')"   id="code_107">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/myOrder.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="myOrderList"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" tapmode onclick="turnToPage('wishList')"   id="code_117">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/wishList.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="commonProduct"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item" onclick="turnToPage('myAlertMsg')">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/myAlertMsg.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="myAlertMsg"></label>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul class="aui-list aui-list-in">
+				<li class="aui-list-item aui-hide" onclick="turnToPage('oos')"  id="code_109">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/oos.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="oos"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="turnToPage('question')"    id="code_110">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/question.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="question"></label>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-hide" onclick="turnToPage('information')"    id="code_111">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 1.8rem;height: 1.8rem;">
+							<img src="../image/popup/information.png"/>
+						</div>
+						<div class="aui-list-item-inner">
+							<label class="i18n_label " id="information"></label>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript">
+		/**
+		 * 页面跳转加延时是为了解决IOS页面无法跳转问题。 
+		 */
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var height = api.winHeight;
+			$api.css($api.dom('body'), 'height:' + (height - 20) + "px");
+			var body = $api.dom('body');
+			$api.addEvt(body, 'touchend', function(e) {
+				var main = $api.dom('.menulist');
+				if (!match(e.target, main)) {
+					api.closeFrame({
+						name : 'popupMenu'
+					});
+				}
+			});
+			
+			var org = $api.getStorage("org");
+			$api.html($api.byId('currentOrg'), org.orgTitle);
+			
+			BUSINESS_GetPopupPermissions();
+		};
+		function match(src, target) {
+			var mark = false;
+			if (src === target) {
+				mark = true;
+				return mark;
+			} else {
+				do {
+					src = src.parentNode;
+					if (src === target) {
+						mark = true;
+						return mark;
+					}
+				} while(src !== document.body && src !== document.documentElement);
+				return mark;
+			}
+		}
+		
+		function hidePopMenu(){
+			api.closeFrame({
+				name : 'popupMenu'
+			});
+		}
+		
+		function turnToPage(page) {
+			var winName = '';
+			var winUrl = '';
+			switch(page) {
+				case 'oos':
+					winName = 'oos_list';
+					winUrl = 'oos_list.html';
+					break;
+				case 'offlineOrder':
+					winName = 'fast_order';
+					winUrl = 'fast_order.html';
+					break;
+				case 'orderList':
+					winName = 'order_center';
+					winUrl = 'order_center.html';
+					break;
+				case 'information':
+					winName = 'information';
+					winUrl = 'information.html';
+					break;
+				case 'question':
+					winName = 'question_list';
+					winUrl = 'question_list.html';
+					break;
+				case 'overdue':
+					winName = 'overdue';
+					winUrl = 'overdue.html';
+					break;
+				case 'dealer':
+					winName = 'dealer';
+					winUrl = 'dealer.html';
+					break;
+				case 'reconciliation':
+					winName = 'reconcilication';
+					winUrl = 'reconcilication.html';
+					break;
+				case 'myAlertMsg':
+					winName = 'alert_msg';
+					winUrl = 'alert_msg.html';
+					break;
+				case 'wishList':
+					winName = 'common_product';
+					winUrl = 'common_product.html';
+					break;
+				case 'orgSwitch':
+					winName = 'org_switch';
+					winUrl = 'org_switch.html';
+					break;	
+				default :
+					break;
+			}
+			
+			COMMON_OpenWin({
+				name : winName,
+				url : winUrl
+			});
+			
+			setTimeout(function(){
+				api.closeFrame({
+					name : 'popupMenu'
+				});
+			}, 500);
+		}
+
+		function turnToProductList() {
+			api.openSlidLayout({
+				type : 'left',
+				leftEdge : 20,
+				vScrollBarEnabled : false,
+				fixedPane : {
+					name : 'fixed',
+					url : 'category.html'
+				},
+				slidPane : {
+					name : 'product',
+					url : 'product.html'
+				}
+			}, function(ret) {
+			});
+			
+			setTimeout(function(){
+				api.closeFrame({
+					name : 'popupMenu'
+				});
+			}, 500);
+		}
+
+		function turnToCart() {
+			var date = new Date();
+			COMMON_OpenWin({
+				name : 'main_page' + date.getTime(),
+				url : 'index.html',
+				pageParam: {
+					index: 1,
+					isNew: true
+				}
+			});
+			
+			setTimeout(function(){
+				api.closeFrame({
+					name : 'popupMenu'
+				});
+			}, 500);
+			return;
+			
+			COMMON_BackToRoot();
+			api.sendEvent({
+				name : 'setPage',
+				extra : {
+					index : 1,
+					historyPage:'product'
+				}
+			});
+			
+			setTimeout(function(){
+				api.closeFrame({
+					name : 'popupMenu'
+				});
+			}, 500);
+		}
+	</script>
+</html>

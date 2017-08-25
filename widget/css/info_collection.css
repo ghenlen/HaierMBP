@@ -1,0 +1,106 @@
+/********************* main START *********************/
+.content {
+	background: #fff;
+	padding: 15px;
+}
+
+.camera {
+	font-size: 2rem;
+	color: #AAAAAA;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.img_item {
+	position: relative;
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+}
+
+.img_item img {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+.img_item span {
+	display: inline-block;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	opacity: 0.4;
+	width: 25px;
+	height: 25px;
+	background: #000;
+	border-radius: 15px;
+}
+
+.img_item i {
+	display: inline-block;
+	position: absolute;
+	right: 20px;
+	top: 17px;
+	color: #E4393C;
+	font-weight: bolder;
+}
+
+.upload_container {
+	min-height: 5rem;
+	padding: 0.5rem;
+}
+
+.upload_container .upload_btn {
+	display: inline-block;
+	border: 1px solid #dfdfdf;
+	width: 4rem;
+	height: 4rem;
+	background: url('../image/common/plus_128128.png') no-repeat;
+	background-size: 3rem 3rem;
+	background-position: 0.45rem 0.45rem;
+	margin: 0 0.5rem;
+}
+
+.upload_container  .upload_imgs {
+	width: 4rem;
+	height: 4rem;
+	margin: 0 0.5rem;
+	position: relative;
+	display: inline-block;
+	border: 1px solid #dfdfdf;
+}
+
+.upload_container  .upload_imgs img {
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	width: 90%;
+	height: 90%;
+}
+
+.upload_container  .upload_imgs .delete_flag {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 1.2rem;
+	height: 1.2rem;
+	border-radius: 12px;
+	background: url('../image/common/close_orange.png') no-repeat;
+	background-size: 1.2rem 1.2rem;
+}
+/********************* main END *********************/
+
+/********************* footer START *********************/
+#footer {
+	background: #DDDDDD;
+	height: 3rem;
+}
+
+#submit {
+	margin-top: 0.5rem;
+	width: 130px;
+	color: #fff !important;
+	font-size: 0.8rem;
+	background-color: #1b7bea;
+}
+/********************* footer END *********************/

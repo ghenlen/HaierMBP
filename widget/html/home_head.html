@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	</head>
+	<body >
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn left_btn" aui-popup-for="top-left"> <img src="../image/common/haier_logo.png" width="54" height="16"  style="vertical-align: middle"/> </a>
+			<div class="aui-title" style="left: 3.5rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form action="javascript:search();">
+							<input class="gray_light" type="search" value="Product Name" placeholder="Product Title/Model/Code" id="search-input" readonly="true" onclick="openProductSearch()">
+						</form>
+					</div>
+				</div>
+			</div>
+			<a class="aui-pull-right aui-btn" onclick="BUSINESS_OpenPopupMenu()"> <img src="../image/common/menu.png" width="22" height="22" /> </a>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	
+	<script>
+		window.onload = function(){
+			var $header = $api.dom('header');
+			var isAndroid = (/android/gi).test(navigator.appVersion);
+		    if(isAndroid == false){
+		        $header.style.paddingTop = '20px';
+		    }else if(isAndroid == true){
+		        $header.style.paddingTop = '25px';
+		    }
+		}
+		
+		//产品搜索
+		function openProductSearch() {
+			COMMON_UISearchBar(function(ret) {
+				var searchTitle=$api.trim(ret.text);
+				api.openSlidLayout({
+					type : 'left',
+					leftEdge : 50,
+					vScrollBarEnabled : false,
+					fixedPane : {
+						name : 'fixed',
+						url : 'category.html'
+					},
+					slidPane : {
+						name : 'product',
+						url : 'product.html',
+						pageParam : {
+							'term' : searchTitle
+						}
+					}
+				}, function(ret) {
+				});
+			});
+		}
+	</script>
+</html>

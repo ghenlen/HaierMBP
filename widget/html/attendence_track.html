@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/aui/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/aui/aui.haier.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+	</head>
+	<body style="font-size:0.7rem">
+		<div id="googleMap"></div>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/aui/aui-dialog.js"></script>
+	<script type="text/javascript" src="../script/aui/aui-toast.js"></script>
+	<script type="text/javascript" src="../script/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/lib/jquery/jquery.i18n.properties-min-1.0.9.js"></script>
+	
+	<script type="text/javascript">
+		var map = null;
+		var options = {
+			enableHighAccuracy : true,
+			timeout : 100,
+			maximumAge : 0
+		}
+		apiready = function() {
+			/*var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);*/
+			var $googleMap = $api.byId('googleMap');
+			$api.css($googleMap, 'width:' + api.winWidth + 'px;height:' + api.winHeight + 'px');
+			//initialize();
+			//	loadTrace();
+			//initialize();
+			
+		};
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('googleMap'), {
+				center : {
+					lat : -34.397,
+					lng : 150.644
+				},
+				zoom : 8
+			});
+		}
+
+		function initialize() {
+			var mapProp = {
+				center : new google.maps.LatLng(51.508742, -0.120850),
+				zoom : 5,
+				mapTypeId : google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+		}
+
+		function initialize() {
+			var mapProp = {
+				center : new google.maps.LatLng(-34.397, 150.644),
+				zoom : 10
+			};
+			map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+		}
+
+		function loadTrace() {
+			var myLatLng = {
+				lat : -34.397,
+				lng : 150.644
+			};
+			var marker = new google.maps.Marker({
+				position : myLatLng,
+				map : map,
+				icon : '../image/common/man.png'
+			});
+			marker.addListener('click', function() {
+				var infowindow = new google.maps.InfoWindow({
+					content : '<h1>location: Campbell Town</h1><h3>shop: shopname</h3>'
+				});
+				infowindow.open(map, marker);
+			});
+			var myLatLng1 = {
+				lat : -34.312,
+				lng : 150.648
+			};
+			var marker1 = new google.maps.Marker({
+				position : myLatLng1,
+				map : map,
+				icon : '../image/common/man.png'
+			});
+			marker1.addListener('click', function() {
+				var infowindow = new google.maps.InfoWindow({
+					content : '<h1>location: Tasinall Town</h1><h3>shop: shopname</h3>'
+				});
+				infowindow.open(map, marker);
+			});
+		}
+	</script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBPo21Umj2NtaaRn8kXl5OqkUQrFbgLBw0&callback=initMap"></script>
+</html>

@@ -1,0 +1,26 @@
+.heade_tabe {
+	width: 100%;
+	background: #fff
+}
+body {
+	background: #fff
+}
+#basics {
+	padding-top: 5px;
+	background: #FFFFFF;
+}
+#basics #basics_div {
+
+	height: 20px
+}
+
+#basics #performance {
+	margin-left: 10PX;
+	margin-top: 13px;
+	height: 20px;
+	color: #337aba;
+}
+img {
+	width: 10px;
+	height: 10px;
+}

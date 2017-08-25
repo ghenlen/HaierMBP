@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Monthly Sale Target</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../script/lib/lCalendar/lCalendar.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/monthly_sale_target.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18" style="left:1rem;right:1rem;">
+				<label class="i18n_label " id="monthlySaleTarget"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<div class="summarize">
+				<div class="aui-card-list-content-padded">
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-2">
+							<div class="total_flag">
+								TOTAL
+							</div>
+						</div>
+						<div class="aui-col-xs-10">
+								<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									<div class="total_index aui-ellipsis-1">
+										<span class="aui-text-info" style="width: 3rem;"><label class="i18n_label " id="planQty"></label></span>
+										<span class="sumPlanQty" id="sumPlanQty"></span>
+									</div>
+								</div>
+								<div class="aui-col-xs-6">
+									<div class="total_index aui-ellipsis-1">
+										<span class="aui-text-info" style="width: 3rem;"><label class="i18n_label " id="planVal"></label></span>
+										<span class="sumPlanVal" id="sumPlanVal"></span>
+									</div>
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									<div class="total_index aui-ellipsis-1">
+										<span class="aui-text-info" style="width: 3rem;"><label class="i18n_label " id="actQty"></label></span>
+										<span class="sumActQty" id="sumActQty"></span>
+									</div>
+								</div>
+								<div class="aui-col-xs-6">
+									<div class="total_index aui-ellipsis-1">
+										<span class="aui-text-info" style="width: 3rem;"><label class="i18n_label " id="actVal"></label></span>
+										<span class="sumActVal" id="sumActVal"></span>
+									</div>
+								</div>
+							</div>
+							<div class="aui-row aui-row-padded">
+								<div class="aui-col-xs-6">
+									<div class="total_index aui-ellipsis-1">
+										<span class="aui-text-info" style="width: 3rem;"><label class="i18n_label " id="perByQty"></label></span>
+										<span class="sumPerByQty" id="sumPerByQty"></span>
+									</div>
+								</div>
+								<div class="aui-col-xs-6">
+									<div class="total_index aui-ellipsis-1">
+										<span class="aui-text-info" style="width: 3rem;"><label class="i18n_label " id="perByVal"></label></span>
+										<span class="sumPerByVal" id="sumPerByVal"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="searchbar">
+				<div class="aui-card-list-content-padded">
+					<div class="aui-row aui-row-padded aui-hide" id="branchDiv">
+						<div class="aui-col-xs-2">
+							<img src="../image/monthly_reach/map.png"  style="width: 24px;" height="24" onclick="openOrgtree()"/>
+						</div>
+						<div class="aui-col-xs-5">
+							<div style="line-height: 1.5rem;font-size: 0.5rem;" class="aui-ellipsis-1" id="regionTitle">
+								
+							</div>
+						</div>
+						<div class="aui-col-xs-5">
+							<div style="line-height: 1.5rem;font-size: 0.5rem;" class="aui-ellipsis-1" id="branchTitle">
+								
+							</div>
+						</div>
+					</div>
+					
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-12" id="notBranchDiv">
+							<div class="search_item" onclick="showDealerActionSelector(1)">
+								<div class="dealer_text aui-ellipsis-1" id="dealerName">Please Select Dealer</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-6" id="timeDiv">
+						<div class="search_item" >
+								<select id='time' onchange="showTimeSelect()" style="width:80%;display: inline-block;font-size: 0.6rem;margin-top: -0.5rem;">
+								</select>
+								<div class="right_arraw" style="width:10%">
+									<i class="aui-iconfont aui-icon-down"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6" id="productDivisionDiv">
+							<div class="search_item" onclick="showDealerActionSelector(2)">
+								<div class="type_text aui-ellipsis-1"   id="productDivisionText">
+									Product Division
+								</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="aui-content aui-margin-t-10">
+				<ul class="aui-list aui-media-list" id="monthlySaleTarList"></ul>
+				<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+			</div>
+		</div>
+		<div id="template" class="aui-hide">
+			<li class="aui-list-item">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media" style="width: 3rem;">
+						<div class="shortName aui-font-size-18" style="width: 2rem;height: 2rem;border: 1px solid #dedede;border-radius: 1rem;line-height: 2rem;text-align: center;font-weight: bold;margin-top:2rem;">
+						</div>
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-list-item-text aui-ellipsis-1" style="width: 60%;color: #444;font-weight: 600;">
+								<span class="dealerName"></span>
+							</div>
+							<div class="aui-list-item-right">
+								<span class="time gray_light aui-font-size-12 aui-margin-r-15"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -1rem;">
+							<div class="aui-info-item" style="color: #444;font-size: 10px;">
+								<span class="productDivision aui-ellipsis-1"></span>&nbsp;&nbsp;&nbsp;
+								<span class="channel aui-ellipsis-1"></span>&nbsp;&nbsp;&nbsp;
+								<span class="model aui-ellipsis-1"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-info-item" style="font-size: 10px;width: 50%;text-align: left;">
+								<span style="width: 45%;"><label class="i18n_label " id="planQty"></label></span><span class="plan_qty gray_light"></span>
+							</div>
+							<div class="aui-info-item" style="font-size: 10px;width: 50%;text-align: left;">
+								<span style="width: 45%;"><label class="i18n_label " id="planVal"></label> </span><span class="plan_val gray_light"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-info-item" style="font-size: 10px;width: 50%;text-align: left;">
+								<span style="width: 45%;"><label class="i18n_label " id="actQty"></label> </span><span class="act_qty gray_light"></span>
+							</div>
+							<div class="aui-info-item" style="font-size: 10px;width: 50%;text-align: left;">
+								<span style="width: 45%;"><label class="i18n_label " id="actVal"></label> </span><span class="act_val gray_light"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-info-item" style="font-size: 10px;width: 50%;text-align: left;">
+								<span style="width: 45%;"><label class="i18n_label " id="perByQty"></label></span><span class="per_byqty gray_light aui-margin-r-15"></span>
+							</div>
+							<div class="aui-info-item" style="font-size: 10px;width: 50%;text-align: left;">
+								<span style="width: 45%;"><label class="i18n_label " id="perByVal"></label></span><span class="per_byval gray_light aui-margin-r-15"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="customerId"/>
+		<input type="hidden" id="productDivisionVal"/>
+		<input type="hidden" id="regionCode"/>
+		<input type="hidden" id="branchCode"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/lib/lCalendar/lCalendar.js"></script>
+	<script type="text/javascript" src="../script/monthly_sale_target.js"></script>
+</html>

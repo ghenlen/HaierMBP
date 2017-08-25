@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body >
+		<header class="aui-bar aui-bar-nav dodge_blue_bg">
+			<a class="aui-pull-left aui-btn left_btn" onclick="turnToHome();"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="orderCenter"></label>
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script>
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+		};
+		
+		function turnToHome(){
+			COMMON_BackToRoot();
+			api.sendEvent({
+				name : 'setPage',
+				extra : {
+					index :0
+				}
+			});
+		}
+	</script>
+</html>

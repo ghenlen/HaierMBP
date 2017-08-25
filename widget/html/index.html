@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>index</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<style>
+			html, body {
+				height: 100%;
+			}
+			#main {
+				/* 设置main为伸缩布局  */
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+		</style>
+	</head>
+	<body style="font-size:0.7rem">
+		<div id="wrap" class="flex-wrap flex-vertical">
+			<div id="main"></div>
+			<div id="footer">
+				<ul class="flex-wrap" style="font-size: 0.6rem;">
+					<li tapmode="tapmode_cls" onclick="randomSwitchBtn(0);" index='0' class="flex-con active" >
+						<label class="i18n_label" id="home"></label>
+					</li>
+					<li tapmode="tapmode_cls" onclick="randomSwitchBtn(1);" index='1' class="flex-con" style="position: relative;">
+						<div id="shoppingNum" class="aui-badge" style="left: 55%;display: none;"></div>
+						<label class="i18n_label" id="cart"></label>
+					</li>
+					<li tapmode="tapmode_cls" onclick="randomSwitchBtn(2);" index='2' class="flex-con" >
+						<label class="i18n_label" id="my"></label>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/i18n/language_en.js"></script>
+	<script type="text/javascript" src="../script/constant.js"></script>
+	<script type="text/javascript" src="../script/ajax.js"></script>
+	<script type="text/javascript" src="../script/business.js"></script>
+	<script type="text/javascript" src="../script/index.js"></script>
+</html>

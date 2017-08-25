@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form>
+							<input class="gray_light" type="search" readonly="true" value="" placeholder="Title/Code" id="search-input" onclick="searchDealer()">
+						</form>
+						<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;margin-left: -0.9rem;display: none;"></i>
+					</div>
+				</div>
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript" src="../script/business.js"></script>
+	
+	<script type="text/javascript">
+		//var listContact;
+		var headerHeight;
+		var datas = {};
+		var allDealers = [];
+		var type;
+		apiready = function() {
+			var params = api.pageParam;
+			type = params.type;
+			var $header = $api.dom('header');
+			headerHeight = $api.offset($header).h;
+			//listContact = api.require('listContact');
+			
+			var relations = BUSINESS_GetRelations();
+			if (relations && relations.length > 0) {
+				allDealers = relations;
+				//loadList();
+				loadData();
+			} else {
+				var userId = userInfo.id;
+				var sql = "SELECT * from customer where user_id = '" + userId + "'";
+				db.selectSql({
+					name : 'data',
+					sql : sql
+				}, function(ret, err) {
+					if (ret.status) {
+						var data = ret.data;
+						if (data.length > 0) {
+							var customerList = [];
+							for (var i = 0; i < data.length; i++) {
+								customerList.push({
+									'customer.id' : data[i].customer_id,
+									customerTitle : data[i].customer_title,
+									customerCode : data[i].customer_code,
+									SALES_OFFICE : data[i].SALES_OFFICE,
+									orgCode : data[i].orgCode
+								});
+							}
+							allDealers = customerList;
+							//loadList();
+							loadData();
+						}
+					}
+				});
+			}
+		};
+		function loadList(searchKey) {
+		var	upsearchKey='';
+		if(searchKey){
+			upsearchKey=searchKey.toUpperCase();
+		}
+			var relations = allDealers;
+			var A = [];
+			var B = [];
+			var C = [];
+			var D = [];
+			var E = [];
+			var F = [];
+			var G = [];
+			var H = [];
+			var I = [];
+			var J = [];
+			var K = [];
+			var L = [];
+			var M = [];
+			var N = [];
+			var O = [];
+			var P = [];
+			var Q = [];
+			var R = [];
+			var S = [];
+			var T = [];
+			var U = [];
+			var V = [];
+			var W = [];
+			var X = [];
+			var Y = [];
+			var Z = [];
+			for (var i = 0; i < relations.length; i++) {
+				var customerTitle = relations[i].customerTitle;
+				var upTitle=customerTitle.toUpperCase();
+				if (searchKey) {
+					if (upTitle.indexOf(upsearchKey) == -1) {
+						continue;
+					}
+				}
+				if (customerTitle) {
+					var initial = customerTitle.substring(0, 1).toUpperCase();
+					switch(initial) {
+						case 'A' : {
+							A.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'B' : {
+							B.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'C' : {
+							C.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'D' : {
+							D.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'E' : {
+							E.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'F' : {
+							F.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'G' : {
+							G.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'H' : {
+							H.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'I' : {
+							I.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'J' : {
+							J.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'K' : {
+							K.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'L' : {
+							L.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'M' : {
+							M.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'N' : {
+							N.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'O' : {
+							O.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'P' : {
+							P.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'Q' : {
+							Q.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'R' : {
+							R.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}case 'S' : {
+							S.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'T' : {
+							T.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'U' : {
+							U.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'V' : {
+							V.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'W' : {
+							W.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'X' : {
+							X.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'Y' : {
+							Y.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i]['customer.id'],
+								img : 'widget://image/common/man_blue_100x100.png',
+								saleOffice : relations[i].SALES_OFFICE,
+								orgCode : relations[i].orgCode
+							});
+							break;
+						}
+						case 'Z' :
+							{
+								Z.push({
+									title : customerTitle,
+									customerCode : relations[i].customerCode,
+									customerId : relations[i]['customer.id'],
+									img : 'widget://image/common/man_blue_100x100.png',
+									saleOffice : relations[i].SALES_OFFICE,
+									orgCode : relations[i].orgCode
+								});
+								break;
+							}
+							break;
+					}
+				}
+			}
+			datas.A = A;
+			datas.B = B;
+			datas.C = C;
+			datas.D = D;
+			datas.E = E;
+			datas.F = F;
+			datas.G = G;
+			datas.H = H;
+			datas.I = I;
+			datas.J = J;
+			datas.K = K;
+			datas.L = L;
+			datas.M = M;
+			datas.N = N;
+			datas.O = O;
+			datas.P = P;
+			datas.Q = Q;
+			datas.R = R;
+			datas.S = S;
+			datas.T = T;
+			datas.U = U;
+			datas.V = V;
+			datas.W = W;
+			datas.X = X;
+			datas.Y = Y;
+			datas.Z = Z;
+			
+			listContact.close();
+			listContact.open({
+				x : 0,
+				y : headerHeight,
+				h : api.winHeight - headerHeight,
+				cellHeight : 50,
+				groupTitle : {
+					bgColor : '#efefef'
+				},
+				borderColor : '#efefef',
+				cellBgColor : '#fff',
+				cellSelectColor : '#ddd',
+				data : datas,
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					var selectedList = datas[ret.key];
+					var item = selectedList[ret.index];
+					if (type == "cart") {
+						api.sendEvent({
+							name : 'updateDealer_shopList',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "common_product") {
+						api.sendEvent({
+							name : 'updateDealer_commonProduct',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "oos_list") {
+						api.sendEvent({
+							name : 'updateDealer_oos',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "question_add") {
+						api.sendEvent({
+							name : 'updateDealer_question_add',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "order_list") {
+						api.sendEvent({
+							name : 'updateDealer_order_list',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "recon_list") {
+						api.sendEvent({
+							name : 'updateDealer_recon',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "issue_detail") {
+						api.sendEvent({
+							name : 'updateDealer_issue_detail',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "monthlySaleTarget") {
+						api.sendEvent({
+							name : 'updateDealer_monthly_sale_target',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else if (type == "overdue") {
+						api.sendEvent({
+							name : 'updateDealer_overdue',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					}else if (type == "overdue") {
+						api.sendEvent({
+							name : 'updateDealer_overdue',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					}else if (type == "pdc") {
+						api.sendEvent({
+							name : 'updateDealer_pdcList',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					}else if (type == "pdc_new") {
+						api.sendEvent({
+							name : 'updateDealer_pdc_new',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					} else {
+						api.sendEvent({
+							name : 'updateDealer',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title,
+								saleOffice : item.saleOffice,
+								orgCode : item.orgCode
+							}
+						});
+					}
+					api.closeWin({
+					});
+				} else {
+					COMMON_toastError();
+				}
+			});
+		}
+
+		function searchDealer() {
+			COMMON_UISearchBar(function(ret) {
+				var searchTitle=$api.trim(ret.text);
+				$api.val($api.byId('search-input'), searchTitle);
+				$api.css($api.byId('resetSearchBtn'), 'display:inline-block');
+				//loadList(searchTitle);
+				loadData(searchTitle);
+			});
+		}
+
+		function resetSearch() {
+			$api.css($api.byId('resetSearchBtn'), 'display:none');
+			$api.val($api.byId('search-input'), '');
+			//loadList();
+			loadData();
+		}
+		
+		function loadData(searchKey){
+			var	upsearchKey='';
+			if(searchKey){
+				upsearchKey=searchKey.toUpperCase();
+			}
+		
+			var contacts = [];
+			for (var i = 0; i < allDealers.length; i++) {
+				var customerTitle = allDealers[i].customerTitle;
+				var customerCode = allDealers[i].customerCode;
+				var upTitle=customerTitle.toUpperCase();
+				if (searchKey) {
+					if (upTitle.indexOf(upsearchKey) == -1 && customerCode.indexOf(upsearchKey) == -1) {
+						continue;
+					}
+				}
+				
+				contacts.push({
+					"employee_id" : allDealers[i]['customer.id'],
+                    "remark" : allDealers[i].customerTitle,
+                    "phonetic" : '', //名字的拼音
+                    "namephonetic" : '',
+                    "position" : allDealers[i].saleOffice,
+                    "dept_id" : allDealers[i].orgCode+'-'+allDealers[i].SALES_OFFICE,
+                    "isdeleted" : "",
+                    "dept_name" : allDealers[i].customerCode,
+                    "isremark" : 1
+				});
+			}
+		
+			var UIListContacts = api.require('UIListContacts');
+            UIListContacts.open({
+                rect : {
+                    x : 0,
+                    y : headerHeight,
+                    w : api.frameWidth,
+                    h : api.frameHeight - headerHeight
+                },
+                contacts : contacts,
+                fixedOn : api.frameName
+            }, function(ret) {
+                if (ret) {
+                    if(ret.eventType == 'click'){
+	                    var item = {
+	                    	'customerCode': ret.contact.dept_name,
+	                    	'customerId': ret.contact.employee_id,
+	                    	'title': ret.contact.remark,
+	                    	'saleOffice': (ret.contact.dept_id).split('-')[1],
+	                    	'orgCode': (ret.contact.dept_id).split('-')[0]
+	                    };
+						if (type == "cart") {
+							api.sendEvent({
+								name : 'updateDealer_shopList',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "common_product") {
+							api.sendEvent({
+								name : 'updateDealer_commonProduct',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "oos_list") {
+							api.sendEvent({
+								name : 'updateDealer_oos',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "question_add") {
+							api.sendEvent({
+								name : 'updateDealer_question_add',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "order_list") {
+							api.sendEvent({
+								name : 'updateDealer_order_list',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "recon_list") {
+							api.sendEvent({
+								name : 'updateDealer_recon',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "issue_detail") {
+							api.sendEvent({
+								name : 'updateDealer_issue_detail',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "monthlySaleTarget") {
+							api.sendEvent({
+								name : 'updateDealer_monthly_sale_target',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else if (type == "overdue") {
+							api.sendEvent({
+								name : 'updateDealer_overdue',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						}else if (type == "overdue") {
+							api.sendEvent({
+								name : 'updateDealer_overdue',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						}else if (type == "pdc") {
+							api.sendEvent({
+								name : 'updateDealer_pdcList',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						}else if (type == "pdc_new") {
+							api.sendEvent({
+								name : 'updateDealer_pdc_new',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						} else {
+							api.sendEvent({
+								name : 'updateDealer',
+								extra : {
+									'customerCode' : item.customerCode,
+									'customerId' : item.customerId,
+									'title' : item.title,
+									saleOffice : item.saleOffice,
+									orgCode : item.orgCode
+								}
+							});
+						}
+						api.closeWin({
+						});
+                    }
+                }
+            });
+		}
+	</script>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>AttendanceNew</title>
+		<!--<link rel="stylesheet" type="text/css" href="../script/glDatePicker/glDatePicker.darkneon.css"/>
+		<link rel="stylesheet" type="text/css" href="../script/glDatePicker/glDatePicker.default.css"/>
+		<link rel="stylesheet" type="text/css" href="../script/glDatePicker/glDatePicker.flatwhite.css"/>-->
+		<link rel="stylesheet" type="text/css" href="../css/attendance_history.css"/>
+		<link rel="stylesheet" type="text/css" href="../script/datePicker/stylesheets/print.css"/>
+		<link rel="stylesheet" type="text/css" href="../script/datePicker/stylesheets/simple-calendar.css"/>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+            #inboxUl li:nth-child(2n) {
+                background-color: #DDF5F5;
+            }
+            #inboxUl li:nth-child(2n + 1) {
+                background-color: #FFF;
+            }
+            #outboxUl li:nth-child(2n) {
+                background-color: #DDF5F5;
+            }
+            #outboxUl li:nth-child(2n + 1) {
+                background-color: #FFF;
+            }
+            .title {
+                font-weight: bold;
+                color: #555;
+            }
+            .kgdiv {
+                color: red
+            }
+            .qqdiv {
+                color: orange
+            }
+            #qiandao {
+                background: #1b7bea;
+                color: white;
+                width: 4rem;
+                height: 4rem;
+                border: solid 1px #fff;
+                line-height: 3.5 rem;
+                text-align: center;
+                padding: 1rem;
+                border-radius: 0.5 rem;
+            }
+		</style>
+	</head>
+	<body style="font-size:0.7rem">
+		<!-- Message List -->
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18">
+				<label class="i18n_label " id="attendance_record">Attendance Record</label>
+			</div>
+		</header>
+		
+		
+		<div id='container' style="width:100%"></div>
+		
+		
+		<div class="aui-content" id="inbox" style="background:#fff;margin-top: 18.5rem;padding: 1rem">
+				<div class="aui-col-xs-12">
+					<div style="text-align: left;">
+						<span id="curDate">2</span>&nbsp;&nbsp;<span id="curWeek">一</span><br>
+						<!--状态：正常</br>
+						签到时间：08:53:32</br>
+						签退时间：18:20:30</br>-->
+						<div id="attendanceData" style="text-align: left"></div>
+					</div>
+				</div>
+				</br>
+				<!--<div class="aui-col-xs-12" style="margin-top: 3rem;">
+					<div style="text-align: left;margin-left: 2rem">
+					</br>
+						<span><span style="width: 20px;height: 20px;background: #FD8642"></span>表示今天</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><span style="width: 20px;height: 20px;background: #88e888"></span>表示'当天'未正常签到</span>
+					</div>
+				</div>-->
+				
+		</div>
+		
+		
+		<div class="aui-content-padded" id="historyList">
+		</div>
+		<div id="template" class="aui-hide">
+			<div class="row">
+				<div class="attendance_container">
+					<div class="date">
+						<div style="display: table-cell;vertical-align:middle;">
+							<div class="aui-font-size-20">
+								<b class="day"></b>
+							</div>
+							<div class="aui-font-size-12 month" style="margin-top: -2px;"></div>
+						</div>
+					</div>
+					<div class="data">
+						<div style="display: table-cell;vertical-align:middle;" class="attendance_list">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="attendanceTemplate">
+				<div class="aui-font-size-12 gray_light aui-ellipsis-1">
+					<div style="display: inline-block;" class="time aui-margin-r-5"></div>
+					<div class="location" style="display: inline-block;vertical-align: bottom;"></div>
+				</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/datePicker/javascripts/simple-calendar.js"></script>
+	
+	<script type="text/javascript" src="../script/lib/moment.js"></script>
+	<script type="text/javascript" src="../script/attendanceNew2.js"></script>
+</html>

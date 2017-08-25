@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Attendance</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/attendance.css"/>
+		<style>
+			.aui-dialog-body{
+				overflow: scroll !important;
+				max-height:200px !important;
+				height: 200px;
+				width:100%;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label " id="attendance"></label>
+			</div>
+		</header>
+		<div id="container">
+			<div style="padding:1em;" id="date">
+				<div style="float: left;padding-left: 20px;line-height: initial">
+					<p style="font-size:1.6rem;text-align: center" id="week">
+					</p>
+					<p class="aui-font-size-14" style="padding-top: 6px;text-align: center" id="data">
+					</p>
+				</div>
+				<div style="float: right;padding-right:20px;line-height: initial" align="center">
+					<img id = "image_pho" src="../image/attendance/record.png"  width="40"  height=40 onclick="turnToAttendHis()"/>
+					<p class="aui-font-size-14" style="text-align: center">
+						Record
+					</p>
+				</div>
+			</div>
+			<div id="clear" ></div>
+			<div id="main" style="overflow: auto;">
+				<div class="cd-timeline-block" id="record" style="display: none">
+					<div class="green_out_circular">
+						<div class="green_in_circular"></div>
+					</div>
+					<div class="cd-timeline-content aui-font-size-14">
+						<p class="white aui-font-size-18 time">
+						</p>
+						<p class="white aui-font-size-14">
+							Attendance Success
+						</p>
+					</div>
+				</div>
+				<section id="cd-timeline" class="cd-container" style="border-left:2px solid #fff;">
+					<div id = "datas">
+					</div>
+					<div id="card_image" align="center" style="padding-top: 35px">
+						<img id = "image_pho" src="../image/attendance/clockin_btn.png"  width="110"  height=110 onclick="clockIn()"/>
+					</div>
+				</section>
+			</div>
+		</div>
+		
+		<div id="positionSelectTemplate" class="aui-hide">
+	        <li class="aui-list-item">
+	            <div class="aui-list-item-inner">
+	                <label><input onclick="selectLocation(this)" class="aui-radio" type="radio" name="position"> <span class="position"></span></label>
+	            </div>
+	        </li>
+		</div>
+		
+		<input type="hidden" id="lng" />
+		<input type="hidden" id="lat" />
+		<input type="hidden" id="category" />
+		<input type="hidden" id="dataId" />
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/lib/moment.js"></script>
+	<script type="text/javascript" src="../script/attendance.js"></script>
+</html>

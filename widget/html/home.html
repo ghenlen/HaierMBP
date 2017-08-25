@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Home</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+		<link rel="stylesheet" type="text/css" href="../script/lib/swipe/swiper.min.css"/>
+		<style>
+			.moudle::-webkit-scrollbar {display:none}
+		</style>
+	</head>
+	<body>
+		<div id="loadingPage">
+			<img src="../image/common/loading.gif" width="100%" style="margin-top: 8rem;"/>
+			<h6 style="text-align: center;font-weight: bold;font-size: 12px;color: #ccc;">Loading ......</h1>
+		</div>
+		<header class="aui-bar aui-bar-nav aui-fixed-top">
+			<a class="aui-pull-left aui-btn left_btn" aui-popup-for="top-left"> <img src="../image/common/haier_logo.png" width="54" height="16"  style="vertical-align: middle"/> </a>
+			<div class="aui-title" style="left: 3.5rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form action="javascript:search();">
+							<input class="gray_light" type="search" value="" placeholder="Product Title/Model/Code" id="search-input" readonly="true" onclick="openProductSearch()">
+						</form>
+					</div>
+				</div>
+			</div>
+			<a class="aui-pull-right aui-btn" onclick="BUSINESS_OpenPopupMenu()"> <img src="../image/common/menu.png" width="22" height="22" /> </a>
+		</header>
+		
+		<div class="swiper-container swiper-container-horizontal" id="slide_con">
+			<div class="swiper-wrapper" id="slide_imgs">
+			</div>
+			<!-- Add Pagination -->
+			<div id="slide_pagination" class="swiper-pagination swiper-pagination-white swiper-pagination-clickable swiper-pagination-bullets">
+			</div>
+		</div>
+		
+		<!-- 公告通知 -->
+		<div class="aui-content annoucement" style="background: #FFF;" >
+			<div class="aui-info aui-padded-l-10 aui-padded-r-10" style="margin-top: -7px;">
+			    <div class="aui-info-item">
+			        <div class="aui-label" style="background-color:rgb(7,175,246);border-radius: 5px;" align="center">
+			        	<div style="margin: 0 auto;width: 5rem;color: #FFF;padding: 2px 0" onclick="turnToIssueList('1')">Announce</div>
+			        </div>
+			        <div id="announceMarque">
+			        	<marquee direction="up"  scrollamount="1"  class="aui-ellipsis-1 aui-font-size-14" style="color: #999;margin-left:1rem;height: 20px;" id="home_announcement"></marquee>
+			        </div>
+			        
+			    </div>
+			</div>
+			<div class="aui-info aui-padded-l-10 aui-padded-r-10" style="margin-top: -7px;">
+			    <div class="aui-info-item">
+			        <div class="aui-label" style="background-color:rgb(7,175,246);border-radius: 5px;" align="center">
+			        	<div style="margin: 0 auto;width: 5rem;color: #FFF;padding: 2px 0;" onclick="turnToIssueList('2')">News</div>
+			        </div>
+			        <div id="newsMarque">
+			        	<marquee direction="up"  scrollamount="1"  class="aui-ellipsis-1 aui-font-size-14" style="color: #999;margin-left:1rem;height: 20px;" id="home_news"></marquee>
+			    	</div>
+			    </div>
+			</div>
+			<div class="aui-info aui-padded-l-10 aui-padded-r-10" style="margin-top: -7px;">
+			    <div class="aui-info-item">
+			        <div class="aui-label" style="background-color:rgb(7,175,246);border-radius: 5px;">
+			        	<div style="margin: 0 auto;width: 5rem;color: #FFF;padding: 2px 0;" onclick="turnToIssueList('3')">Policy</div>
+			        </div>
+			        <div id="policyMarque">
+			        	<marquee scrollamount="1" scrolldelay="1" direction="up"  class="aui-ellipsis-1 aui-font-size-14" style="color: #999;margin-left:1rem;height: 20px;" id="home_policy"></marquee>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		
+		<div id="moudleCon"  style="width: 100%;overflow: auto;background: #fff;" class="moudle aui-margin-t-10 aui-padded-b-5">
+			<div style="width: 125%;height: 100%;">
+				<div class="swipe-wrap">
+					<div class="swipe-box">
+						<div class="sliderow">
+							<div class="slidecol" tapmode onclick="turnToProductList()" id="code_101">
+								<img src="../image/home/newOrder.png" alt="">
+								<div class="" >
+									<label class="i18n_label" id="newOrder"></label>
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('offlineOrder')"  id="code_102">
+								<img src="../image/home/fastOrder.png" alt="">
+								<div class="home_moudle_corner_mark" style="display: none;"  id="offlineCornerMark">6</div>
+								<div class="">
+									<label class="i18n_label" id="fastOrder"></label>
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('dealer')" id="code_104">
+								<img src="../image/home/dealer.png" alt="">
+								<div class="">
+									<label class="i18n_label" id="dealer"></label>
+									<!-- 	Dealer -->
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('overdue')" id="code_105">
+								<img src="../image/home/overdue.png" alt="">
+								<div class="">
+									<label class="i18n_label" id="overdue"></label>
+									<!-- 	Dealer -->
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('recon')" id="code_106">
+								<img src="../image/home/recon.png" alt="">
+								<div class="aui-ellipsis-1">
+									<label class="i18n_label" id="reconciliation"></label>
+									<!-- 	Dealer -->
+								</div>
+							</div>
+						</div>
+						<div class="sliderow">
+							<div id="attendanceMoudle" class="slidecol" tapmode onclick="turnToPage('attendance')">
+								<img src="../image/home/attendance.png" alt="">
+								<div class="">
+									<label class="i18n_label" id="attendence"></label>
+									<!-- Attendence -->
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('question')" id="code_110">
+								<img src="../image/home/question.png" alt="">
+								<div id="noCloseCount" class="home_moudle_corner_mark aui-hide" ></div>
+								<div class="">
+									<label class="i18n_label" id="question"></label>
+									<!-- 	Question -->
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('information')" id="code_111">
+								<img src="../image/home/information.png" alt="">
+								<div class="">
+									<label class="i18n_label" id="information"></label>
+									<!-- Informaton -->
+								</div>
+							</div>
+							<div class="slidecol disable" tapmode onclick1="turnToPage('overage')" id="code_113">
+								<img src="../image/home/overage.png" alt="">
+								<div class="">
+									<label class="i18n_label" id="overage"></label>
+									<!-- Informaton -->
+								</div>
+							</div>
+							<div class="slidecol" tapmode onclick="turnToPage('notice')">
+								<img src="../image/home/notice.png" alt="">
+								<span id="newMessageCount" class="home_moudle_corner_mark aui-hide"></span>
+								<div class="">
+									<label class="i18n_label" id="notice"></label>
+									<!-- Message -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="width: 100%;height: 1.2rem;background: #fff;" align="center">
+			<img id="page1Flag" width="20" height="20" src="../image/home/dot1.png"/>			
+			<img id="page2Flag" width="20" height="20" src="../image/home/dot.png"/>			
+		</div>
+			
+		<div id="code_114" class="aui-hide aui-margin-t-10" onclick="turnToMonthlyReach()" style="background: #fff;padding-top: 1rem;">
+			<div id="chart"></div>
+			<!-- <div class="chart_bottom" style="font-size: 0.7rem;">
+				<div class="index">
+					<div class="circle num_target_color"></div>
+					Qty Tgt
+				</div>
+				<div class="index">
+					<div class="circle num_actual_color"></div>
+					Qty Act
+				</div>
+				<div class="index">
+					<div class="circle money_target_color"></div>
+					Amount Target
+				</div>
+				<div class="index">
+					<div class="circle money_actual_color"></div>
+					Amount Actual
+				</div>
+			</div> -->
+		</div>
+		
+		<div id="container" name="container" class="container">
+			<div class="aui-tab" style="margin-bottom: 10px;" id="home_tabe_footre">
+				<div class="aui-tab-item aui-active">
+					<span style="width: 100px;" class="aui-font-size-14"> <label class="i18n_label" id="new"></label> <!-- New --> </span>
+				</div>
+				<div class="aui-tab-item" >
+					<span style="width: 100px;" class="aui-font-size-14"> <label class="i18n_label" id="recommend"></label> </span>
+				</div>
+				<div class="aui-tab-item" >
+					<span style="width: 100px;" class="aui-font-size-14"> <label class="i18n_label" id="upcoming"></label> </span>
+				</div>
+			</div>
+			
+			<div id='div_new' class='newcon container_content ' style="overflow: hidden;height: 250px;min-height: 250px;">
+				<div class='swiper-wrapper' id="newProductContainer">
+				</div>
+			</div>
+			<div id="div_recommend" class="container_content recommendcon" style="display:none;overflow: hidden;height: 250px;min-height: 250px;">
+				<div class='swiper-wrapper' id="recommendProductContainer"></div>
+			</div>
+			<div id="div_forcast" class="container_content forcastcon" style="display:none;overflow: hidden;height: 250px;min-height: 250px;">
+				<div class='swiper-wrapper' id="forcastProductContainer"></div>
+			</div>
+		</div>
+		
+		<div id="productMoudle" style="display: none;">
+			<div class="aui-col-xs-6 product">
+				<div class="pricing-list">
+                    <div class="pricing-header">
+                        <div class="pricing-title remark aui-ellipsis-2"></div>
+                        <div class="pricing-price">
+                            <img class="product_img"  src="../image/common/pic1.png" 
+								onerror="this.src='../image/common/pic1.png'"/>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="aui-ellipsis-2 product_title" style="word-break:break-all">
+                        </li>
+                    </ul>
+                </div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/i18n/language_en.js"></script>
+		<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+		<script type="text/javascript" src="../script/constant.js"></script>
+		<script type="text/javascript" src="../script/ajax.js"></script>
+		<script type="text/javascript" src="../script/utils.js"></script>
+		<script type="text/javascript" src="../script/business.js"></script>
+		
+		<script type="text/javascript" src="../script/aui/aui-tab.js"></script>
+		<script type="text/javascript" src="../script/lib/swipe/swiper.min.js"></script>
+		<script type="text/javascript" src="../script/lib/echarts/echarts.min.js"></script>
+		<script type="text/javascript" src="../script/lib/echarts/macarons.js"></script>
+		<script type="text/javascript" src="../script/home.js"></script>
+	</body>
+</html>

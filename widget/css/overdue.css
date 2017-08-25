@@ -1,0 +1,67 @@
+.container{
+	padding: 0 1rem;
+}
+
+.row{
+	width: 100%;
+	height: 10rem;
+	position: relative;
+}
+
+.row .bg{
+	width: 100%;
+	height: 1rem;
+	position: absolute;
+	top:0;
+	left:0;
+	border-radius: 8px 8px 0 0;
+}
+
+.row .content{
+	width: 100%;
+	height: 13rem;
+	position: absolute;
+	top:0.5rem;
+	left:0;
+	border-radius: 0px 0px 4px 4px;
+	background: #fff;
+	z-index: 1;
+}
+
+.title{
+	width:100%;
+	height: 1.5rem;
+	line-height: 1.6rem;
+}
+.title .left,.right{
+	text-align: center;
+	display: inline-block;
+	width: 49%;
+}
+
+.list{
+	width:100%;
+	height: 6rem;
+	margin-top:0.5rem;
+}
+
+.list .item{
+	text-align: left;
+	display: inline-block;
+	width: 80%;
+	height: 1.2rem;
+	font-size: 14px;
+}
+
+.list .item_sum{
+	text-align: center;
+	display: inline-block;
+	width: 99%;
+	height: 1rem;
+	font-size: 0.6rem;
+}
+
+.left_span{
+    width:40%;
+    text-align: center;
+}

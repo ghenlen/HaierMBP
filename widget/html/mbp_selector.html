@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>分类</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			html, body{
+				background: #fff;
+			}
+			.box {
+				width: 90%;
+				text-align: center;
+				background: #f5f5f5;
+				margin: 0 auto;
+				border-radius: 5px;
+				height: 2.5rem;
+				position: relative;
+			}
+			
+			.box-selected{
+				background: rgb(255, 238, 235);
+				color: #ff2600;
+			}
+			
+			.content{
+				width: 100%;
+				margin: 0 auto;
+				position: relative;
+				padding: 5px;
+				top:50%;
+				transform:translateY(-50%);
+			}
+			
+			.aui-grid [class*=aui-col-]{
+				padding: 0.2rem 0;
+			}
+			
+			.category:before{
+		       content: '';
+		       position:absolute;
+		       left:0;
+		       width: 200%;
+		       height: 1px;
+		       border-top: 1px solid #CCCCCC;
+		       -webkit-transform-origin: 0 0;
+		       -moz-transform-origin: 0 0;
+		       -ms-transform-origin: 0 0;
+		       -o-transform-origin: 0 0;
+		       transform-origin: 0 0;
+		       -webkit-transform: scale(0.5, 0.5);
+		       -ms-transform: scale(0.5, 0.5);
+		       -o-transform: scale(0.5, 0.5);
+		       transform: scale(0.5, 0.5);
+		       -webkit-box-sizing: border-box;
+		       -moz-box-sizing: border-box;
+		       box-sizing: border-box;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top" style="background: #f5f5f5;color: #999;">
+			<a class="aui-pull-left aui-btn" style="height: 2rem;"></a>
+			<div class="aui-title" style="left: 0.5rem;right:0;text-align: left;">
+				Select
+			</div>
+		</header>
+		<div id="main">
+			<section class="aui-grid aui-margin-b-15 aui-margin-t-10">
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						<div style="width: 90%;margin: 0 auto;text-align: left;">Product Division</div>
+					</div>
+				</div>
+				<div class="aui-row" style="margin-top: 100px;">
+					<div class="aui-col-xs-4">
+						<div class="box pg">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box pg">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box pg">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+							<img width="12" height="12" src="../image/common/right.png" style="position: absolute;bottom: 5px;right: 5px;display: none;"/>
+						</div>
+					</div>
+					<div class="aui-col-xs-4">
+						<div class="box pg">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="aui-row category" style="margin-top: 1rem;">
+					<div class="aui-col-xs-4" style="padding-top: 1rem;">
+						<div style="width: 90%;margin: 0 auto;text-align: left;">Product Division</div>
+					</div>
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+				</div>
+				<div class="aui-row category" style="margin-top: 1rem;">
+					<div class="aui-col-xs-4" style="padding-top: 1rem;">
+						<div style="width: 90%;margin: 0 auto;text-align: left;">Product Division</div>
+					</div>
+				</div>
+				<div class="aui-row">
+					<div class="aui-col-xs-4">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content</div>
+						</div>
+					</div>
+					<div class="aui-col-xs-4" align="center">
+						<div class="box">
+							<div class="content aui-ellipsis-2">content content content contentcontent</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<footer style="position: fixed;bottom: 0;height: 2.5rem;width: 100%;">
+			<div style="width: 50%;height: 100%;float: left;background: #f5f5f5;text-align: center;line-height: 2.5rem;">Reset</div>
+			<div style="width: 50%;height: 100%;background: #1B7BEA;float: right;text-align: center;line-height: 2.5rem;color: #fff;border-top: rgb(19, 106, 205);">Finish</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script>
+		var $pgSelect = null;
+		apiready = function() {
+			var $header = $api.dom('header');
+			var headerHeight = $api.offset($header).h;
+			$api.css($api.byId('main'), 'padding-top:' + headerHeight + 'px;padding-bottom:2.5rem;');
+			
+			var allPges = $api.domAll('.pg');
+			for(var i = 0; i < allPges.length; i++){
+				$api.addEvt(allPges[i], 'click', function(){
+					if($pgSelect && $pgSelect == this){
+						$api.removeCls($pgSelect, 'box-selected');
+						$api.css($api.dom($pgSelect, 'img'), 'display:none;');
+						$pgSelect = null;
+						return;
+					}
+					
+					if($pgSelect && $pgSelect != this){
+						$api.removeCls($pgSelect, 'box-selected');
+						$api.css($api.dom($pgSelect, 'img'), 'display:none;');
+					}
+					$pgSelect = this;
+					$api.css($api.dom(this, 'img'), 'display:block;');
+					$api.addCls(this, 'box-selected');
+				});
+			}
+		};
+	</script>
+</html>

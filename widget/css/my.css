@@ -1,0 +1,13 @@
+/*头像*/
+#portraitContainer {
+	height: 7rem;/*固定头部 */
+	line-height: 7rem;
+}
+
+#portraitContainer img{
+	display: block;
+}
+
+#whiteBg{
+	margin-top: -5rem;
+}

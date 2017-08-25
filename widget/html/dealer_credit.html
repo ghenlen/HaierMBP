@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>经销商-信用</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/dealer_credit.css"/>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav" style="background: #1b7bea">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="myRebate"></label>
+			</div>
+		</header>
+		<div class="heade_tabe" style="height:60px">
+			<ul style="">
+				<li style="padding-left: 10px;height:30px;">
+					<label class="i18n_label" id="customer_name"></label><span> In Electrical Appliance Co. Ltd</span>
+				</li>
+				<li style="padding-left: 10px;height:30px;">
+					<label class="i18n_label" id="customer_number"></label><span> NO35489SFRRT</span>
+				</li>
+			</ul>
+			<!-- <div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10" style="height:30px;">
+			<div class="aui-info-item">
+			<span class="aui-margin-l-5"> <label class="i18n_label" id="customer_name"></label> </span>
+			</div>
+			<div class="aui-info-item " >
+			In Electrical Appliance Co. Ltd.
+			</div>
+			</div>
+			<div class="aui-info aui-margin-t-10 aui-padded-l-10 aui-padded-r-10" style="height:30px;">
+			<div class="aui-info-item">
+			<span class="aui-margin-l-5">Customer Code</span>
+			</div>
+			<div class="aui-info-item">
+			8700023782
+			</div>
+			</div> -->
+		</div>
+		<div style="width: 100%;height: 100px;margin-top:10px;border-bottom:1px solid #efefef">
+			<div style="float:left;width: 60%;border-right:1px solid #00e400" >
+				<ul style="padding-left:20px;">
+					<li  style="font-size:0.7rem;" class="gray_dark">
+						<label class="i18n_label" id="total_annual_target"></label>
+					</li>
+					<li id="monthly_li" >
+						<span style="font-size:0.8rem;" class="tomato_red">￥888.10,452.00</span>
+					</li>
+				</ul>
+				<ul style="padding-left: 20px;">
+					<li  style="font-size: 0.7rem;" class="gray_dark">
+						<label class="i18n_label" id="dealer_total"></label>
+					</li>
+					<li id="monthly_li" >
+						<span style="font-size:0.8rem;" class="tomato_red">￥10,452.00</span>
+					</li>
+				</ul>
+			</div>
+			<div style="float:left;width:40%"></div>
+		</div>
+		<div style="width:100%">
+			<div style="float:left;text-align:left;height:20px;" >
+				<span style="padding-left: 13px;" class="aui-font-size-14">
+				
+				<label class="i18n_label" id="dealer_xxlb"></label>
+				</span>
+			</div>
+		</div>
+		</div>
+		<div class="aui-content" style="margin-top: 22px;" id="aui-info">
+			<ul class="aui-list aui-media-list" id="tobeDeliveringUL">
+				<li class="aui-list-item" id="sample" style="display:none">
+					<!-- style="display:none" -->
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								<span class="distributor_title" style="padding-left: 0px;"><label class="i18n_label" id="performancemonth"></label></span><span class="title">2016-07-04</span>
+								<br/>
+								<span class="biaoti" style="padding-left:0px;"><label class="i18n_label" id="productgroup"></label></span><span class="biaotineirong">滚筒</span>
+								<br>
+								<span class="biaoti"><label class="i18n_label" id="targetvalue"></label></span><span class="biaotineirong">￥32</span>
+								<br>
+								<span class="biaoti"><label class="i18n_label" id="actualvalue"></label></span><span class="biaotineirong">￥32</span>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/dealer_credit.js"></script>
+</html>

@@ -1,0 +1,72 @@
+/********************* main START *********************/
+
+#main {
+	overflow: auto;
+}
+
+.product_price {
+	line-height: 1.5;
+}
+
+.select_btn {
+	width: 26px;
+	background: url(../image/common/circle.png) no-repeat center center;
+	background-size: 20px 20px;
+}
+
+.select_btn_selected {
+	width: 26px;
+	background: url(../image/common/circle_selected.png) no-repeat center center;
+	background-size: 20px 20px;
+}
+/********************* main END *********************/
+
+/********************* footer START *********************/
+#footer {
+	border-top: 1px solid #DDDDDD;
+	height: 50px;
+}
+
+#select_all {
+	width: 30%;
+	height: 100%;
+	float: left;
+	line-height: 50px;
+	border-right: 1px solid #eee;
+	text-align: left;
+}
+
+.select_all_btn {
+	width: 26px;
+	height: 26px;
+	background: url(../image/common/circle.png) no-repeat center center;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 20px 20px;
+}
+
+.select_all_btn_selected {
+	width: 26px;
+	height: 26px;
+	background: url(../image/common/circle_selected.png) no-repeat center center;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 20px 20px;
+}
+
+#sum_total {
+	width: 40%;
+	height: 100%;
+	float: left;
+	line-height: 50px;
+}
+
+
+#checkout_btn {
+	width: 30%;
+	height: 100%;
+	color: #fff;
+	float: right;
+	line-height: 50px;
+}
+/********************* footer END *********************/

@@ -1,0 +1,245 @@
+/********************* main START *********************/
+/*公告通知*/
+.annoucement {
+	height: 6rem;
+	background: #fff;
+	padding-top: 10px;
+}
+
+/*图表*/
+#chart {
+	margin-top: 0.5rem;
+	margin: 0 auto;
+	margin-bottom: 0.5rem;
+}
+.chart_bottom {
+	height: 2rem;
+	padding-top: 5px;
+	background: #FFF;
+}
+.chart_bottom .index {
+	display: inline-block;
+	width: 49%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+}
+.num_target_color {
+	background: #0099FF;
+}
+.num_actual_color {
+	background: #FF0000;
+}
+.money_target_color {
+	background: #00897B;
+}
+.money_actual_color {
+	background: #E91E63;
+}
+.chart_bottom .index .circle {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	vertical-align: middle;
+}
+/********************* main END *********************/
+
+/*去掉列表的上边框*/
+.aui-list:before {
+	background-color: #fff;
+}
+
+#container {
+	width: 100%;
+	background: #fff;
+	margin-top: 10px;
+	padding-bottom:20px;
+}
+
+.swipe {
+	overflow: hidden;
+	visibility: hidden;
+	position: relative;
+	background: #fff;
+	padding-bottom: 10px;
+}
+.swipe-wrap {
+	overflow: auto;
+	/* position: relative; */
+}
+.swipe-wrap .swipe-box {
+	float: left;
+	width: 100%;
+	overflow: auto;
+	/* position: relative; */
+}
+.sliderow {
+	text-align: center;
+	width: 100%;
+	display: block;
+}
+/*.slidepanel .sliderow {margin-top: 10px;}*/
+.sliderow .slidecol {
+	float: left;
+	width: 20%;
+	position: relative;
+}
+.sliderow .slidecol img {
+	width: 60%;
+	margin-top: 10px;
+}
+.sliderow .slidecol div {
+	font-size: 0.7rem;
+	margin-top: 5px;
+}
+
+.product_img {
+	display: block !important;
+	margin: 0 auto;
+	height: 99% !important;
+}
+
+.home_moudle_corner_mark {
+	position: absolute;
+	left: 60%;
+	top: 0.4rem;
+	width: auto;
+	min-width: 0.9rem;
+	height: 0.9rem;
+	border-radius: 0.45rem;
+	color: #fff;
+	background-color: #FF5000;
+	font-size: 0.5rem;
+	border: 1px solid #fff;
+	line-height:0.9rem;
+	text-align: center;
+	padding: 0 0.2rem;
+}
+
+.disable{
+	opacity: 0.2;
+}
+
+.swiper-container {
+	width: 100%;
+}
+
+
+
+.ribbon-badge {
+    top: 0px;
+    left: 15px;
+    overflow: hidden;
+}
+.ribbon {
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.ribbon-primary .ribbon-inner {
+    background-color: #f40;
+}
+.ribbon-badge .ribbon-inner {
+    left: -40px;
+    width: 100%;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.ribbon-inner {
+    position: absolute;
+    top: 0px;
+    left: 6px;
+    display: inline-block;
+    min-height: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    line-height: 30px;
+    color: #fff;
+    white-space: nowrap;
+    background-color: #f40;
+}
+
+.ribbon-bookmark .ribbon-inner {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.ribbon-bookmark .ribbon-inner:before {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: block;
+    width: 0;
+    height: 0;
+    content: "";
+    border: 15px solid #f40;
+    border-right: 10px solid transparent;
+}
+
+
+
+.pricing-list {
+    text-align: center;
+    border: 1px solid #e4eaec;
+    border-radius: 3px;
+    width: 90%;
+    margin:  0 auto;
+    height: 230px;
+}
+.pricing-list .pricing-header {
+    border-radius: 3px 3px 0 0;
+}
+.pricing-list .pricing-title {
+    padding: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-radius: 3px 3px 0 0;
+    height: 50px;
+    color:#fff;
+}
+.pricing-list [class*=bg-], .pricing-list [class*=bg-] *, .pricing-list [class^=bg-], .pricing-list [class^=bg-] * {
+    color: #fff;
+}
+.bg-blue-600 {
+    background-color: #62a8ea!important;
+}
+.pricing-list .pricing-price {
+    padding: 5px;
+    margin: 0;
+    height: 130px;
+}
+.pricing-list .pricing-features {
+    padding: 0 1px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.pricing-list .pricing-features li {
+    display: block;
+    padding: 5px 10px;
+    list-style: none;
+    border-top: 1px dashed #e4eaec;
+    height: 40px;
+    width: 100%;
+    color:#aaa;
+    font-size: 12px;
+}
+
+.yellow-bg{
+	background: #f2a654;
+}
+
+.pink-bg{
+	background: #f96868;
+}
+
+.blue-bg{
+	background: #62a8ea;
+}

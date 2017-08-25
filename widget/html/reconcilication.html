@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Reconcilication</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../script/lib/lCalendar/lCalendar.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/recon.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18">
+				<label class="i18n_label " id="reconciliationAll"></label>
+			</div>
+		</header>
+		<div class="aui-content" style="padding-bottom: 4rem">
+			<div class="aui-bar aui-bar-btn aui-margin-b-5 aui-padded-t-10" style="width:90%;" id="moudleTab">
+				<div class="aui-bar-btn-item aui-active">
+					<span style="width: 100px;" class="aui-font-size-14"> <label class="i18n_label" id="monthly"></label></span>
+				</div>
+				<div class="aui-bar-btn-item" >
+					<span style="width: 100px;" class="aui-font-size-14"> <label class="i18n_label" id="period"></label> </span>
+				</div>
+			</div>
+			<!------------------------------------------ Monthly -------------------------------------->
+			<div id="monthlyContainer" class="aui-content aui-margin-t-10 aui-font-size-14" align="center">
+				<div class="dealer_con" onclick="showDealerActionSelector()">
+					<div class="left">
+						<i class="aui-iconfont aui-icon-my aui-text-info"></i>
+					</div>
+					<div class="center aui-ellipsis-1" style="vertical-align: middle;" id="dealerName"></div>
+					<div class="right">
+						<i class="aui-iconfont aui-icon-right"></i>
+					</div>
+				</div>
+				<div class="payCode_con" onclick="showPayToSelectWin()">
+					<div class="left">
+						<i class="aui-iconfont aui-icon-cert aui-text-info"></i>
+					</div>
+					<div class="center aui-ellipsis-1" style="vertical-align: middle;" id="payCodeText">
+					</div>
+					<div class="right">
+						<i class="aui-iconfont aui-icon-right"></i>
+					</div>
+				</div>
+				<div class="period_time_select" id="periodTimeSelect" style="display: none;">
+					<div class="begin_time">
+						<div class="left1">
+							<i class="aui-iconfont aui-icon-calendar aui-text-info"></i>
+						</div>
+						<div class="center1">
+							<input id="periodBegin" type="text" placeholder="Select Date" style="text-align: center;font-size: 14px;color: #555;" readonly="" name="" data-lcalendar="2000-01-1,2100-12-31" />
+						</div>
+						<div class="right1">
+							<i class="aui-iconfont aui-icon-down"></i>
+						</div>
+					</div>
+					<div class="end_time">
+						<div class="left1">
+							<i class="aui-iconfont aui-icon-calendar aui-text-info"></i>
+						</div>
+						<div class="center1">
+							<input id="periodEnd" type="text" placeholder="Select Date" style="text-align: center;font-size: 14px;color: #555;" readonly="" name="" data-lcalendar="2000-01-1,2100-12-31" />
+						</div>
+						<div class="right1">
+							<i class="aui-iconfont aui-icon-down"></i>
+						</div>
+					</div>
+				</div>
+				<div class="time_select_con" id="dateSelect">
+					<div class="left">
+						<i class="aui-iconfont aui-icon-calendar aui-text-info"></i>
+					</div>
+					<div class="center">
+						<input id="date" type="text" placeholder="Select Date" style="text-align: center;font-size: 14px;color: #555;" readonly="" name="" data-lcalendar="2000-01-1,2100-12-31" />
+					</div>
+					<div class="right">
+						<i class="aui-iconfont aui-icon-right"></i>
+					</div>
+				</div>
+				<div class="confirm_con" style="">
+					<div class="banlance" style="border-left: 1.2rem solid #5fc6f6;text-align: left;border-radius: 6px 6px 0px 0px;">
+						<div class="title">
+							Begining Balance
+						</div>
+						<div class="value aui-text-info" id="beginBalance">
+						Rs.0.00
+						</div>
+					</div>
+					<div class="banlance" style="border-left: 1.2rem solid #afe18a;text-align: left;">
+						<div class="title">
+							Ending Balance
+						</div>
+						<div class="value aui-text-info" id="endBalance">
+						Rs.0.00
+						</div>
+					</div>
+					<div style="height: 4rem;width: 100%;padding-left: 0.5rem;border-left: 1.2rem solid #d7a0fb;">
+						<div style="height: 4rem;float: left;line-height:4rem;">
+							<span> Confirm with photos </span>
+						</div>
+						<div style="text-align: center;float: right;">
+							<div id="upload_container" class="aui-margin-t-10">
+								<div class="upload_btn" onclick="openCamera()"></div>
+							</div>
+						</div>
+					</div>
+					<div id="updImg" style="border-left: 1.2rem solid #d7a0fb;"></div>
+					<div id="confirmUpload" style="text-align: center;border-left: 1.2rem solid #d7a0fb;margin-right: 1.5rem;padding-left: 1rem;">
+						<div class="aui-btn" style="width: 80%;background-color: #5fc6f6;text-align: center;" id="submit" onclick="confirmPhoto()">
+							Confirm
+						</div>
+						<div class="aui-btn" style="width: 18%;background-color: #e0e0e0;text-align: center;" id="submit" onclick="question()">
+							<span class="aui-iconfont aui-icon-question"></span>
+						</div>
+					</div>
+					<div id="foot"></div>
+				</div>
+				<div class="historyAccount aui-hide" style="margin-top: 1rem;margin-bottom: 4rem;">
+					<div class="container" id="monthlyHistoryList">
+						<div class="item">
+							<div class="dot">
+								<div class="circle"></div>
+							</div>
+							<div class="list">
+								<div class="doc_num_con">
+									Doc Number: <span class="doc_num"></span>
+								</div>
+								<div class="DT_con">
+									DT:<span class="dt"></span>
+								</div>
+								<div class="credit_con">
+									Balance:<span class="credit"></span>
+								</div>
+								<div class="time">
+									<span class="time"></span>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="dot">
+								<div class="circle"></div>
+							</div>
+							<div class="list">
+								<div class="doc_num_con">
+									Doc Number: <span class="doc_num"></span>
+								</div>
+								<div class="DT_con">
+									DT:<span class="dt"></span>
+								</div>
+								<div class="credit_con">
+									Balance:<span class="credit"> </span>
+								</div>
+								<div class="time">
+									<span class="time"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="customerId"/>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="payCodeValue"/>
+		<input type="hidden" id="payCodeCode"/>
+		<div id="updImgTemplate" class="aui-hide">
+			<div class="upload_imgs" >
+				<img src="" onclick="browserImg();"/>
+				<div class="delete_flag"></div>
+			</div>
+		</div>
+		<footer class="aui-bar aui-bar-tab" style="z-index: 1000;" id="footer">
+			<div class="aui-btn" style="width: 90%;background-color: #1b7bea;" id="submit" onclick="search()">
+				Search
+			</div>
+		</footer>
+		<div id="hisReconTemplate" class="aui-hide">
+			<div class="item">
+				<div class="dot">
+					<div class="circle"></div>
+				</div>
+				<div class="list">
+					<div class="doc_num_con">
+						Doc Number: <span class="doc_num"></span>
+					</div>
+					<div class="DT_con">
+						DT:<span class="dt"></span>
+					</div>
+					<div class="credit_con">
+						Balance:<span class="credit"></span>
+					</div>
+					<div class="time">
+						<span class="time"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/lib/lCalendar/lCalendar.js"></script>
+	<script type="text/javascript" src="../script/lib/math.js"></script>
+	<script type="text/javascript" src="../script/recon.js"></script>
+</html>

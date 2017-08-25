@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form>
+							<input class="gray_light" type="search" readonly="true" value="" placeholder="Title/Code" id="search-input" onclick="searchDealer()">
+						</form>
+						<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;margin-left: -0.9rem;display: none;"></i>
+					</div>
+				</div>
+			</div>
+			<a class="aui-pull-right aui-btn" onclick="finish()"> <i class="aui-iconfont aui-icon-correct" style="font-weight: bolder;"></i> </a>
+		</header>
+		
+		<ul class="aui-list aui-list-in" id="list">
+			<li class="aui-list-header">Selected Users</li>
+		</ul>
+		
+		<ul class="aui-list aui-list-in aui-margin-t-10" id="list1">
+			<li class="aui-list-header">All Users</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript" src="../script/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../script/utils.js"></script>
+	<script type="text/javascript" src="../script/business.js"></script>
+	
+	<script type="text/javascript">
+		var headerHeight;
+		var datas = [];
+		var winName = '';
+		var frameName = '';
+		var ids1 = "";
+		var isInit = true;
+		apiready = function() {
+			var params = api.pageParam;
+			winName = params.winName || '';
+			frameName = params.frameName || '';
+			datas = params.datas || [];
+			ids1 = params.ids;
+			
+			var $header = $api.dom('header');
+			headerHeight = $api.offset($header).h;
+			$api.css($api.byId('list'), 'padding-top:'+headerHeight+'px');
+			
+			
+			loadData(null, ids1);
+			
+			isInit = false;
+		};
+		
+		
+		function searchDealer() {
+			COMMON_UISearchBar(function(ret) {
+				var searchTitle=$api.trim(ret.text);
+				$api.val($api.byId('search-input'), searchTitle);
+				$api.css($api.byId('resetSearchBtn'), 'display:inline-block');
+				
+				var lis = $api.domAll($api.byId('list'), 'li');
+				var ids = '';
+				for(var i=1; i<lis.length; i++){
+					var id = $api.attr(lis[i], 'guid');
+					ids += id + ',';
+				}
+				if(ids != ''){
+					ids = ids.substring(0, ids.length - 1);
+				}
+				loadData(searchTitle, ids);
+			});
+		}
+
+		function resetSearch() {
+			$api.css($api.byId('resetSearchBtn'), 'display:none');
+			$api.val($api.byId('search-input'), '');
+			
+			var lis = $api.domAll($api.byId('list'), 'li');
+			var ids = '';
+			for(var i=1; i<lis.length; i++){
+				var id = $api.attr(lis[i], 'guid');
+				ids += id + ',';
+			}
+			if(ids != ''){
+				ids = ids.substring(0, ids.length - 1);
+			}
+			
+			loadData(null, ids);
+		}
+		
+		function loadData(searchKey, selectedIds){
+			var	upsearchKey='';
+			if(searchKey){
+				upsearchKey=searchKey.toUpperCase();
+			}
+			var listContent = '';
+			for (var i = 0; i < datas.length; i++) {
+				var id = datas[i].id;
+				var name = datas[i].name;
+				var customerCode = datas[i].customerCode;
+				var upTitle=name.toUpperCase();
+				if (searchKey) {
+					if (upTitle.indexOf(upsearchKey) == -1 && customerCode.indexOf(upsearchKey) == -1) {
+						continue;
+					}
+				}
+				
+				if(selectedIds.indexOf(id)>=0){
+					if(isInit){
+						var selectcon = '<li class="aui-list-item" id="li'+id+'" guid="'+id+'">'
+			            			+ '<div class="aui-list-item-inner">'
+			                		+ '<div class="aui-list-item-title">'+name+'</div>'
+			                		+ ' <div class="aui-list-item-right">'
+			                    	+ '<input type="checkbox" checked guid="'+id+'" name="'+name+'" customerCode="'+customerCode+'" class="aui-checkbox" onclick="removeSelected(\''+id+'\')"></div></div></li>';
+			        	$api.append($api.byId('list'), selectcon);       
+					}
+					
+					listContent += '<li class="aui-list-item">'
+	            			+ '<div class="aui-list-item-inner">'
+	                		+ '<div class="aui-list-item-title">'+name+'</div>'
+	                		+ ' <div class="aui-list-item-right">'
+	                    	+ '<input type="checkbox" checked id="chk'+id+'" guid="'+id+'" name="'+datas[i].name+'" customerCode="'+datas[i].customerCode+'" class="aui-checkbox" onclick="selectUser(this)"></div></div></li>'
+				}else{
+					listContent += '<li class="aui-list-item">'
+	            			+ '<div class="aui-list-item-inner">'
+	                		+ '<div class="aui-list-item-title">'+name+'</div>'
+	                		+ ' <div class="aui-list-item-right">'
+	                    	+ '<input type="checkbox" id="chk'+id+'" guid="'+id+'" name="'+datas[i].name+'" customerCode="'+datas[i].customerCode+'" class="aui-checkbox" onclick="selectUser(this)"></div></div></li>'
+				}
+				
+				
+			}
+			
+			$('#list1 li:gt(0)').remove();
+			
+			$api.append($api.byId('list1'), listContent);
+		}
+		
+		function removeSelected(id){
+			$api.remove($api.byId('li'+id)); 
+			$('#chk'+id).prop('checked', false);
+		}
+		
+		function selectUser(me){
+			var isChecked = $(me).is(':checked');
+			if (isChecked) {
+				var id = $api.attr(me, 'guid');
+				if(!$api.byId('li'+id)){
+					var name = $api.attr(me, 'name');
+					var customerCode = $api.attr(me, 'customerCode');
+					
+					var listContent = '<li class="aui-list-item" id="li'+id+'" guid="'+id+'">'
+			            			+ '<div class="aui-list-item-inner">'
+			                		+ '<div class="aui-list-item-title">'+name+'</div>'
+			                		+ ' <div class="aui-list-item-right">'
+			                    	+ '<input type="checkbox" checked guid="'+id+'" name="'+name+'" customerCode="'+customerCode+'" class="aui-checkbox" onclick="removeSelected(\''+id+'\')"></div></div></li>';
+			        $api.append($api.byId('list'), listContent);           
+				}
+			}else if (!isChecked) {
+				var id = $api.attr(me, 'guid');
+				$api.remove($api.byId('li'+id)); 
+			}
+		}
+		
+		function finish(){
+			var lis = $api.domAll($api.byId('list'), 'li');
+			var ids = '';
+			for(var i=1; i<lis.length; i++){
+				var id = $api.attr(lis[i], 'guid');
+				ids += id + ',';
+			}
+			if(ids != ''){
+				ids = ids.substring(0, ids.length - 1);
+				var param = {
+                	'count': lis.length - 1,
+                	'ids': ids,
+                };
+                
+                var jsFun = 'UPDATE_DEALER('+$api.jsonToStr(param)+')';
+                
+                api.execScript({
+					name: winName,
+					frameName: frameName,
+		            script: jsFun
+	            });
+	            
+                setTimeout(function(){
+                	api.closeWin({});
+                }, 200);
+				
+			}else{
+				api.toast({
+	                msg:'Please select user!'
+                });
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Out of Stock</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/common/shopping.css" />
+		<style>
+			.instock {
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 111;
+				border-top: 40px solid #EB4F38;
+				border-right: 60px solid transparent;
+			}
+			.instock_text {
+				width: 100px;
+				height: 30px;
+				position: absolute;
+				top: -10px;
+				color: #fff;
+				left: 4px;
+				z-index: 1111;
+				transform: rotate(-33deg);
+				transform: rotate(-33deg);
+				-ms-transform: rotate(-33deg);	/* IE 9 */
+				-moz-transform: rotate(-33deg);	/* Firefox */
+				-webkit-transform: rotate(-33deg); /* Safari 和 Chrome */
+				-o-transform: rotate(-33deg);
+				font-size: 0.3rem;
+				z-index: 11111;
+			}
+			
+			
+			.expired {
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 111;
+				border-top: 40px solid #FFC107;
+				border-right: 60px solid transparent;
+			}
+			.expired_text{
+				width: 100px;
+				height: 30px;
+				position: absolute;
+				top: -10px;
+				color: #fff;
+				left: 4px;
+				z-index: 1111;
+				transform: rotate(-33deg);
+				transform: rotate(-33deg);
+				-ms-transform: rotate(-33deg);	/* IE 9 */
+				-moz-transform: rotate(-33deg);	/* Firefox */
+				-webkit-transform: rotate(-33deg); /* Safari 和 Chrome */
+				-o-transform: rotate(-33deg);
+				font-size: 0.3rem;
+				z-index: 11111;
+			}
+			
+			.complete {
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 111;
+				border-top: 40px solid #1B7BEA;
+				border-right: 60px solid transparent;
+			}
+			.complete_text{
+				width: 100px;
+				height: 30px;
+				position: absolute;
+				top: -10px;
+				color: #fff;
+				left: 4px;
+				z-index: 1111;
+				transform: rotate(-33deg);
+				transform: rotate(-33deg);
+				-ms-transform: rotate(-33deg);	/* IE 9 */
+				-moz-transform: rotate(-33deg);	/* Firefox */
+				-webkit-transform: rotate(-33deg); /* Safari 和 Chrome */
+				-o-transform: rotate(-33deg);
+				font-size: 0.3rem;
+				z-index: 11111;
+			}
+		</style>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn"> </a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="oos"></label>
+			</div>
+		</header>
+		<div id="main">
+			<div class="searchbar">
+				<div class="aui-card-list-content-padded">
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-6">
+							<div class="search_item" onclick="showDealerActionSelector()">
+								<div class="show_text aui-ellipsis-1" id="dealerName">
+									Allew hally
+								</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="search_item" onclick="showProductDivisionActionSelector()">
+								<div class="show_text aui-ellipsis-1" id="productDivisionText">Product Division</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="search_item" onclick="showStatusActionSelector()">
+								<div class="show_text aui-ellipsis-1" id="status">Status</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="search_item" style="display: inline-block;width: 100%;">
+								<div class="show_text aui-ellipsis-1" onclick="search()">
+									
+									<div class="date_text aui-ellipsis-1" id="productModel" type="search"  style="display: inline;">
+										Model/Code
+									</div>
+								</div>
+								<div class="right_arraw">
+									<i id="searchBtn" class="aui-iconfont aui-icon-search gray_light" style="font-weight: bold;"></i>
+									<i id="resetResolvedSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetResolvedSearch()" style="vertical-align: middle;display: none;"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 购物清单 -->
+			<div class="aui-content aui-margin-t-10" style="margin-bottom: 5px;">
+				<ul class="aui-list aui-media-list" id="oosList"></ul>
+				<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+
+			</div>
+			<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+		</div>
+		<ul id="productTemplate" style="display: none;">
+			<li class="aui-list-item product">
+				<div class="instock aui-hide"></div>
+				<div class="expired aui-hide"></div>
+				<div class="complete aui-hide"></div>
+				<div class="instock_text  aui-hide">
+					In Stock
+				</div>
+				<div class="expired_text  aui-hide">
+					Expired
+				</div>
+				<div class="complete_text  aui-hide">
+					Complete
+				</div>
+				<div class="aui-media-list-item-inner" >
+					<div class="aui-list-item-media aui-margin-l-5 aui-margin-t-15" style="width: 25%">
+						<div>
+							<img class="produce_img" src="../image/common/pic.png"
+							onerror="this.src='../image/common/pic.png'">
+						</div>
+					</div>
+					<div class="aui-list-item-inner" style="width: 75%;">
+						<div class="aui-list-item-title" style="line-height: 0.8rem;">
+							<span class="product_name aui-ellipsis-2" style="word-break : break-all"></span>
+						</div>
+						<div class="aui-info" style="margin-top: -0.2rem;font-size: 0.6rem;">
+							<div class="aui-info-item">
+								<span class="model"></span>
+							</div>
+							<div class="aui-info-item">
+								Stock: <span class="stock" style="color:rgb(2,173,242);"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text">
+								<div class="aui-info-item" style="color:rgb(2,173,242);font-size: 0.6rem;">
+									<span class="price_tag"></span>
+									<span class="invoice_price"></span>
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								<div class="aui-info-item" style="font-size: 0.6rem;">
+									<span class="discount_price gray_light" ></span>
+								</div>
+							</div>
+							<div class="aui-list-item-right aui-font-size-12" >
+								<span class="sale_price "  style="color:rgb(239,73,57);"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text">
+								<div class="qty_operate_container">
+									<div  class="sub_btn" onclick="subProductNum(this)">
+										<img src="../image/common/sub.jpg" width="20" height="20"/>
+									</div>
+									<div class="input_area qty" onclick="editProductNum(this)">
+										1
+									</div>
+									<div  class="plus_btn" onclick="addProductNum(this)">
+										<img src="../image/common/plus.png" width="20" height="20"/>
+									</div>
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								x<span class="aui-text-info purchasedNum"></span>
+							</div>
+							<div class="aui-list-item-right">
+								<div class="aui-btn aui-btn-info add_to_cart" onclick="addToCart(this)" style="line-height: 0.5rem;font-size: 10px;width: 3.5rem;vertical-align: middle;">
+									<span style="margin-top:2px;">Add to Cart</span>
+								</div>
+							</div>
+						</div>
+						<div class="aui-list-item-text" style="">
+							<div style="width: 100%;text-align: center;font-weight: bold;">
+								<i class="aui-iconfont aui-icon-down gray_light" onclick="showDetailInfo(this)"></i>
+							</div>
+						</div>
+						<div class="aui-hide detailInfo">
+							<div class="aui-info" style="margin-top: -15px;">
+								<div class="aui-list-item-text">
+									<div class="aui-info-item" style="font-size: 0.5rem;">
+										<div style="width: 2.3rem;">
+											<label class="i18n_label" id="soldTo"></label><label>:</label>
+										</div>
+										<div class="aui-ellipsis-1">
+											<span class="aui-text-info soldToText"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="aui-info" style="margin-top: -24px;">
+								<div class="aui-list-item-text">
+									<div class="aui-info-item" style="font-size: 0.5rem;">
+										<div style="width: 2.3rem;">
+											Expried :
+										</div>
+										<span class="aui-text-info overtimeText"></span>
+									</div>
+								</div>
+							</div>
+							<div class="aui-info" style="margin-top: -24px;">
+								<div class="aui-list-item-text">
+									<div class="aui-info-item" style="font-size: 0.5rem;">
+										<div style="width: 2.3rem">
+											<label class="i18n_label" id="remark"></label><label>:</label>
+										</div>
+										<span class="aui-text-info remarkText" ></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="customerId"/>
+		<input type="hidden" id="productDivisionValue"/>
+		<input type="hidden" id="statusId"/>
+		<input type="hidden" id="saleOffice"/>
+		
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/oos_list.js"></script>
+</html>

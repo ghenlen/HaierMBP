@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			.add_to_Cart_floatbox {
+				position: fixed;
+				bottom: 1rem;
+				right: 0.2rem;
+				/* background: #f4f4f4f; */
+				width: 4rem;
+				height: 4rem;
+				z-index: 11111;
+				/* border: 1px solid #bbb;
+				 border-radius: 1rem; */
+				opacity: 0.8;
+			}
+			
+			.u-flyer{display: block;width: 50px;height: 50px;border-radius: 50px;position: fixed;z-index: 9999;}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content" id="bx"  >
+			<ul class="aui-list aui-media-list" id="productList">
+			
+			</ul>
+			<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			<div id="noDataInfo" class="aui-hide" align="center" style="">
+				<img src="../image/common/nodata.png" width="100"/>
+				<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+			</div>
+		</div>
+		<div class="add_to_Cart_floatbox aui-hide" align="center" id="turnToCart" onclick="turnToCart()" style="z-index: 111;">
+			<div style="position: absolute;right: 1.3rem;top: 1.1rem;z-index: 1;color: #fff;font-size: 0.5rem;" id="cartNum">0</div>
+			<img src="../image/common/cart.png" id="cartImg"  style="position: absolute;right: 0;top:0;"  width="60" height="60" />
+		</div>
+		<div class="aui-hide" id="template">
+			<li class="aui-list-item" onclick="lookDetail(this)">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media">
+						<img src="../image/common/pic.png" class="img_bx" style="margin-top: 0.5rem;"
+						onerror="this.src='../image/common/pic.png'">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title" style="line-height: 0.8rem;">
+								<span class="title aui-ellipsis-2" style="word-break:break-all"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="padding:4px 0;">
+							<div class="aui-info-item">
+								<span class="model gray_light" style="font-size: 0.6rem;"></span>
+							</div>
+							<div class="aui-list-item-right aui-font-size-12 aui-hide stock-info">
+								<span class="stock"></span>
+							</div>
+						</div>
+						<div class="aui-info aui-hide price-info" style="padding:0;">
+							<div class="aui-list-item-text">
+								<div class="aui-info-item" style="color:rgb(2,173,242);font-size: 0.6rem;">
+									<span class="price_tag sky_blue" ></span>
+									<span class="invoice_price sky_blue"></span>
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								<div class="aui-info-item" style="font-size: 0.6rem;">
+									<span class="discount_price gray_light" style="color:rgb(239,73,57);"></span>
+								</div>
+							</div>
+							<div class="aui-list-item-right">
+								<span class="sale_price moss_green aui-font-size-12"></span>
+							</div>
+						</div>
+						<div class="aui-info btns" style="padding:0;margin-top: 7px;">
+							<div class="aui-list-item-left">
+								<div class="aui-btn aui-btn-default add_to_cart_btn" onclick1="addtocart(this)" style="line-height:0.5rem;font-size: 10px;width: 4.5rem;vertical-align: middle;">
+									<span class="i18n_label" id="addToCart" style="margin-top:3px;"></span>
+								</div>
+							</div>
+							<div class="aui-list-item-center oos_remind aui-hide" onclick="addOosRemind(this)">
+								<img src="../image/common/ring.png"  style="vertical-align: middle;width: 0.9rem;height:0.9rem;margin-top: 0px;"/>
+							</div>
+							<div class="aui-list-item-right">
+								<div class="aui-btn aui-btn-default add_to_wishlist" onclick1="addtoWishlist(this)" style="line-height:0.5rem;font-size: 10px;width: 4.5rem;vertical-align: middle;">
+									<span class="i18n_label" id="addToWishList" style="margin-top:3px;"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</div>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" style="bottom:4.5rem;padding-right: 0.2rem" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+		<script type="text/javascript" src="../script/generalJS.js"></script>
+		<script src="../script/lib/jquery.fly.min.js"></script>
+		<script type="text/javascript" src="../script/product_list.js"></script>
+	</body>
+</html>

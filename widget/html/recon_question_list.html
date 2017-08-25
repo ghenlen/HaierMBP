@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>list</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-16">
+				Recon Question List
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script>
+		var userInfo = BUSINESS_GetLoginUserInfo();
+		var alertMessageDatas=[];
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var headerHeight = $api.offset($header).h;
+			var url = ajaxReqHost + 'appListAlertMessage.ajax'
+			var param = {
+				messageTitle : '',
+				customerCode : '',
+				'user.id' : userInfo.id,
+			}
+			COMMON_Ajax_Post(url, {
+				values : param
+			}, function(ret) {
+				for(var i=0;i<ret.length;i++){
+					if(ret[i].isRead){
+						alertMessageDatas.push({uid:ret[i].id,imgPath : 'widget://image/common/announce.png',title:ret[i].messageTitle,subTitle:ret[i].details,remark:COMMON_FormatTimeToTime(ret[i].createDate)});
+					}else{
+						alertMessageDatas.push({uid:ret[i].id,imgPath : 'widget://image/common/announce_new.png',title:ret[i].messageTitle,subTitle:ret[i].details,remark:COMMON_FormatTimeToTime(ret[i].createDate)});
+					}	
+				}	
+				showData(alertMessageDatas,headerHeight);
+			});
+		};
+		
+		function showData(alertMessageDatas,headerHeight){
+			var UIListView = api.require('UIListView');
+			UIListView.open({
+				rect : {
+					x : 0,
+					y : headerHeight,
+					w : api.winWidth,
+					h : api.winHeight - headerHeight
+				},
+				data : alertMessageDatas,
+				styles : {
+					borderColor : '#efefef',
+					item : {
+						bgColor : '#fff',
+						activeBgColor : '#dfdfdf',
+						height : 55.0,
+						imgWidth : 35,
+						imgHeight : 35,
+						imgCorner : 4,
+						placeholderImg : '',
+						titleSize : 12.0,
+						titleColor : '#333',
+						subTitleSize : 12.0,
+						subTitleColor : '#777',
+						remarkColor : '#ccc',
+						remarkSize : 10,
+					}
+				},
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.eventType == 'clickContent') {
+						var i = parseInt(ret.index);
+						if (!alertMessageDatas[i].isRead) {
+							alertMessageDatas[i].imgPath = 'widget://image/common/announce.png';
+							dataShow = alertMessageDatas[i];
+							COMMON_Ajax_Post(updateUrl, {
+								values : {
+									id : dataShow.uid
+								}
+							}, function(ret) {
+								if(ret){
+									UIListView.updateItem({
+									index : i,
+									data : dataShow,
+									}, function(ret, err) {
+									});
+									api.sendEvent({
+										name : 'updateAlertMessage'
+									});
+								}
+							});
+							
+						}
+						COMMON_OpenWin({
+							name : 'alert_msg_detail',
+							url : 'alert_msg_detail.html',
+							pageParam : alertMessageDatas[i]
+						});
+					}
+				}
+			});
+		}
+	</script>
+</html>

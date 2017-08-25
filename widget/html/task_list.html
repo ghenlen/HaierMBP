@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-16">
+				Task List
+			</div>
+		</header>
+		<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 5rem;">
+			<img src="../image/common/nodata.png" width="100"/>
+			<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script>
+		var taskDatas = [];
+		var UIListView;
+		var db = null;
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var headerHeight = $api.offset($header).h;
+			db = api.require('db');
+			var sql = "select * from task_list";
+			db.selectSql({
+				name : 'data',
+				sql : sql
+			}, function(ret, err) {
+				if (ret && ret.status) {
+					var data = ret.data;
+					if (data.length > 0) {
+						for (var i = 0; i < data.length; i++) {
+							taskDatas.push({
+								id: data[i].id,
+								imgPath : 'widget://image/home/information.png',
+								title : data[i].type,
+								subTitle : data[i].title,
+								remark : data[i].time,
+								url : data[i].url,
+								images : data[i].images,
+								datas:data[i].datas,
+								isSubmit : 0,
+								icon : 'widget://image/common/upload.png'
+							});
+						}
+						showData(taskDatas, headerHeight);
+					}else{
+						$api.removeCls($api.byId('noDataInfo'), 'aui-hide');
+					}
+				}
+			});
+		};
+		function showData(taskDatas, headerHeight) {
+			UIListView = api.require('UIListView');
+			UIListView.open({
+				rect : {
+					x : 0,
+					y : headerHeight,
+					w : api.winWidth,
+					h : api.winHeight - headerHeight
+				},
+				data : taskDatas,
+				styles : {
+					borderColor : '#efefef',
+					item : {
+						bgColor : '#fff',
+						activeBgColor : '#dfdfdf',
+						height : 60.0,
+						imgWidth : 40,
+						imgHeight : 40,
+						placeholderImg : '',
+						titleSize : 14.0,
+						titleColor : '#333',
+						subTitleSize : 12.0,
+						subTitleColor : '#777',
+						remarkColor : '#ccc',
+						remarkSize : 10,
+						remarkIconWidth : 30
+					}
+				},
+				rightBtns:[{
+				    bgColor: '#e51c23', //（可选项）字符串类型；按钮背景色，支持 rgb、rgba、#；默认：'#388e8e'
+				    activeBgColor: '',  //（可选项）字符串类型；按钮按下时的背景色，支持 rgb、rgba、#
+				    width: 100,          //（可选项）数字类型；按钮的宽度；默认：w / 4       
+				    title: 'Delete',          //（可选项）字符串类型；按钮标题，水平、垂直居中
+				    titleSize: 14,      //（可选项）数字类型；按钮标题文字大小；默认：12
+				    titleColor: '#fff', //（可选项）字符串类型；按钮标题文字颜色，支持 rgb、rgba、#；默认：'#ffffff'
+				    icon: 'widget://image/common/remove.png',           //（可选项）字符串类型；按钮标题前的图标路径（本地路径，支持fs://、widget://），水平、垂直居中，图标为正方形
+				    iconWidth: 20       //（可选项）数字类型；按钮标题前的图标宽度，图标为正方形；默认：20
+				}],
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.eventType == 'clickContent') {
+						var i = parseInt(ret.index);
+						COMMON_OpenWin({
+							name : 'task_detail',
+							url : 'task_detail.html',
+							pageParam : taskDatas[i]
+						});
+					} else if (ret.eventType == 'clickRemark') {
+						var i = parseInt(ret.index);
+						if (taskDatas[i].isSubmit == '0') {
+							var obj = taskDatas[i];
+							submitInformation(obj, i);
+						}
+					}else if (ret.eventType == 'clickRightBtn') {
+						COMMON_ShowConfirm("Are you sure to delete this item?", function(){
+							var i = parseInt(ret.index);
+							var id = taskDatas[i].id;
+							var sql = "delete from task_list where id="+id;
+							db.executeSql({
+								name : 'data',
+								sql : sql
+							}, function(ret, err) {
+								UIListView.deleteItem({
+								    index: i
+								}, function(ret, err) {
+								});
+							});
+						});
+					}
+				}
+			});
+		}
+
+		function submitInformation(data, listIndex) {
+			var images = data.images;
+			var uploadShopImgsUrl = ajaxReqHost + 'appupload.ajax';
+			COMMON_Ajax_Post(uploadShopImgsUrl, {
+				values : {
+					id : '-1',
+					label : 'information',
+					type : 'information'
+				},
+				files : {
+					Filedata : images.split(',')
+				}
+			}, function(ret) {
+				if (ret && ret.length > 0) {
+					
+					var param = $api.strToJson(data.datas);
+					for (var i = 0; i < ret.length; i++) {
+						var key = 'files[' + i + '].id';
+						param[key] = ret[i].domain.id;
+					}
+					var saveShopInfoUrl = ajaxReqHost + data.url;
+					COMMON_Ajax_Post(saveShopInfoUrl, {
+						values : param
+					}, function(saveRet) {
+						if (saveRet && saveRet.result == true) {
+							var newData = data;
+							newData.isSubmit = 1;
+							newData.icon = 'widget://image/common/finished.png';
+							UIListView.updateItem({
+								index : listIndex,
+								data : newData,
+							}, function(ret, err) {
+							});
+							
+							var sql = "delete from task_list where id="+data.id;
+							db.executeSql({
+								name : 'data',
+								sql : sql
+							}, function(ret, err) {
+								
+							});
+						} else {
+							COMMON_ShowFailure();
+						}
+					});
+				} else {
+					COMMON_ShowFailure();
+				}
+			});
+		}
+	</script>
+</html>

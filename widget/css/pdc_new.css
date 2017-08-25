@@ -1,0 +1,43 @@
+.aui-list:before, .aui-list:after {
+				background-color: #fff;
+			}
+			#upload_container {
+				min-height: 5rem;
+				padding: 0.5rem;
+				padding-left: 0.75rem;
+			}
+			#upload_container .upload_btn {
+				display: inline-block;
+				border: 1px solid #dfdfdf;
+				width: 4rem;
+				height: 4rem;
+				background: url('../image/common/plus_128128.png') no-repeat;
+				background-size: 3rem 3rem;
+				background-position: 0.45rem 0.45rem;
+				margin: 0 0.5rem;
+			}
+			#upload_container  .upload_imgs {
+				width: 4rem;
+				height: 4rem;
+				margin: 0 0.5rem;
+				position: relative;
+				display: inline-block;
+				border: 1px solid #dfdfdf;
+			}
+			#upload_container  .upload_imgs img {
+				position: absolute;
+				left: 5%;
+				top: 5%;
+				width: 90%;
+				height: 90%;
+			}
+			#upload_container  .upload_imgs .delete_flag {
+				position: absolute;
+				right: 5px;
+				top: 5px;
+				width: 1.2rem;
+				height: 1.2rem;
+				border-radius: 12px;
+				background: url('../image/common/close_orange.png') no-repeat;
+				background-size: 1.2rem 1.2rem;
+			}

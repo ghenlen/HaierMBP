@@ -1,0 +1,36 @@
+.row{
+	width: 100%;
+	min-height: 80px;
+	background-color: #1B7BEA;
+	border-radius: 6px;
+	position: relative;
+	margin-bottom: 1rem;
+}
+
+.row .attendance_container{
+	height: 80px;
+	width: 100%;
+	background: #fff;
+	position: absolute;
+	left: 6px;
+	top:0px;
+	z-index: 100;
+	padding: 0.5rem;
+}
+
+.row .attendance_container .date{
+	float: left;
+	width: 25%;
+	height: 100%;
+	text-align: center;
+	display:table;
+}
+
+.row .attendance_container .data{
+	float: left;
+	width: 70%;
+	height: 90%;
+	/* display:table; */
+	overflow-y: auto;
+	overflow-y: hidden;
+}

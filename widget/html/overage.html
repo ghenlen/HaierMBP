@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Overage</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			
+			.aui-list:before {
+			    height: 1px;
+			    background-color: #dddddd;
+			    display: block;
+			    content: '';
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    right: auto;
+			    bottom: auto;
+			    width: 100%;
+			    z-index: 2;
+			    -webkit-transform-origin: 50% 100%;
+			    transform-origin: 50% 100%;
+			    pointer-events: none;
+			}
+			
+			#overageList li:nth-child(2n) {
+				background-color: #DDF5F5;
+			}
+			#overageList li:nth-child(2n + 1) {
+				background-color: #FFF;
+			}
+			
+			.box {
+				width: 100%;
+				text-align: center;
+				margin: 0 auto;
+				height: 3.5rem;
+				position: relative;
+			}
+			.box-selected {
+				background: rgb(255, 238, 235);
+				color: #ff2600;
+			}
+			.content {
+				width: 100%;
+				margin: 0 auto;
+				position: relative;
+				padding: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+				 -webkit-transform: translateY(-50%);
+				 -moz-transform: translateY(-50%);
+				 -ms-transform: translateY(-50%);
+				 -o-transform: translateY(-50%);
+				 
+			}
+			.aui-grid [class*=aui-col-] {
+				padding: 0.2rem 0;
+			}
+			.category:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				width: 200%;
+				height: 1px;
+				border-top: 1px solid #CCCCCC;
+				-webkit-transform-origin: 0 0;
+				-moz-transform-origin: 0 0;
+				-ms-transform-origin: 0 0;
+				-o-transform-origin: 0 0;
+				transform-origin: 0 0;
+				-webkit-transform: scale(0.5, 0.5);
+				-ms-transform: scale(0.5, 0.5);
+				-o-transform: scale(0.5, 0.5);
+				transform: scale(0.5, 0.5);
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18">
+				<label class="i18n_label " id="overage"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<div class="searchbar">
+				<div class="aui-card-list-content-padded">
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-6">
+							<div class="search_item" id="saleOffice_row" onclick="showActionSelector(3)">
+								<div class="show_text aui-ellipsis-1" id="saleOfficeText">
+									Sale Office
+								</div>
+								<div class="right_arraw" id="saleOffice_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="search_item" onclick="showActionSelector(2)">
+								<div class="show_text aui-ellipsis-1" id="locationText" >
+									Location
+								</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-6">
+							<div class="search_item" onclick="showActionSelector(1)">
+								<div class="show_text aui-ellipsis-1" id="productDivisionText">
+									Product Division
+								</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6" style="display: inline-block;">
+						
+						<div class="search_item" >
+								<div class="show_text aui-ellipsis-1" id="productDivisionText" onclick="search()">
+									<i class="aui-iconfont aui-icon-search gray_light aui-font-size-12" style="vertical-align: middle;margin-left: 2px;"></i>
+									<span id="searchInputEle" >Product Model</span>
+								</div>
+								<div class="right_arraw">
+									<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;margin-left: -0.9rem;display: none"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="aui-content">
+				<section class="aui-grid aui-margin-t-10">
+					<div class="aui-row" id="pgContainer">
+						<div class="aui-col-xs-6">
+							<div class="box"  style="border-right: 1px dashed #dddddd">
+								<div class="content aui-ellipsis-2" >
+									<div style="font-size: 12px;color: #888">Over 321 this mth Qty</div>
+									<div style="font-weight: bold;font-size: 18px;line-height: 1.5rem;" id="sumQty">0</div>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6">
+							<div class="box">
+								<div class="content aui-ellipsis-2">
+									<div style="font-size: 12px;color: #888">Over 321 this mth Amt</div>
+									<div style="font-weight: bold;font-size: 18px;line-height: 1.5rem;" id="sumAmt">0.00</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<ul class="aui-list aui-media-list" id="overageList">
+				</ul>
+				<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+				<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="productDivisionValue"/>
+		<input type="hidden" id="locationValue"/>
+		<input type="hidden" id="plant"/>
+		<input type="hidden" id="saleOfficeValue"/>
+		
+		<ul class="aui-list aui-media-list aui-hide" id="overageTempalte">
+			<li class="aui-list-item" >
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media" style="width: 3rem;">
+						<div class="shortName aui-font-size-12" style="width: 2rem;height: 2rem;text-align: center;font-weight: bold;margin-top:3rem;">
+							<div class="plant">
+								
+							</div>
+							<div class="storageLocation">
+								
+							</div>
+						</div>
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-info">
+							<div class="aui-info-item" style="font-size: 10px;width: 100%;text-align: left;">
+								<span style="width: 60%;">SLoc description:</span><span class="announce_distributor gray_light SLocDescription"></span>
+							</div>
+							
+						</div>
+						<div class="aui-info" style="margin-top: -0.5rem;">
+					
+							<div class="aui-info-item" style="font-size: 10px;width: 100%;text-align: left;">
+								<span style="width: 60%;">Product Division:</span><span class="announce_distributor gray_light productDivision"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.5rem;">
+							<div class="aui-info-item" style="font-size: 10px;width: 100%;text-align: left;">
+								<span style="width: 60%;">Haier Model:</span><span class="announce_date gray_light aui-margin-r-15 haierModel"></span>
+							</div>
+							
+						</div>
+						<div class="aui-info" style="margin-top: -0.5rem;">
+							
+							<div class="aui-info-item" style="font-size: 10px;width: 100%;text-align: left;">
+								<span style="width: 60%;">Matirial No:</span><span class="announce_date gray_light aui-margin-r-15 matirialNo"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.5rem;">
+							<div class="aui-info-item" style="font-size: 10px;width: 100%;text-align: left;">
+								<span style="width: 60%;">Over 321 this mth Qty: </span><span class="announce_distributor gray_light qty"></span>
+							</div>
+							
+						</div>
+						<div class="aui-info" style="margin-top: -0.5rem;">
+							
+							<div class="aui-info-item" style="font-size: 10px;width: 100%;text-align: left;">
+								<span style="width: 60%;">Over 321 this mth Amt: </span><span class="announce_distributor gray_light amt"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/lib/countUp.js"></script>
+	<script type="text/javascript" src="../script/overage.js"></script>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Issue List</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/issue_list.css"/>
+		<style>
+			.aui-list:before, .aui-list:after {
+				background-color: #fff;
+			}
+			#announceList li:nth-child(2n+1) {
+				background-color: #DDF5F5;
+			}
+			#announceList li:nth-child(2n) {
+				background-color: #FFF;
+			}
+			#newsList li:nth-child(2n + 1) {
+				background-color: #DDF5F5;
+			}
+			#newsList li:nth-child(2n) {
+				background-color: #FFF;
+			}
+			#policyList li:nth-child(2n + 1) {
+				background-color: #DDF5F5;
+			}
+			#policyList li:nth-child(2n) {
+				background-color: #FFF;
+			}
+			
+			.attachment{
+				background: url('../image/common/attachmentList.png');
+				background-size: 10px 10px;
+    			background-repeat: no-repeat;
+   				background-position: 100%;
+   				background-position: 100% 4px;
+   				padding-right: 14px;
+			}
+		</style>
+	</head>
+	<body style="font-size:0.7rem">
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" >
+				<div class="aui-bar aui-bar-btn" style="width:80%;margin-top: 0.5rem;" id="category">
+			<div class="aui-bar-btn-item" style="width: 33%" >
+				<label class="i18n_label" id="announcement"></label>
+			</div>
+			<div class="aui-bar-btn-item" style="width: 33%" >
+				<label class="i18n_label" id="news"></label>
+			</div>
+			<div class="aui-bar-btn-item" style="width: 33%" >
+				<label class="i18n_label" id="policy_tab"></label>
+			</div>
+		</div>
+			</div>
+		</header>
+		
+		<div class="aui-searchbar" id="searchContainer"  style="width: 96%;margin-left:2%;height: 2.5rem;background-color: #f5f5f5 !important;position: static;">
+			<div class="aui-searchbar-input aui-border-radius" tapmode style="position: relative;">
+				<i class="aui-iconfont aui-icon-search aui-font-size-14" id="searchFlag" style="vertical-align: middle;position: absolute;right: 50%;color: #ccc;padding-left: 5px;"></i>
+				<form style="position: absolute;left: 50%;" id="searchForm">
+					<input class="gray_light" type="search" value="" onclick="search()" placeholder="Title" id="searchInputEle" readonly="true">
+				</form>
+				<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;display: none;position: absolute;right:2px;width: 2rem;text-align: center"></i>
+			</div>
+		</div>
+		<div class="aui-content" id="announceContainer" style="display:none;" >
+			<ul class="aui-list aui-media-list" id="announceList">	
+				
+			</ul>
+			<h6 id="announceFootInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			<div id="announceNoDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+		</div>
+		<div id="newsContainer" style="display:none;" >
+			<ul class="aui-list aui-media-list" id="newsList">	
+			</ul>
+			<h6 id="newsFootInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			<div id="newsNoDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+		</div>
+		<div id="policyContainer">
+			<ul class="aui-list aui-media-list" id="policyList">
+			</ul>
+			<h6 id="policyFootInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			<div id="policyNoDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+		</div>
+		
+		<ul style="display:none">
+			<li class="aui-list-item" id="newsSample" style="display:none">
+				<div class="aui-media-list-item-inner news-container aui-list-item-arrow">
+					<div class="aui-list-item-media" style="width: 20%;">
+						<div class="shortName aui-font-size-18" style="width: 2rem;height: 2rem;border: 1px solid #dedede;border-radius: 1rem;line-height: 2rem;text-align: center;margin-top: 1.2rem;"></div>
+					</div>
+					<div class="aui-list-item-inner" style="width: 80%">
+						<div class="aui-info">
+							<div class="aui-list-item-text" style="color: #444;width:50%;font-size: 16px;">
+								<div class="news_distributor aui-ellipsis-1"></div>
+							</div>
+							<div class="aui-list-item-right">
+								<span class="news_date gray_light aui-font-size-12 aui-margin-r-15"></span>
+							</div>
+						</div>
+						<div class="aui-info" style="margin-top: -0.9rem;">
+							<div class="aui-list-item-text aui-ellipsis-1" style="color: #444;width: 90%;">
+								<span class="news_category aui-ellipsis-1" ></span>
+							</div>
+						</div>
+						<div class="aui-info aui-ellipsis-2" style="margin-top: -1.1rem;">
+							<div class="aui-list-item-text">
+								<div class="news_content aui-ellipsis-2 gray_light aui-margin-r-15" style="text-align:justify;line-height: 0.9rem;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul style="display:none">
+				<li class="aui-list-item" id="policySample" style="display:none">
+					<div class="aui-media-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-inner">
+							<div class="aui-info">
+								<div class="aui-list-item-left" style="width:50%;color: #444;font-size: 16px;">
+									<div class="policy_title aui-ellipsis-1"></div>
+								</div>
+								<div class="aui-list-item-right">
+									<span class="policy_date gray_light aui-font-size-12 aui-margin-r-15"></span>
+								</div>
+							</div>
+							<div class="aui-info aui-ellipsis-2" style="margin-top: -0.9rem;">
+								<div class="aui-list-item-text">
+									<div class="policy_content aui-ellipsis-2 gray_light  aui-margin-r-15" style="text-align:justify;line-height: 0.9rem;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<ul style="display:none">
+				<li class="aui-list-item" id="announceSample" style="display:none">
+					<div class="aui-media-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-inner">
+							<div class="aui-info">
+								<div class="aui-list-item-text aui-ellipsis-1" style="width: 50%;color: #444;font-size: 16px;">
+									<span class="announce_distributor aui-ellipsis-1"></span>
+								</div>
+								<div class="aui-list-item-right">
+									<span class="announce_date gray_light aui-font-size-12 aui-margin-r-15"></span>
+								</div>
+							</div>
+							<div class="aui-info aui-ellipsis-2" style="margin-top: -0.9rem;">
+								<div class="aui-list-item-text">
+									<div class="announce_content aui-ellipsis-2 gray_light aui-margin-r-15" style="text-align:justify;line-height: 0.9rem;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+				<img src="../image/common/toTop.png" width="48" height="48" />
+			</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/issue_list.js"></script>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title></title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="pdc"></label>
+			</div>
+			<a class="aui-pull-right aui-btn"> <img src="../image/common/edit.png" width="18" height="18" style="margin-right: 0.7rem;" onclick="newPdc()"/> <img src="../image/common/menu.png" width="22" height="22" onclick="BUSINESS_OpenPopupMenu()"/> </a>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script>
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+		};
+		function newPdc() {
+			api.sendEvent({
+				name : 'getCurCustomer'
+			});
+		}
+
+	</script>
+</html>

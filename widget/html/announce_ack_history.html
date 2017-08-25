@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				Acknowledge History List
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript">
+		var datas = {};
+		apiready = function() {
+			var params = api.pageParam;
+			var histroyList = params.histroyList;
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var headerHeight = $api.offset($header).h;
+			
+			var listData = [];
+			for (var i = 0; i < histroyList.length; i++) {
+				listData.push({
+					title : histroyList[i].customerName,
+					imgPath : 'widget://image/common/man_blue_100x100.png'
+				});
+			}
+			var UIListView = api.require('UIListView');
+			UIListView.open({
+				rect : {
+					x : 0,
+					y : headerHeight,
+					w : api.winWidth,
+					h : api.frameHeight - headerHeight
+				},
+				data : listData,
+				styles : {
+					borderColor : '#efefef',
+					item : {
+						bgColor : '#FFF',
+						activeBgColor : '#DDD',
+						height : 50,
+						titleSize : 14.0,
+						titleColor : '#444',
+						imgWidth : 30,
+						imgHeight : 30,
+					}
+				},
+				fixedOn : api.frameName
+			}, function(ret, err) {
+			});
+		};
+	</script>
+</html>

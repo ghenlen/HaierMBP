@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/new_question.css"/>
+	</head>
+	<body style="background-color: #FFFFFF;font-size:0.7rem">
+		<form>
+			<div id="container" style="height: 100%;">
+				<header class="aui-bar aui-bar-nav" style="background:#1b7bea">
+					<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+					<div class="aui-title aui-font-size-18" >
+						<label class="i18n_label" id="newquestion"></label>
+					</div>
+					<a class="aui-pull-right aui-btn" > <label class="i18n_label" id="send" onclick="send()"></label></a>
+				</header>
+				<div id="main" style="overflow: auto;">
+					<div class="aui-content aui-margin-b-15">
+						<ul class="aui-list aui-form-list">
+							<li class="aui-list-item" style="border: 1px solid #f3f0f0">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray" >
+										Question Type:
+									</div>
+									<div class="aui-list-item-right dodge_blue" style="font-size:inherit;width: 70%">
+										<div  style="float:left;width:80%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;display: inline-block;text-align:right">
+											<label><input name="Fruit" type="radio" value="Internal"  checked="checked"/>Internal</label> 
+		         <label style="padding-left:20px;"><input name="Fruit" type="radio" value="External" />External</label> 
+										</div>
+									
+									</div>
+								</div>
+							</li>
+							<li class="aui-list-item">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray" >
+										Question Categery:
+									</div>
+									<div class="aui-list-item-right dodge_blue" style="font-size:inherit;width: 70%" >
+										<div  style="float:left;width:80%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;display: inline-block;text-align:right">
+											 <span id="categery">PRODUCT_QUANTITY</span>
+											 <input id="categeryName" type="hidden"/>
+										</div>
+										<div style="float:left;padding-right:7px">
+											<i class="aui-iconfont aui-icon-right" onclick="categery()"></i>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="aui-list-item" style="border: 1px solid #f3f0f0">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray" >
+										Dealer:
+									</div>
+									<div class="aui-list-item-right dodge_blue" style="font-size:inherit;width: 70%" >
+										<div  style="float:left;width:80%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;display: inline-block;text-align:right">
+										  <span id="question_type"></span>
+										  <input id="soldTonameValue" type="hidden"/>
+										</div>
+										<div style="float:left;padding-right:7px">
+											<i class="aui-iconfont aui-icon-right" onclick="type()"></i>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="aui-list aui-form-list" style="position: inherit">
+							<li class="newli" style="padding-top:5px">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray"  style="width:20%;">
+										Title:
+									</div>
+									<div class="aui-list-item-input">
+										<input  id="title" type="text" style="border: 1px solid #f3f0f0;min-height:1.8rem">
+									</div>
+							</li>
+							<li class="newli">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray" style="width:20%;">
+										Body:
+									</div>
+									<div class="aui-list-item-input">
+										<textarea id='body' 	rows="8" style="text-indent: 2em;border: 1px solid #f3f0f0;height:200px;"></textarea>
+									</div>
+								</div>
+							</li>
+							<li class="newli">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray" style="width:20%;">
+										Sebder:
+									</div>
+									<div class="aui-list-item-input">
+										<input 	id="sender"	type="text" style="border: 1px solid #f3f0f0;min-height:1.8rem">
+									</div>
+								</div>
+							</li>
+							<li class="newli" style="padding-top:5px" >
+								<div class="aui-list-item-inner" >
+									<div class="aui-list-item-label gray" style="width:20%;">
+										Phone:
+									</div>
+									<div class="aui-list-item-input">
+										<input id="phone"	type="text" style="border: 1px solid #f3f0f0;min-height:1.8rem">
+									</div>
+								</div>
+							</li>
+							<li class="newli" style="padding-top:5px">
+								<div class="aui-list-item-inner">
+									<div class="aui-list-item-label gray" style="width:20%;">
+										Email:
+									</div>
+									<div class="aui-list-item-input">
+										<input 	id="email" type="text" style="border: 1px solid #f3f0f0;min-height:1.8rem">
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+		</form>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+</html>

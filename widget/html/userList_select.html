@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 3rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form>
+							<input class="gray_light" type="search" readonly="true" value="" placeholder="Search User" id="search-input" onclick="searchDealer()">
+						</form>
+						<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;margin-left: -0.9rem;display: none;"></i>
+					</div>
+				</div>
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript">
+		var listContact;
+		var datas = {};
+		var allDealers = [];
+		var userList;
+		var headerHeight;
+		var type;
+		apiready = function() {
+			var params = api.pageParam;
+			type = params.type;
+			userList = params.userList;
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			headerHeight = $api.offset($header).h;
+			listContact = api.require('listContact');
+			
+			loadList();
+		};
+		function loadList(searchKey) {
+			var relations = '';
+			relations = userList;
+			var	upsearchKey='';
+			if(searchKey){
+				upsearchKey=searchKey.toUpperCase();
+			}
+			var A = [];
+			var B = [];
+			var C = [];
+			var D = [];
+			var E = [];
+			var F = [];
+			var G = [];
+			var H = [];
+			var I = [];
+			var J = [];
+			var K = [];
+			var L = [];
+			var M = [];
+			var N = [];
+			var O = [];
+			var P = [];
+			var Q = [];
+			var R = [];
+			var S = [];
+			var T = [];
+			var U = [];
+			var V = [];
+			var W = [];
+			var X = [];
+			var Y = [];
+			var Z = [];
+			for (var i = 0; i < relations.length; i++) {
+				var customerTitle = relations[i].name;
+				var upTitle=customerTitle.toUpperCase();
+				if (searchKey) {
+					if (upTitle.indexOf(upsearchKey) == -1) {
+						continue;
+					}
+				}
+				if (customerTitle) {
+					var initial = customerTitle.substring(0, 1).toUpperCase();
+					switch(initial) {
+						case 'A' : {
+							A.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+								
+							});
+							break;
+						}
+						case 'B' : {
+							B.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+								
+							});
+							break;
+						}
+						case 'C' : {
+							C.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+
+							});
+							break;
+						}
+						case 'D' : {
+							D.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							
+							});
+							break;
+						}
+						case 'E' : {
+							E.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+								
+							});
+							break;
+						}
+						case 'F' : {
+							F.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+								
+							});
+							break;
+						}
+						case 'G' : {
+							G.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+								
+							});
+							break;
+						}
+						case 'H' : {
+							H.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'I' : {
+							I.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'J' : {
+							J.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'K' : {
+							K.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'L' : {
+							L.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'M' : {
+							M.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'N' : {
+							N.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'O' : {
+							O.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'P' : {
+							P.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'Q' : {
+							Q.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'R' : {
+							R.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}case 'S' : {
+							S.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'T' : {
+							T.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'U' : {
+							U.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'V' : {
+							V.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'W' : {
+							W.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'X' : {
+							X.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'Y' : {
+							Y.push({
+								title : customerTitle,
+								customerCode : relations[i].customerCode,
+								customerId : relations[i].id,
+								img : 'widget://image/common/man_blue_100x100.png',
+							});
+							break;
+						}
+						case 'Z' :
+							{
+								Z.push({
+									title : customerTitle,
+									customerCode : relations[i].customerCode,
+									customerId : relations[i].id,
+									img : 'widget://image/common/man_blue_100x100.png',
+								});
+								break;
+							}
+							break;
+					}
+				}
+			}
+			datas.A = A;
+			datas.B = B;
+			datas.C = C;
+			datas.D = D;
+			datas.E = E;
+			datas.F = F;
+			datas.G = G;
+			datas.H = H;
+			datas.I = I;
+			datas.J = J;
+			datas.K = K;
+			datas.L = L;
+			datas.M = M;
+			datas.N = N;
+			datas.O = O;
+			datas.P = P;
+			datas.Q = Q;
+			datas.R = R;
+			datas.S = S;
+			datas.T = T;
+			datas.U = U;
+			datas.V = V;
+			datas.W = W;
+			datas.X = X;
+			datas.Y = Y;
+			datas.Z = Z;
+			listContact.close();
+			listContact.open({
+				x : 0,
+				y : headerHeight,
+				h : api.winHeight - headerHeight,
+				cellHeight : 50,
+				groupTitle : {
+					bgColor : '#efefef'
+				},
+				borderColor : '#efefef',
+				cellBgColor : '#fff',
+				cellSelectColor : '#ddd',
+				data : datas,
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					var selectedList = datas[ret.key];
+					var item = selectedList[ret.index];
+					if (type == "noticeAdd") {
+						api.sendEvent({
+							name : 'updateDealer_noticeAdd',
+							extra : {
+								'customerCode' : item.customerCode,
+								'customerId' : item.customerId,
+								'title' : item.title
+							}
+						});
+					}
+					api.closeWin({
+					});
+				} else {
+					COMMON_toastError();
+				}
+			});
+		}
+
+		function searchDealer() {
+			COMMON_UISearchBar(function(ret) {
+				var searchTitle=$api.trim(ret.text);
+				$api.val($api.byId('search-input'), searchTitle);
+				$api.css($api.byId('resetSearchBtn'), 'display:inline-block');
+				loadList(searchTitle);
+			});
+		}
+
+		function resetSearch() {
+			$api.css($api.byId('resetSearchBtn'), 'display:none');
+			$api.val($api.byId('search-input'), '');
+			loadList();
+		}
+	</script>
+</html>

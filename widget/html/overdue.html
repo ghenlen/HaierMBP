@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Overdue</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../script/lib/lCalendar/lCalendar.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/overdue.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title  aui-font-size-18">
+				<label class="i18n_label " id="overdue"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<div class="searchbar">
+				<div class="aui-card-list-content-padded">
+					<div class="aui-row aui-row-padded">
+						<div class="aui-col-xs-6">
+							<div class="search_item" onclick="showDealerActionSelector()">
+								<div class="show_text aui-ellipsis-1" id="productDivisionText">
+								</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-down gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="aui-col-xs-6" style="display: inline-block;">
+						
+						<div class="search_item">
+								<div class="show_text aui-ellipsis-1">
+									<input id="dateText" onpropertychange="" type="text"  placeholder="Select Date" style="text-align: center;font-size: 0.6rem;color: #555;min-height: 1.5rem !important;" readonly="" name="" data-lcalendar="2000-01-1,2100-12-31" />
+								</div>
+								<div class="right_arraw">
+									<i class="aui-iconfont aui-icon-calendar gray_light" style="font-weight: bold;"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container aui-margin-t-10" id="container">
+			</div>
+			<h6 id="footInfo" class="aui-hide" style="text-align:center;line-height:3rem;position: relative;">
+					<i class="end-line"></i>
+					<label class="end-text">End</label>
+				</h6>
+			<div id="noDataInfo" class="aui-hide" align="center" style="margin-top: 3rem;">
+					<img src="../image/common/nodata.png" width="100"/>
+					<h6 style="color: #cfcfcf;line-height: 1.5rem;">No Data.</h6>
+				</div>
+		</div>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="customerId"/>
+		<div id="template" class="aui-hide">
+			<div class="row">
+				<div class="bg"></div>
+				<div class="content">
+					<div class="title aui-margin-t-5" >
+						<div class="left dealer aui-ellipsis-1" style="width: 70%;display: inline-block;text-align: left;">
+						</div>
+						<div class="right code aui-ellipsis-1" style="width: 25%;display: inline-block;text-align: right;">
+						</div>
+					</div>
+					<div class="list">
+						<div class="item">
+							<span class="left_span"> 1 - 30  </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info  days1-30"></span>
+						</div>
+						<div class="item">
+							<span class="left_span">91 - 120 </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info  days91-120"></span>
+						</div>
+						<div class="item">
+							<span class="left_span">31 - 60 </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info  days31-60"></span>
+						</div>
+						<div class="item">
+							<span class="left_span">121 - 180 </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info  days121-180"></span>
+						</div>
+						<div class="item">
+							<span class="left_span">61 - 90 </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info  days61-90"></span>
+						</div>
+						<div class="item">
+							<span class="left_span">181 - 365 </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info  days181-365"></span>
+						</div>
+						<div class="item">
+							<span class="left_span">>=365 </span>Days:&nbsp;&nbsp;&nbsp;<span class="aui-text-info daysSum"></span>
+						</div>
+						<div class="item">
+							<span class="left_span" style="text-align: center">Credit Memo: </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="aui-text-info creditMemo"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="scroll-top aui-hide" align="center" id="scrollTop" onclick="scrollToTop()">
+			<img src="../image/common/toTop.png" width="48" height="48" />
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/lib/lCalendar/lCalendar.js"></script>
+	<script type="text/javascript" src="../script/overdue.js"></script>
+</html>

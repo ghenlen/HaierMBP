@@ -1,0 +1,223 @@
+.dealer_con, .time_select_con,.payCode_con{
+    width: 90%;
+    height: 2rem;
+    margin-bottom:0.5rem;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.left,.right{
+    display: inline-block;
+    width: 15%;
+    height: 100%;
+    line-height: 2rem;
+    text-align: center;
+}
+.center{
+    display: inline-block;
+    width: 66%;
+    height: 100%;
+    line-height: 2rem;
+    text-align: center;
+    font-size: 0.6rem;
+}
+
+.confirm_con{
+    background: #FFF;
+    width: 90%;
+    border-radius: 0px 6px 0px 0px;
+    
+}
+
+.confirm_con .banlance{
+    width: 100%;
+    height: 2rem;
+    padding: 0 0.5rem;
+    line-height: 2rem;
+    
+}
+
+.confirm_con .banlance .title{
+    display: inline-block;
+    width: 50%;
+    text-align: left;
+    border-bottom: 1px dashed #616161;
+}
+
+.confirm_con .banlance .value{
+    display: inline-block;
+    width: 45%;
+    text-align: left;
+    border-bottom: 1px dashed #616161;
+}
+
+.historyAccount{
+    background: #FFF;
+    width: 90%;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+.historyAccount .container{
+    border-left: 2px solid #00BFFF;
+    padding-top: 1rem;
+    z-index: 1;
+}
+
+.historyAccount .container .item{
+    width:100%;
+    height: 3rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+.historyAccount .container .item .dot{
+    width:20px;
+    height:20px;
+    border-radius: 10px;
+    position: absolute;
+    left : -11px;
+    top:0px;
+    border: 2px solid #00BFFF;
+    background: #fff;
+    z-index: 100;
+}
+.historyAccount .container .item .dot .circle{
+    width:10px;
+    height:10px;
+    background: #00BFFF;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+.historyAccount .container .item .list{
+    position: absolute;
+    left: 24px;
+    top: 2px;
+    right: 0px;
+}
+
+.doc_num_con,  .credit_con{
+    display: inline-block;
+    width: 68%;
+    height: 1rem;
+    text-align: left;
+}
+
+.DT_con,.time{
+    display: inline-block;
+    width: 30%;
+    height: 1rem;
+    text-align: left;
+}
+
+.period_time_select{
+    width: 90%;
+    height: 2rem;
+    margin-bottom:0.5rem;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.period_time_select .begin_time{
+    width: 50%;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #f5f5f5;
+}
+
+.period_time_select .end_time{
+    height: 100%;
+    margin-left: 50%;
+}
+
+.left1,.right1{
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    line-height: 2rem;
+    text-align: center;
+}
+.center1{
+    display: inline-block;
+    width: 60%;
+    height: 100%;
+    line-height: 2rem;
+    text-align: center;
+    font-size: 0.6rem;
+}
+
+#upload_container{
+    min-height: 2rem;
+    padding: 0.5rem;
+}
+
+#upload_container .upload_btn {
+    display: inline-block;
+    border: 1px solid #dfdfdf;
+    width: 2rem;
+    height: 2rem;
+    background: url('../image/common/plus_128128.png') no-repeat;
+    background-size: 1.4rem 1.4rem;
+    background-position: 0.25rem 0.25rem;
+    margin: 0 0.5rem;
+    background-color: #efefef;
+}
+#updImg{
+    text-align: left;
+    padding: 0.5rem;
+    
+}
+#foot{
+padding: 0.5rem;
+    background: url(../image/pdc/1_03.png) no-repeat;
+    background-size: 100% 100%;
+    border-left: 1.2rem solid #d7a0fb;
+}
+#updImg  .upload_imgs {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 0.5rem;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #dfdfdf;
+}
+
+#updImg  .upload_imgs img {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+#updImg  .upload_imgs .warn_flag {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 12px;
+    background: url('../image/common/warn_orange.png') no-repeat;
+    background-size: 1.2rem 1.2rem;
+}
+
+#updImg  .upload_imgs .delete_flag {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 12px;
+    background: url('../image/common/close_orange.png') no-repeat;
+    background-size: 1.2rem 1.2rem;
+}
+#footer {
+    background: #DDDDDD;
+    height: 3rem;
+}
+#submit {
+    margin-top: 0.5rem;
+    width: 130px;
+    color: #fff !important;
+    font-size: 0.8rem;
+}

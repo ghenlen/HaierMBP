@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title" style="left: 2rem;right: 2rem;">
+				<div class="aui-searchbar dodge_blue_bg" id="search">
+					<div class="aui-searchbar-input aui-border-radius" tapmode >
+						<i class="aui-iconfont aui-icon-search gray_light aui-font-size-14" style="vertical-align: middle"></i>
+						<form>
+							<input class="gray_light"  type="search" onclick="search()" value="" placeholder="Shop Title" id="searchInput" readonly="true">
+						</form>
+						<i id="resetSearchBtn" class="aui-iconfont aui-icon-close gray_light aui-font-size-14" onclick="resetSearch()" style="vertical-align: middle;margin-left: -0.9rem;display: none;"></i>
+					</div>
+				</div>
+			</div>
+		</header>
+		<ul class="aui-list aui-list-in aui-hide" id="selected">
+			<li class="aui-list-item">
+				<div class="aui-list-item-inner">
+					<div class="aui-list-item-title aui-text-info" id="selected_text"></div>
+					<div class="aui-list-item-right">
+						<input type="checkbox" class="aui-checkbox" checked readonly="true" disabled="disabled">
+					</div>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript">
+		var UIListView;
+		var db;
+		var pageNo = 0;
+		var isEnd = false;
+		var selectedProducts = {};
+		var winName = '';
+		apiready = function() {
+			var params = api.pageParam;
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var headerHeight = $api.offset($header).h;
+			winName = params.winName;
+			selected = params.selected || '';
+			//			if(selected){
+			//				$api.removeCls($api.byId("selected"), "aui-hide");
+			//			}
+			$api.html($api.byId('selected_text'), selected);
+			UIListView = api.require('UIListView');
+			UIListView.open({
+				rect : {
+					x : 0,
+					y : headerHeight,
+					w : api.winWidth,
+					h : api.frameHeight - headerHeight
+				},
+				data : [{
+					id : 0,
+					title : 0
+				}],
+				styles : {
+					borderColor : '#efefef',
+					item : {
+						bgColor : '#FFF',
+						activeBgColor : '#DDD',
+						height : 55.0,
+						titleSize : 12.0,
+						titleColor : '#444',
+						subTitleSize : 12.0,
+						subTitleColor : '#888',
+						remarkIconWidth : 20
+					}
+				},
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.eventType == 'clickContent') {
+						var index = ret.index;
+						UIListView.getDataByIndex({
+							index : index
+						}, function(ret, err) {
+							if (ret) {
+								var data = ret.data;
+								var jsFun = 'UPDATE_SHOP(' + $api.jsonToStr(data) + ')';
+								api.execScript({
+									name : winName,
+									script : jsFun
+								});
+								setTimeout(function() {
+									api.closeWin({});
+								}, 200);
+							}
+						});
+					}
+				} else {
+				}
+			});
+			UIListView.setRefreshFooter({
+				loadingImg : 'widget://res/UIListView_arrow.png',
+				bgColor : '#F5F5F5',
+				textColor : '#8E8E8E',
+				textUp : 'Pull up load more...',
+				textDown : 'Release start loading...',
+				loadingText : 'Loading...',
+				showTime : false
+			}, function(ret, err) {
+				if (ret) {
+					loadListByPage();
+				}
+			});
+			UIListView.reloadData({
+				data : []
+			}, function(ret) {
+			});
+			
+			searchProduct();
+		};
+		/**
+		 * 产品搜索
+		 */
+		function searchProduct() {
+			isEnd = false;
+			pageNo = 0;
+			selectedIndexs = [];
+			condition = $api.trim(condition);
+			var condition = $api.val($api.byId('searchInput'));
+			if (condition == '') {
+				//				UIListView.reloadData({
+				//					data : []
+				//				}, function(ret) {
+				//				});
+				//				return;
+			}
+			var url = ajaxReqHost + 'appListShop.ajax';
+			var param = {
+				from : 'app',
+				title : condition,
+				pageSize : pageSize,
+				pageNo : pageNo
+			}
+			COMMON_Ajax_Post(url, {
+				values : param
+			}, function(ret, err) {
+				if (ret && ret.list) {
+					var data = ret.list;
+					if (data.length > 0) {
+						var listData = [];
+						for (var i = 0; i < data.length; i++) {
+							listData.push({
+								title : data[i].title,
+								id : data[i].id,
+							});
+						}
+						UIListView.reloadData({
+							data : listData
+						}, function(ret) {
+						});
+						if (data.length == pageSize) {
+							pageNo++;
+						} else {
+							isEnd = true;
+						}
+					} else {
+						UIListView.reloadData({
+							data : []
+						}, function(ret) {
+						});
+						api.toast({
+							msg : 'No match data！'
+						});
+					}
+				}
+			});
+		}
+
+		function loadListByPage() {
+			var condition = $api.val($api.byId('searchInput'));
+			condition = $api.trim(condition);
+			if (isEnd == true) {
+				UIListView.appendData({
+					data : []
+				}, function(ret, err) {
+				});
+				api.toast({
+					msg : 'No more data！'
+				});
+				return;
+			}
+			var url = ajaxReqHost + 'appListShop.ajax';
+			var param = {
+				from : 'app',
+				title : condition,
+				pageSize : pageSize,
+				pageNo : pageNo
+			}
+			COMMON_Ajax_Post(url, {
+				values : param
+			}, function(ret, err) {
+				if (ret && ret.list) {
+					var data = ret.list;
+					if (data.length > 0) {
+						var listData = [];
+						for (var i = 0; i < data.length; i++) {
+							listData.push({
+								title : data[i].title,
+								id : data[i].id,
+							});
+						}
+						UIListView.appendData({
+							data : listData
+						}, function(ret, err) {
+						});
+						if (data.length < pageSize) {
+							isEnd = true;
+						} else {
+							pageNo++;
+						}
+					} else {
+						UIListView.appendData({
+							data : []
+						}, function(ret, err) {
+						});
+						api.toast({
+							msg : 'No more data！'
+						});
+					}
+				}
+			});
+		}
+		
+		
+function search() {
+	COMMON_UISearchBar(function(ret) {
+		var inputText = $api.trim(ret.text);
+		$api.val($api.byId("searchInput"), inputText);
+		$api.css($api.byId('resetSearchBtn'), 'display:inline-block');
+		searchProduct();
+	});
+}
+
+function resetSearch() {
+	$api.css($api.byId('resetSearchBtn'), 'display:none');
+	$api.val($api.byId('searchInput'), '');
+	var inputText = "";
+	searchProduct();
+}
+	</script>
+</html>

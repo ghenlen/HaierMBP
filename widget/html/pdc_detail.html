@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18">
+				<label class="i18n_label" id="newPdc"></label>
+			</div>
+		</header>
+		<div class="aui-content">
+			<ul class="aui-list">
+				<li class="aui-list-item aui-list-item-middle aui-margin-b-15">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label" style="width: 8rem;">
+							<img src="../image/pdc/man.png" width="26" height="27" style="vertical-align: middle;"/>
+							<label class="i18n_label aui-margin-l-15" id="dealer"></label>
+						</div>
+						<div class="aui-list-item-input">
+							<span class="aui-text-info aui-margin-l-15" id="dealerText"></span>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle aui-margin-b-15">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label" style="width: 8rem;">
+							<img src="../image/pdc/invoice2.png" width="26" height="27" style="vertical-align: middle;"/>
+							<label class="i18n_label aui-margin-l-15" id="invoiceNo"></label>
+						</div>
+						<div class="aui-list-item-input">
+							<span class="aui-text-info aui-margin-l-15" id="invoiceNoInput"></span>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle aui-margin-b-15">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label" style="width: 8rem;">
+							<img src="../image/pdc/rs2.png" width="26" height="27" style="vertical-align: middle;"/>
+							<label class="i18n_label aui-margin-l-15" id="value"></label>
+						</div>
+						<div class="aui-list-item-input">
+							<span class="aui-text-info aui-margin-l-15" id="valueInput"></span>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle aui-margin-b-15">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label" style="width: 8rem;">
+							<img src="../image/pdc/remark.png" width="26" height="27" style="vertical-align: middle;"/>
+							<label class="i18n_label aui-margin-l-15" id="remark"></label>
+						</div>
+						<div class="aui-list-item-input">
+							<span class="aui-text-info aui-margin-l-15" id="remarkInput"></span>
+							<textarea placeholder="remark" id="remarkInputEdit" class="aui-hide"></textarea>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle aui-margin-b-15">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label" style="width: 8rem;">
+							<img src="../image/pdc/dateTime.png" width="26" height="27" style="vertical-align: middle;"/>
+							<label class="i18n_label aui-margin-l-15" id="createDate"></label>
+						</div>
+						<div class="aui-list-item-input">
+							<span class="aui-text-info aui-margin-l-15" id="createDateInput"></span>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+			<div style="margin-top:2.5rem;" id="submit_again" class="aui-hide">
+				<div class="aui-content" align="center">
+					<div class="aui-btn aui-btn-info" id="submitAgainBtn" style="width: 90%;">
+						Represent
+					</div>
+				</div>
+			</div>
+		</div>
+		<input id="id" type="hidden"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript">
+		var currency = BUSINESS_GetCurrency();
+		var id = "";
+		apiready = function() {
+			var $header = $api.dom('header');
+			$api.fixIos7Bar($header);
+			$api.fixStatusBar($header);
+			var headerHeight = $api.offset($header).h;
+			COMMON_openFrame({
+				name : 'pdc_detail_head',
+				url : 'pdc_detail_head.html',
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : headerHeight
+				},
+				animation : CONSTANT_FRAME_ANIMATION
+			});
+			var pageParam = api.pageParam;
+			id = pageParam.id;
+			$api.val($api.byId('id'), id);
+			if (pageParam) {
+				var pdcDetailUrl = ajaxReqHost + 'appGetPdcCheck.ajax'
+				COMMON_Ajax_Post(pdcDetailUrl, {
+					values : {
+						id : pageParam.id
+					}
+				}, function(ret) {
+					if(ret){
+						if(ret.status == 'deny'){
+							$api.removeCls($api.byId('submit_again'), 'aui-hide');
+							$api.removeCls($api.byId('remarkInputEdit'), 'aui-hide');
+							$api.addCls($api.byId('remarkInput'), 'aui-hide');
+						}
+						
+						$api.html($api.byId('dealerText'), ret.customer.customerTitle);
+						$api.html($api.byId('invoiceNoInput'), ret.checkNo);
+						$api.html($api.byId('valueInput'), currency+COMMON_COMMON_FormatCurrency(ret.checkValue));
+						$api.html($api.byId('remarkInput'), ret.remark);
+						$api.val($api.byId('remarkInputEdit'), ret.remark);
+						$api.html($api.byId('createDateInput'), COMMON_FormatTimeToTime(ret.createDate));
+					}
+				});
+			}
+			
+			$api.addEvt($api.byId('submitAgainBtn'), 'click', function(){
+				var reSubmitUrl = ajaxReqHost + 'appSubmitRejectCheck.ajax';
+				var remarkVal = $api.val($api.byId('remarkInputEdit'));
+				COMMON_Ajax_Post(reSubmitUrl, {
+					values : {
+						id : id,
+						remark: remarkVal
+					}
+				}, function(ret) {
+					if(ret){
+						COMMON_toastSuccess();
+						api.sendEvent({
+	                        name:'refreshPdcList'
+                        });
+						setTimeout(function() {
+							api.closeWin();
+						}, 1000);
+					}
+				});
+			});
+		};
+	</script>
+</html>

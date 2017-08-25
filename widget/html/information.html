@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Information</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/info_collection.css" />
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top">
+			<a class="aui-pull-left aui-btn" onclick="COMMON_BackToRoot();"> <span class="aui-iconfont aui-icon-left"></span> </a>
+			<div class="aui-title aui-font-size-18" style="left: 2rem;right: 2rem;">
+				<label class="i18n_label" id="infoCollection"></label>
+			</div>
+			<a class="aui-pull-right aui-btn"> <img src="../image/common/menu.png" width="22" height="22" onclick="BUSINESS_OpenPopupMenu()"/> </a>
+		</header>
+		<div style="width:100%;position: fixed">
+			<section class="">
+				<div >
+					<div class="aui-col-xs-6" id="shopTab" onclick="showType(1)" style="background-color: #ffffff;    padding: 0.5rem;">
+						<div style="text-align: center;padding: 5px;"><img class="shop_img" src="../image/info_collect/shop_selected3.png" style="width:40px !important;height: 30px;;vertical-align: middle;"/>
+						</div>
+						<div style="text-align: center">
+							Shop Info
+						</div>
+					</div>
+					<div class="aui-col-xs-6" id="productTab" onclick="showType(2)" style="background-color: #dddddd;    padding: 0.5rem;color: #bfbfbf;">
+						<div style="text-align: center;padding: 5px;"><img class="product_img" src="../image/info_collect/rival3.png" style="width:40px !important;height: 30px;;vertical-align: middle;"/>
+						</div>
+						<div style="text-align: center;">
+							Rival Product
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div id="main" style="z-index: 100;margin-top: 3rem;">
+			<div id="onSiteContainer">
+			<div class="aui-content" style="padding-top: 4.5rem;">
+					<div class="aui-list-item-input">
+						<input id="onSiteTitle" type="text" class="content aui-font-size-14" placeholder="Title" style="width:100%;height: 2rem;background-color: white;padding-left: 15px;"/>
+					</div>
+				</div>
+				<div class="aui-content" style="margin-top: 0.5rem;">
+					<div class="aui-list-item-input">
+						<textarea id="content" class="content aui-font-size-14" placeholder="What are you think now..." rows="4"></textarea>
+					</div>
+				</div>
+				<div class="upload_container" id="imgs">
+					<div class="upload_btn" onclick="openCamera()"></div>
+				</div>
+				<div>
+					<ul class="aui-list aui-margin-b-10">
+						<li class="aui-list-item" onclick="showCollectionTypeSelect(1)">
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									<label class="i18n_label" id="shopCollectionType"></label>
+								</div>
+								<div class="aui-list-item-right">
+									<span id="collecTypeText" class="aui-text-info"></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="aui-list aui-margin-b-10">
+						<li class="aui-list-item" onclick="showShopSelect()">
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									<label class="i18n_label" id="shop"></label>
+								</div>
+								<div class="aui-list-item-right">
+									<span id="shopText" class="gray_light">Please Select</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="aui-list">
+						<li class="aui-list-item">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title">
+									<label class="i18n_label" id="shopLocation"></label>
+								</div>
+								<div class="aui-list-item-right">
+									<span id="shopLocationVal" class="aui-text-info"></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="rivalProductContainer" style="display: none;">
+				<div class="aui-content" style="padding-top: 4.5rem;">
+					<div class="aui-list-item-input">
+						<input id="rivalTitle" type="text" class="content aui-font-size-14" placeholder="Title" style="width:100%;height: 2rem;background-color: white;padding-left: 15px;"/>
+					</div>
+				</div>
+				<div>
+					<div class="aui-content" style="margin-top: 0.5rem;">
+						<textarea id="content1"  class="content aui-font-size-14"  placeholder="What are you think now..." rows="4"></textarea>
+					</div>
+				</div>
+				<div class="upload_container" id="rivalImgs">
+					<div class="upload_btn" onclick="openCamera()"></div>
+				</div>
+				<div>
+					<ul class="aui-list aui-margin-b-10">
+						<li class="aui-list-item" onclick="showCollectionTypeSelect(2)">
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									<label class="i18n_label" id="rivalCollectionType"></label>
+								</div>
+								<div class="aui-list-item-right">
+									<span id="collecTypeText1" class="aui-text-info"></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="aui-list">
+						<li class="aui-list-item">
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-title">
+									<label class="i18n_label" id="rivalLocation"></label>
+								</div>
+								<div class="aui-list-item-right">
+									<span id="rivalLocationVal" class="aui-text-info"></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<footer class="aui-bar aui-bar-tab" id="footer">
+			<div class="aui-btn sky_blue_bg" style="width: 90%" id="submit" onclick="submit()">
+				Submit
+			</div>
+		</footer>
+		<div id="updImgTemplate">
+			<div class="upload_imgs" onclick="browserImg();">
+				<img src=""/>
+				<div class="delete_flag"></div>
+			</div>
+		</div>
+		<input id="shopVal" type="hidden"/>
+		<input id="collecTypeVal" type="hidden"/>
+		<input id="collecTypeVal1" type="hidden"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript" src="../script/info_collection.js"></script>
+</html>

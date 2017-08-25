@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>分类</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			html, body {
+				background: #fff;
+			}
+			.box {
+				width: 90%;
+				text-align: center;
+				background: #f5f5f5;
+				margin: 0 auto;
+				border-radius: 5px;
+				height: 2.5rem;
+				position: relative;
+			}
+			.box-selected {
+				background: rgb(255, 238, 235);
+				color: #ff2600;
+			}
+			.content {
+				width: 100%;
+				margin: 0 auto;
+				position: relative;
+				padding: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+				 -webkit-transform: translateY(-50%);
+				 -moz-transform: translateY(-50%);
+				 -ms-transform: translateY(-50%);
+				 -o-transform: translateY(-50%);
+				 font-size: 12px;
+				 
+			}
+			.aui-grid [class*=aui-col-] {
+				padding: 0.2rem 0;
+			}
+			.category:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				width: 200%;
+				height: 1px;
+				border-top: 1px solid #CCCCCC;
+				-webkit-transform-origin: 0 0;
+				-moz-transform-origin: 0 0;
+				-ms-transform-origin: 0 0;
+				-o-transform-origin: 0 0;
+				transform-origin: 0 0;
+				-webkit-transform: scale(0.5, 0.5);
+				-ms-transform: scale(0.5, 0.5);
+				-o-transform: scale(0.5, 0.5);
+				transform: scale(0.5, 0.5);
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" style="left: 1.5rem;right:0;">
+				Product Division
+			</div>
+		</header>
+		<div id="main">
+			<section class="aui-grid aui-margin-b-15 aui-margin-t-10">
+				<div class="aui-row" id="pgContainer">
+				</div>
+			</section>
+		</div>
+		<footer style="position: fixed;bottom: 0;height: 2.5rem;width: 100%;">
+			<div onclick="reset()"  tapmode="tapmode_cls"  style="width: 50%;height: 100%;float: left;background: #f5f5f5;text-align: center;line-height: 2.5rem;">
+				Reset
+			</div>
+			<div onclick="finish()"  tapmode="tapmode_cls"  style="width: 50%;height: 100%;background: #1B7BEA;float: right;text-align: center;line-height: 2.5rem;color: #fff;border-top: rgb(19, 106, 205);">
+				Finish
+			</div>
+		</footer>
+		
+		<div class="aui-hide" id="pgTemplate">
+			<div class="aui-col-xs-4">
+				<div class="box pg">
+					<div class="content aui-ellipsis-2">
+					</div>
+					<img width="12" height="12" src="../image/common/right.png" style="position: absolute;bottom: 5px;right: 5px;display: none;"/>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script>
+		var $pgSelect = null;
+		var $pgSelectedId = '';
+		var winName = '';
+		var frameName = '';
+		var oldSelectedId = '';
+		apiready = function() {
+			var $header = $api.dom('header');
+			var headerHeight = $api.offset($header).h;
+			$api.css($api.byId('main'), 'padding-top:' + headerHeight + 'px;padding-bottom:2.5rem;');
+			
+			winName = api.pageParam.winName;
+			frameName = api.pageParam.frameName;
+			oldSelectedId = api.pageParam.selectedId;
+			getProductGroups();
+		};
+		
+		function getProductGroups() {
+			var url = ajaxReqHost + 'appGetDictionary.ajax';
+			COMMON_Ajax_Post(url, {
+				values : {
+					dicType : 'PRODUCT_GROUP_TYPE'
+				}
+			}, function(ret) {
+				if (ret && ret.length > 0) {
+					var $pgContainer = $api.byId('pgContainer');
+					var template = $api.byId('pgTemplate');
+					
+					for (var i = 0; i < ret.length; i++) {
+						var cloneObj = template.cloneNode(true);
+						$api.html($api.dom(cloneObj, '.content'), ret[i].title);
+						$api.attr($api.dom(cloneObj, '.pg'), 'pgValue', ret[i].value);
+						$api.append($pgContainer, $api.html(cloneObj));
+					}
+					
+					var allPges = $api.domAll('.pg');
+					for (var i = 0; i < allPges.length; i++) {
+						var pgId = $api.attr(allPges[i], 'pgValue');
+						if(oldSelectedId == pgId){
+							$api.css($api.dom(allPges[i], 'img'), 'display: block');
+							$api.addCls(allPges[i], 'box-selected');
+							$pgSelect = allPges[i];
+							$pgSelectedId = oldSelectedId;
+						}
+					
+						$api.addEvt(allPges[i], 'click', function() {
+							if ($pgSelect && $pgSelect == this) {
+								$api.removeCls($pgSelect, 'box-selected');
+								$api.css($api.dom($pgSelect, 'img'), 'display:none;');
+								$pgSelect = null;
+								$pgSelectedId = '';
+								return;
+							}
+							if ($pgSelect && $pgSelect != this) {
+								$api.removeCls($pgSelect, 'box-selected');
+								$api.css($api.dom($pgSelect, 'img'), 'display:none;');
+							}
+							$pgSelect = this;
+							$api.css($api.dom(this, 'img'), 'display:block;');
+							$api.addCls(this, 'box-selected');
+							$pgSelectedId = $api.attr($pgSelect, 'pgValue');
+						});
+					}
+				}
+			});
+		}
+		
+		function reset(){
+			if ($pgSelect) {
+				$api.removeCls($pgSelect, 'box-selected');
+				$api.css($api.dom($pgSelect, 'img'), 'display:none;');
+				$pgSelect = null;
+				$pgSelectedId = '';
+			}
+		}
+		
+		function finish(){
+			if(oldSelectedId == $pgSelectedId){
+				api.closeWin({});
+				return;
+			}
+			
+			var pg = {};
+			
+			if($pgSelectedId == ''){
+				pg = {
+					id: '',
+					name: 'Product Division'
+				}
+			}else{
+				pg = {
+					id: $pgSelectedId,
+					name: $api.html($api.dom($pgSelect, '.content')) 
+				}
+			}
+			
+			var jsFun = 'UPDATE_PRODUCTGROUP('+$api.jsonToStr(pg)+')';
+	                    
+            api.execScript({
+				name: winName,
+				frameName: frameName,
+	            script: jsFun
+            });
+            
+            setTimeout(function(){
+            	api.closeWin({});
+            }, 200);
+		}
+	</script>
+</html>

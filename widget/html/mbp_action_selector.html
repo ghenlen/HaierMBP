@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<style>
+			#checkout_btn {
+				width: 100%;
+				height: 50px;
+				color: #fff;
+				line-height: 50px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-fixed-top" style="background: #F8F8F8;">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left" style="color:#666;"></span></a>
+			<div class="aui-title aui-font-size-16" style="color: #555;text-align: left;left: 2rem;">
+				Please Select
+			</div>
+		</header>
+		<div id="main">
+			<ul class="aui-list">
+				<li class="aui-list-item aui-list-item-middle title aui-margin-b-10" id="delear" onclick="showDealerActionSelector()" >
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title aui-font-size-14" style="width: 90%;">
+							selected：Karry Hello
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+		<footer style="position: fixed;bottom: 0;width: 100%;">
+			<div class="dodge_blue_bg" id="checkout_btn" onclick="">
+				OK
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/fixStatusBar.js"></script>
+	<script type="text/javascript">
+		var UIListView;
+		var selectedItem = {};
+		apiready = function() {
+			
+			var $header = $api.dom('header');
+			var headerHeight = $api.offset($header).h;
+			$api.css($api.byId('main'), 'padding-top:' + headerHeight + 'px');
+			UIListView = api.require('UIListView');
+			UIListView.open({
+				rect : {
+					x : 0,
+					y : headerHeight + 50,
+					w : api.winWidth,
+					h : api.frameHeight - headerHeight - 100
+				},
+				data : [{
+					uid : '1001',
+					title : '标题',
+					icon: 'widget://image/common/circle.png',
+					selected : 'false'
+				}, {
+					uid : '1001',
+					title : '标题',
+					icon: 'widget://image/common/circle.png',
+					selected : 'false'
+				},{
+					uid : '1001',
+					title : '标题',
+					icon: 'widget://image/common/circle.png',
+					selected : 'false'
+				},{
+					uid : '1001',
+					title : '标题',
+					icon: 'widget://image/common/circle.png',
+					selected : 'false'
+				}],
+				styles : {
+					borderColor : '#efefef',
+					item : {
+						bgColor : '#FFF',
+						activeBgColor : '#DDD',
+						height : 55.0,
+						titleSize : 12.0,
+						titleColor : '#444',
+						subTitleSize : 12.0,
+						subTitleColor : '#888',
+						remarkIconWidth : 20
+					}
+				},
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.eventType == 'clickContent') {
+						var index = ret.index;
+						UIListView.getDataByIndex({
+							index : index
+						}, function(ret, err) {
+							if (ret) {
+								var data = ret.data;
+								var selected = data.selected;
+								if (selected == 'false') {
+									if (selectedItem.hasOwnProperty('selected')){
+										selectedItem.selected = 'false';
+										selectedItem.icon = 'widget://image/common/circle.png';
+										UIListView.updateItem({
+											index : selectedItem.index,
+											data : selectedItem
+										}, function(ret, err) {
+											data.selected = 'true';
+											data.icon = 'widget://image/common/circle_selected.png';
+											UIListView.updateItem({
+												index : index,
+												data : data
+											}, function(ret, err) {
+											});
+											selectedItem = data;
+											selectedItem.index = index;
+										});
+									}else{
+										data.selected = 'true';
+										data.icon = 'widget://image/common/circle_selected.png';
+										UIListView.updateItem({
+											index : index,
+											data : data
+										}, function(ret, err) {
+										});
+										selectedItem = data;
+										selectedItem.index = index;
+									}
+								} else {
+									data.selected = 'false';
+									data.icon = 'widget://image/common/circle.png';
+									UIListView.updateItem({
+										index : index,
+										data : data
+									}, function(ret, err) {
+									});
+									selectedItem = {};
+								}
+							}
+						});
+					}
+				} 
+			});
+		};
+		/**
+		 * 产品搜索
+		 */
+		function searchProduct() {
+			isEnd = false;
+			pageNo = 1;
+			selectedIndexs = [];
+			var condition = $api.val($api.byId('searchInput'));
+			if ($api.trimAll(condition) == '') {
+				//				UIListView.reloadData({
+				//					data : []
+				//				}, function(ret) {
+				//				});
+				//				return;
+			}
+			var sql = "SELECT a.* FROM product a  where a.model like '%" + condition + "%' or a.title like '%" + condition + "%' or a.code like '" + condition + "%' limit 0, 10";
+			db.selectSql({
+				name : 'data',
+				sql : sql
+			}, function(ret, err) {
+				if (ret && ret.status) {
+					var data = ret.data;
+					if (data.length > 0) {
+						var listData = [];
+						for (var i = 0; i < data.length; i++) {
+							listData.push({
+								title : data[i].title,
+								subTitle : data[i].model,
+								selected : 'false',
+								icon : 'widget://image/common/circle.png',
+								id : data[i].id,
+								code : data[i].code
+							});
+						}
+						UIListView.reloadData({
+							data : listData
+						}, function(ret) {
+						});
+						if (data.length == pageSize) {
+							pageNo++;
+						} else {
+							isEnd == true;
+						}
+					} else {
+						UIListView.reloadData({
+							data : []
+						}, function(ret) {
+						});
+						api.toast({
+							msg : 'No match data！'
+						});
+					}
+				}
+			});
+		}
+
+		function loadListByPage() {
+			var condition = $api.val($api.byId('searchInput'));
+			if (isEnd == true) {
+				UIListView.appendData({
+					data : []
+				}, function(ret, err) {
+				});
+				api.toast({
+					msg : 'No more data！'
+				});
+				return;
+			}
+			var sql = "SELECT a.* FROM product a  where a.model like '" + condition + "%' or a.title like '" + condition + "%' or a.code like '" + condition + "%' limit " + (pageNo - 1) * pageSize + ", " + pageSize + "";
+			db.selectSql({
+				name : 'data',
+				sql : sql
+			}, function(ret, err) {
+				if (ret && ret.status) {
+					var data = ret.data;
+					if (data.length > 0) {
+						var listData = [];
+						for (var i = 0; i < data.length; i++) {
+							listData.push({
+								title : data[i].title,
+								subTitle : data[i].model,
+								selected : 'false',
+								icon : 'widget://image/common/circle.png',
+								id : data[i].id,
+								code : data[i].code
+							});
+						}
+						UIListView.appendData({
+							data : listData
+						}, function(ret, err) {
+						});
+						if (data.length < pageSize) {
+							isEnd = true;
+						} else {
+							pageNo++;
+						}
+					} else {
+						UIListView.appendData({
+							data : []
+						}, function(ret, err) {
+						});
+						api.toast({
+							msg : 'No more data！'
+						});
+					}
+				}
+			});
+		}
+
+		function select() {
+			api.sendEvent({
+				name : 'selectProducts',
+				extra : {
+					products : selectedProducts
+				}
+			});
+			api.closeWin({
+			});
+		}
+		
+	</script>
+</html>

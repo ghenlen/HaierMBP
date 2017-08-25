@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<script type="text/javascript" src="../script/generalCSS.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/issue_detail.css"/>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav">
+			<a class="aui-pull-left aui-btn" onclick="back()"> <span class="aui-iconfont aui-icon-left"></span></a>
+			<div class="aui-title aui-font-size-18" >
+				<label class="i18n_label" id="issueDetail"></label>
+			</div>
+		</header>
+		<div id="container" class="aui-content" >
+			<div class="aui-content  aui-padded-t-10" style="background: #fff;">
+				<ul class="aui-list">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title" >
+								<label class="i18n_label" id="title"></label>:
+							</div>
+							<div class="aui-list-item-left" style="width:70%">
+								<div id="titleText" class="aui-ellipsis-2"></div>
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title" >
+								<label class="i18n_label" id="time"></label>:
+							</div>
+							<div class="aui-list-item-left" style="width:70%">
+								<div id="timeText" class="aui-ellipsis-1"></div>
+							</div>
+						</div>
+					</li>
+					<!--<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title" >
+								<label class="i18n_label" id="publisher"></label>:
+							</div>
+							<div class="aui-list-item-left" style="width:70%">
+								<div id="publisherText" class="aui-ellipsis-1"></div>
+							</div>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+			<div style="background: #fff;overflow: auto">
+				<p id="content" style="margin-left: 5px;margin-right: 5px"></p>
+			</div>
+			<div class="attachment_container_image aui-padded-t-10" style="background: #fff;"></div>
+			<div class="attachment_container"></div>
+			<div id="ackContainer" class="aui-hide">
+				<ul class="aui-list aui-form-list " style="background: #fff;">
+					<li class="aui-list-header aui-hide" style="border-bottom: 1px solid #efefef;margin-left: 0.5rem;margin-right: 0.5rem;background: #fff;">
+						<div style="border-left: 3px solid #1b7bea;padding-left:0.5rem;font-size: 14px;">
+							<label class="i18n_label" id="acknowledge"></label>
+						</div>
+					</li>
+					<li class="aui-list-item " onclick="showDealerActionSelector()" id="dealerListLi">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								<label class="i18n_label" id="dealer"></label>:
+							</div>
+							<div class="aui-list-item-right">
+								<span id="dealerText" class="aui-text-info"></span>
+							</div>
+							<i class="aui-iconfont aui-icon-right aui-text-info"></i>
+						</div>
+					</li>
+				</ul>
+				<div id="upload_container" class="aui-margin-t-10">
+					<div class="upload_btn" onclick="openCamera()"></div>
+				</div>
+				<div  class="aui-content aui-hide" id="ackHisList">
+					<ul class="aui-list" id="ackHisUl"></ul>
+				</div>
+				<div class="aui-content aui-margin-t-15" align="center" style="height: 4rem;">
+					<div class="aui-btn aui-btn-info" id="submitReply" style="width: 90%" onclick="acknowledge()">
+						<label class="i18n_label" id="acknowledge"></label>
+					</div>
+					<div class="aui-btn aui-btn-info aui-margin-t-15" style="width: 90%;"  id="historyBtn" onclick="showHistoryList()">
+						<label class="i18n_label" id="history"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="updImgTemplate" class="aui-hide">
+			<div class="upload_imgs" onclick="browserImg();">
+				<img src="" />
+				<div class="delete_flag"></div>
+			</div>
+		</div>
+		<input type="hidden" id="customerId"/>
+		<input type="hidden" id="customerCode"/>
+		<input type="hidden" id="announceId"/>
+	</body>
+	<script type="text/javascript" src="../script/generalJS.js"></script>
+	<script type="text/javascript" src="../script/issue_detail.js"></script>
+</html>
